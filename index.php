@@ -11,19 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        
-      include_once './model/Aluno.class.php';
-      include_once './controller/AlunoController.class.php';
-       
+              
+      
    
+        
         $p1 = new Aluno();
-        $p1->setNome("Kelvyn");
-        
-        $novoAluno = new AlunoController();
+        $p1->setMatricula("123");
+       
+       /* $novoAluno = new AlunoController();
         $novoAluno->cadastrarAluno($p1);
-        
-        
-    
+       */ 
         
         ?>
     </body>
