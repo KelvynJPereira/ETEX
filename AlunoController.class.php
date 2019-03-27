@@ -1,6 +1,6 @@
 <?php
 
-include_once './model/Aluno/AlunoDao.class.php';
+include_once './AlunoDao.class.php';
 
 
 /*

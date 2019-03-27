@@ -1,6 +1,6 @@
 <?php
 
-
+include_once './InterfaceAluno.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,39 +14,49 @@
  * @author Turyng
  */
 class AlunoDao implements InterfaceAluno {
-    
+
     //put your code here
 
     public function inserirAluno(Aluno $aluno) {
 
-        // Criação da query
+        // Conexão com banco
+
+        include_once './dataBase.class.php';
+
+        // Variaveis
         
+        $matricula = $aluno->getMatricula();
+        $nome = $aluno->getNome();
+        $sobrenome = $aluno->getSobrenome();
+        $nascimento = $aluno->getNascimento();
+        $cor = $aluno->getCor();
+
+        // Criação da query
+
         $stmt = $conn->prepare("INSERT INTO `alunos_inst`
-                (`id_aluno`,
-                `matricula_aluno`,
+                (`matricula_aluno`,
                 `nome_aluno`,
                 `sobrenome_aluno`,
                 `nascimento_aluno`,
                 `cor_aluno`)
-                VALUES (:ID, :MATRICULA, :NOME, :SOBRENOME, :IDADE, :COR )");
-        
-      
+                VALUES (:MATRICULA, :NOME, :SOBRENOME, :IDADE, :COR)");
+
+
         // União das variáveis com comando slq
         
-        $stmt->bindParam(":ID", "default");
-        $stmt->bindParam(":MATRICULA", $aluno->getMatricula());
-        $stmt->bindParam(":NOME", $aluno->getNome());
-        $stmt->bindParam(":SOBRENOME", $aluno->getSobrenome());
-        $stmt->bindParam(":IDADE", $aluno->getNascimento());
-        $stmt->bindParam(":COR", $aluno->getCor());
+        $stmt->bindParam(":MATRICULA", $matricula);
+        $stmt->bindParam(":NOME", $nome);
+        $stmt->bindParam(":SOBRENOME", $sobrenome);
+        $stmt->bindParam(":IDADE", $nascimento);
+        $stmt->bindParam(":COR", $cor);
 
         // Execução da query
-        
+
         try {
             $stmt->execute();
-            echo "Aluno cadastrado com sucesso!";
+            echo 'Aluno cadastrado com sucesso!';
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            echo $exc();
         }
     }
 

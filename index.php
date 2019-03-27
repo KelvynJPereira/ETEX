@@ -11,16 +11,29 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-              
-      
-   
+        include_once './Aluno.class.php';
+        include_once './AlunoController.class.php';
+
+          /*$p1 = new Aluno('Kelvyn', 'Pereira', '1997-12-24', 'M', 'PRETO');
+          $p1->setMatricula("01");
+
+          var_dump($p1);
+
+          $novoAluno = new AlunoController();
+          $novoAluno->cadastrarAluno($p1);
+           * 
+           */
         
-        $p1 = new Aluno();
-        $p1->setMatricula("123");
-       
-       /* $novoAluno = new AlunoController();
-        $novoAluno->cadastrarAluno($p1);
-       */ 
+        $p2 = new Aluno('teste', 'teste', '1990-01-01', 'M', 'BRANCO');
+        $p2->setMatricula("02");
+        
+        var_dump($p2);
+        
+        $novoAluno = new AlunoController();
+        $novoAluno->cadastrarAluno($p2);
+         
+        
+   
         
         ?>
     </body>

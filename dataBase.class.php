@@ -12,7 +12,12 @@ $user = "root";
 $pass = "root";
 
 // Conexão
-$conn = new PDO("mysql:host=$host; dbname=$dbname", $user, $pass);
 
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    echo "conexão com banco</br>";
+} catch (Exception $exc) {
+    echo $exc->getTraceAsString();
+}
 
 

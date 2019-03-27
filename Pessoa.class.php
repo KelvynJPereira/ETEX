@@ -1,6 +1,5 @@
 <?php
 
-include_once '';
 
 /*
   include_once 'Telefone.class.php';
@@ -23,7 +22,7 @@ abstract class Pessoa {
 
     // Atributos
 
-    protected $id = "default";
+    protected $id = null;
     protected $nome = null;
     protected $sobrenome = null;
     protected $nascimento = null;
@@ -33,7 +32,15 @@ abstract class Pessoa {
     // Construtores
     
  
-    
+    function __construct($nome, $sobrenome, $nascimento, $sexo, $cor) {
+        $this->id = "default";
+        $this->nome = $nome;
+        $this->sobrenome = $sobrenome;
+        $this->nascimento = $nascimento;
+        $this->sexo = $sexo;
+        $this->cor = $cor;
+    }
+
     
     // Metodos - Getters e Setters
 

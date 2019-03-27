@@ -1,6 +1,6 @@
 <?php
 
-
+include_once './Pessoa.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +16,9 @@
 class Aluno extends Pessoa {
 
     // Atributos
-    private $matricula;
+    protected $matricula;
+    
+    
 
     // Métodos
 
