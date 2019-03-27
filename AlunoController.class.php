@@ -1,6 +1,8 @@
 <?php
 
 include_once './AlunoDao.class.php';
+include_once './Aluno.class.php';
+include_once './AlunoController.class.php';
 
 
 /*
@@ -15,12 +17,33 @@ include_once './AlunoDao.class.php';
  * @author Turyng
  */
 class AlunoController {
-    //put your code here
+  
     
     public function cadastrarAluno(Aluno $aluno){
-        $cadastrar = new AlunoDao();
-        $cadastrar->inserirAluno($aluno);
+        $cadastrarAluno = new AlunoDao();
+        $cadastrarAluno->inserirAluno($aluno);
     }
+    
+    public function consultarAlunos(){
+        $consultarAlunos = new AlunoDao();
+        $consultarAlunos->consultarAlunos();
+    }
+    
+    public function consultarAluno($matricula){
+        $consultarAluno = new AlunoDao();
+        $consultarAluno->consutarAluno($matricula);
+    }
+       
+    public function editarAluno(Aluno $aluno, $matricula){
+        $editarAluno = new AlunoDao();
+        $editarAluno->editarAluno($aluno, $matricula);
+    }
+
+    public function excluirAluno($matricula){
+        $excluirAluno = new AlunoDao();
+        $excluirAluno->excluirAluno($matricula);
+    }
+    
     
     
 }
