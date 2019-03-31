@@ -11,26 +11,35 @@
  *
  * @author Turyng
  */
- trait Endereco {
+ class Endereco {
 
     //put your code here
     
     // Atributos
     
-    protected $idEndereco; // Id do endereco.
-    protected $tipoEndereco; // 0 - PF || 1 - PJ .
-    protected $numero = null;
-    protected $rua = null;
-    protected $bairro = null;
-    protected $cidade = null;
-    protected $estado = null;
-    protected $pais = null;
+    private $idEndereco; 
+    private $tipoEndereco; // 0 - Admin , 1 - instituicao, 2 -  funcionario,3 - Aluno;
+    private $numero = null;
+    private $rua = null;
+    private $bairro = null;
+    private $cidade = null;
+    private $estado = null;
+    private $pais = null;
+    private $cep = null;
 
     // Construtor
     
-  
+    function __construct($tipoEndereco, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep) {
+        $this->tipoEndereco = $tipoEndereco;
+        $this->numero = $numero;
+        $this->rua = $rua;
+        $this->bairro = $bairro;
+        $this->cidade = $cidade;
+        $this->estado = $estado;
+        $this->pais = $pais;
+        $this->cep = $cep;
+    }
 
-    
     // Getters e Setters
     
     function getIdEndereco() {
@@ -96,17 +105,14 @@
     function setPais($pais) {
         $this->pais = $pais;
     }
-
-    // Outros métodos
-
-    function showEndereco() {
-        echo 'Tipo de endereco: ' . $this->getTipoEndereco() . '</br>'
-        . 'número: ' . $this->numero . '</br>'
-        . 'rua: ' . $this->rua . '</br>'
-        . 'bairro: ' . $this->bairro . '</br>'
-        . 'cidade: ' . $this->cidade . '</br>'
-        . 'estado: ' . $this->estado . '</br>'
-        . 'pais: ' . $this->pais;
+    
+    function getCep() {
+        return $this->cep;
     }
+
+    function setCep($cep) {
+        $this->cep = $cep;
+    }
+
 
 }

@@ -23,7 +23,6 @@ final class Telefone {
     private $comercial = null;
 
    
-    
     // Getters e Setters
 
     function getIdTelefone() {

@@ -1,6 +1,7 @@
 <?php
 
 
+
 /*
   include_once 'Telefone.class.php';
   include_once 'Endereco.class.php';
@@ -22,7 +23,7 @@ abstract class Pessoa {
 
     // Atributos
 
-    protected $id = null;
+    protected $id;
     protected $nome = null;
     protected $sobrenome = null;
     protected $nascimento = null;

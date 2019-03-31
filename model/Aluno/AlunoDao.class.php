@@ -43,7 +43,10 @@ class AlunoDao implements InterfaceCrudAluno {
                 `sobrenome_aluno`,
                 `nascimento_aluno`,
                 `cor_aluno`)
-                VALUES (:NOME, :SOBRENOME, :NASCIMENTO, :COR)");
+                VALUES (:NOME,
+                :SOBRENOME,
+                :NASCIMENTO,
+                :COR)");
         
         // União das variáveis com comando slq
 
