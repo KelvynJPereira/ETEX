@@ -10,17 +10,23 @@
  *
  * @author Turyng
  */
-interface InterfaceAluno {
+interface InterfaceCrudAluno {
 
-    // Assinaturas
+    /*
+     * Assinaturas
+     * 
+     * Ações disponíveis na classe Aluno
+     */
 
+    // Create, Update, Read, Delete 
+    
     public function inserirAluno(Aluno $alunoInserir);
 
     public function listarAlunos();
 
     public function buscarAluno($idBuscar);
 
-    public function editarAluno(Aluno $alunoEditar);
+    public function editarAluno(Aluno $aluno, $idAlunoEditar);
 
     public function excluirAluno($idExcluir);
 }

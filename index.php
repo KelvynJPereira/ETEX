@@ -14,52 +14,70 @@ and open the template in the editor.
         include_once __DIR__.'\model\Aluno\Aluno.class.php';
         include_once __DIR__.'\controller\AlunoController.class.php';
 
-
-        // Teste inserir aluno
-        /* $p1 = new Aluno('Kelvyn', 'Pereira', '1997-12-24', 'M', 'PRETO');
-          $p1->setMatricula("01");
-
+        /*
+         * TESTES DA CLASSE ALUNO
+         */
+        
+        
+        /*
+         * Teste inserir aluno
+       
+         $al = new Aluno('Kelvyn', 'Pereira', '1997-12-24', 'M', 'PRETO');
+     
           var_dump($p1);
 
-          $novoAluno = new AlunoController();
-          $novoAluno->cadastrarAluno($p1);
-         * 
-         */
-
-        // Teste consultar todos os alunos
-        /*
-          $consultarAlunos = new AlunoController();
-          $consultarAlunos->consultarAlunos();
-         */
-
-
-        // Teste consulta unica aluno
-        /*
-          $consultarAluno = new AlunoController();
-          $consultarAluno->consultarAluno(2);
-        */ 
+         $nAluno = new AlunoController();
+         $nAluno->cadastrarAluno($al);
         
-        // Teste excluir aluno
+        // OK! 
+          
+        */
+         
         /*
-           $excluirAluno = new AlunoController();
-           $excluirAluno->excluirAluno(10);
+         * Teste listar aluno
+        
+        $listar = new AlunoController();
+        $listar->listarAlunos();
+        
+        // OK!
+         
         */
         
-        // Teste editar aluno
         /*
-         * 
+         * Teste consulta unica aluno
+       
+         $buscar = new AlunoController();
+         $buscar->buscarAluno(1);
+          
+         // OK !
+     
+         */
+      
+        
+        /*
+         *  Teste excluir aluno
+        
+           $excluirAluno = new AlunoController();
+           $excluirAluno->excluirAluno(9);
+        
+        
+        // OK"
+           
+        */
+        /*
+         * Teste editar aluno
+        
         
             $aluno1 = new Aluno('Elyxandre', 'Guedes', '1998-01-21', 'M', 'PRETO');
         
             $editarAluno = new AlunoController();
             $editarAluno->editarAluno($aluno1, 2);
-        /*
-         * Corrigir erro de update
+        
+        // OK!
+       
          * Lembrar que as classes são instanciadas no controler, não aqui.
          */
-        
-        
-        
+
         ?>
     </body>
 </html>

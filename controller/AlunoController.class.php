@@ -20,17 +20,17 @@ class AlunoController {
     
     public function listarAlunos(){
         $consultarAlunos = new AlunoDao();
-        $consultarAlunos->consultarAlunos();
+        $consultarAlunos->listarAlunos();
     }
     
-    public function buscarAluno($id){
+    public function buscarAluno($idBuscar){
         $consultarAluno = new AlunoDao();
-        $consultarAluno->consutarAluno($id);
+        $consultarAluno->buscarAluno($idBuscar);
     }
        
-    public function editarAluno(Aluno $alunoEditar){
+    public function editarAluno(Aluno $aluno, $idAlunoEditar){
         $editar = new AlunoDao();
-        $editar->editarAluno($alunoEditar);
+        $editar->editarAluno($aluno, $idAlunoEditar);
     }
   
     public function excluirAluno($id){
