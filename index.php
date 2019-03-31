@@ -11,29 +11,54 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include_once './Aluno.class.php';
-        include_once './AlunoController.class.php';
+        include_once __DIR__.'\model\Aluno\Aluno.class.php';
+        include_once __DIR__.'\controller\AlunoController.class.php';
 
-          /*$p1 = new Aluno('Kelvyn', 'Pereira', '1997-12-24', 'M', 'PRETO');
+
+        // Teste inserir aluno
+        /* $p1 = new Aluno('Kelvyn', 'Pereira', '1997-12-24', 'M', 'PRETO');
           $p1->setMatricula("01");
 
           var_dump($p1);
 
           $novoAluno = new AlunoController();
           $novoAluno->cadastrarAluno($p1);
-           * 
-           */
+         * 
+         */
+
+        // Teste consultar todos os alunos
+        /*
+          $consultarAlunos = new AlunoController();
+          $consultarAlunos->consultarAlunos();
+         */
+
+
+        // Teste consulta unica aluno
+        /*
+          $consultarAluno = new AlunoController();
+          $consultarAluno->consultarAluno(2);
+        */ 
         
-        $p2 = new Aluno('teste', 'teste', '1990-01-01', 'M', 'BRANCO');
-        $p2->setMatricula("02");
+        // Teste excluir aluno
+        /*
+           $excluirAluno = new AlunoController();
+           $excluirAluno->excluirAluno(10);
+        */
         
-        var_dump($p2);
+        // Teste editar aluno
+        /*
+         * 
         
-        $novoAluno = new AlunoController();
-        $novoAluno->cadastrarAluno($p2);
-         
+            $aluno1 = new Aluno('Elyxandre', 'Guedes', '1998-01-21', 'M', 'PRETO');
         
-   
+            $editarAluno = new AlunoController();
+            $editarAluno->editarAluno($aluno1, 2);
+        /*
+         * Corrigir erro de update
+         * Lembrar que as classes são instanciadas no controler, não aqui.
+         */
+        
+        
         
         ?>
     </body>

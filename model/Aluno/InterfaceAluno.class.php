@@ -1,4 +1,5 @@
 <?php
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +12,15 @@
  */
 interface InterfaceAluno {
 
-    //put your code here
+    // Assinaturas
 
-    public function inserirAluno(Aluno $aluno);
+    public function inserirAluno(Aluno $alunoInserir);
 
-    public function editarAluno();
+    public function listarAlunos();
 
-    public function consultarAluno();
+    public function buscarAluno($idBuscar);
 
-    public function excluirAluno();
+    public function editarAluno(Aluno $alunoEditar);
+
+    public function excluirAluno($idExcluir);
 }

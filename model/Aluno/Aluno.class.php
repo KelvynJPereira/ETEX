@@ -1,6 +1,8 @@
 <?php
 
-include_once './Pessoa.class.php';
+include_once __DIR__ . '/../Pessoa/Pessoa.class.php';
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,10 +18,9 @@ include_once './Pessoa.class.php';
 class Aluno extends Pessoa {
 
     // Atributos
-    protected $matricula;
+    protected $matricula; // Matricula será ano + serie + turma 
     
     
-
     // Métodos
 
     function getMatricula() {
