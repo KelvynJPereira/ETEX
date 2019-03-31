@@ -3,6 +3,9 @@
 include_once __DIR__ . '/InterfaceAluno.class.php';
 include_once __DIR__ . '/../../.config/Database.class.php';
 
+
+// Lembrar de fechar conexões após execuções
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,13 +43,13 @@ class AlunoDao implements InterfaceAluno {
                 `sobrenome_aluno`,
                 `nascimento_aluno`,
                 `cor_aluno`)
-                VALUES (:NOME, :SOBRENOME, :IDADE, :COR)");
+                VALUES (:NOME, :SOBRENOME, :NASCIMENTO, :COR)");
         
         // União das variáveis com comando slq
 
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":SOBRENOME", $sobrenome);
-        $stmt->bindParam(":IDADE", $nascimento);
+        $stmt->bindParam(":NASCIMENTO", $nascimento);
         $stmt->bindParam(":COR", $cor);
 
         // Execução da query
@@ -119,9 +122,39 @@ class AlunoDao implements InterfaceAluno {
 
     // Alterar Aluno
     
-    public function editarAluno(Aluno $alunoEditar) {
+    public function editarAluno(Aluno $alunoEditar) { // Verificar como escolher o aluno para editar
         
-        // Criar edição
+         // Conexão 
+        
+        $db_conexao = new Database(); 
+        $conn = $db_conexao->dbConexao();       
+        
+        // Criação da query
+        
+        $stm = $conn->prepare("UPDATE `alunos_inst` 
+                `nome_aluno`=:NOME,
+                `sobrenome_aluno`=:SOBRENOME,
+                `nascimento_aluno`=:NASCIMENTO,
+                `cor_aluno`=:COR
+                WHERE $id_aluno = :ID");
+        
+        
+         // União das variáveis com comando slq
+
+        $stmt->bindParam(":NOME", $nome);
+        $stmt->bindParam(":SOBRENOME", $sobrenome);
+        $stmt->bindParam(":NASCIMENTO", $nascimento);
+        $stmt->bindParam(":COR", $cor);
+        $stmt->bindParam(":ID", $id_aluno);
+        
+        // Execução da query
+        
+        try {
+            $stmt->execute();
+            echo 'Aluno alterado com sucesso'; // <= Mudar isso
+        } catch (Exception $exc) {
+            echo $exc();
+        }
    
     }
     
@@ -151,7 +184,6 @@ class AlunoDao implements InterfaceAluno {
         } catch (Exception $exc) {
             echo $exc();
         }
-        
         
     }
   

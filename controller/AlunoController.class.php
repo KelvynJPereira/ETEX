@@ -5,8 +5,6 @@
 include_once __DIR__.'\..\model\Aluno\AlunoDao.class.php';
 include_once __DIR__.'\..\model\Aluno\Aluno.class.php';
 
-
-
 /**
  * Description of AlunoController
  *
@@ -30,13 +28,11 @@ class AlunoController {
         $consultarAluno->consutarAluno($id);
     }
        
-    /*public function editarAluno(Aluno $aluno, $id){ // <= Buscar sem id
-        $editarAluno = new AlunoDao();
-        $editarAluno->editarAluno($aluno, $id);
+    public function editarAluno(Aluno $alunoEditar){
+        $editar = new AlunoDao();
+        $editar->editarAluno($alunoEditar);
     }
-     * 
-     */
-
+  
     public function excluirAluno($id){
         $excluirAluno = new AlunoDao();
         $excluirAluno->excluirAluno($id);
