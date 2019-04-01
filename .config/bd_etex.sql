@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 31-Mar-2019 às 22:54
+-- Generation Time: 01-Abr-2019 às 20:43
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -25,32 +25,34 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `alunos_esc`
+-- Estrutura da tabela `alunos`
 --
 
-DROP TABLE IF EXISTS `alunos_esc`;
-CREATE TABLE IF NOT EXISTS `alunos_esc` (
+DROP TABLE IF EXISTS `alunos`;
+CREATE TABLE IF NOT EXISTS `alunos` (
   `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
   `matricula_aluno` double DEFAULT NULL,
   `nome_aluno` varchar(32) NOT NULL,
   `sobrenome_aluno` varchar(64) NOT NULL,
   `nascimento_aluno` date NOT NULL,
   `cor_aluno` varchar(12) NOT NULL,
-  PRIMARY KEY (`id_aluno`)
+  `fk_endereco` int(11) NOT NULL,
+  PRIMARY KEY (`id_aluno`),
+  KEY `fk_endereco` (`fk_endereco`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `alunos_esc`
+-- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos_esc` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `cor_aluno`) VALUES
-(1, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO'),
-(2, 1, 'Elyxandre', 'Guedes', '1998-01-21', 'PRETO'),
-(3, 2, 'teste', 'teste', '1990-01-01', 'BRANCO'),
-(5, 5, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO'),
-(6, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO'),
-(7, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO'),
-(8, NULL, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO');
+INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `cor_aluno`, `fk_endereco`) VALUES
+(1, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
+(2, 1, 'Elyxandre', 'Guedes', '1998-01-21', 'PRETO', 0),
+(3, 2, 'teste', 'teste', '1990-01-01', 'BRANCO', 0),
+(5, 5, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
+(6, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
+(7, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
+(8, NULL, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0);
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,6 @@ INSERT INTO `alunos_esc` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenom
 DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE IF NOT EXISTS `endereco` (
   `endereco_id` int(11) NOT NULL AUTO_INCREMENT,
-  `endereco_tipo` varchar(11) NOT NULL,
   `endereco_numero` varchar(32) NOT NULL,
   `endereco_rua` varchar(64) NOT NULL,
   `endereco_bairro` varchar(20) NOT NULL,
@@ -69,19 +70,15 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   `endereco_estado` varchar(15) NOT NULL,
   `endereco_pais` varchar(15) NOT NULL,
   `endereco_cep` varchar(15) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`endereco_id`),
-  KEY `fk_id_aluno` (`id_usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`endereco_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `endereco`
 --
 
-INSERT INTO `endereco` (`endereco_id`, `endereco_tipo`, `endereco_numero`, `endereco_rua`, `endereco_bairro`, `endereco_cidade`, `endereco_estado`, `endereco_pais`, `endereco_cep`, `id_usuario`) VALUES
-(1, '0', '0', 'rua teste', 'bairro teste', 'cidade teste', 'estado teste', 'pais teste', '', 0),
-(2, '3', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'pais', 'cep', 1),
-(3, '1', 'numero', 'rua', 'bairro', 'cidade', 'estado', 'pais', 'cep', 1);
+INSERT INTO `endereco` (`endereco_id`, `endereco_numero`, `endereco_rua`, `endereco_bairro`, `endereco_cidade`, `endereco_estado`, `endereco_pais`, `endereco_cep`) VALUES
+(1, '239', 'Rua aluno', 'Bairro aluno', 'Cidade aluno', 'Estado aluno', 'Pais aluno', 'Cep aluno');
 
 -- --------------------------------------------------------
 
@@ -108,16 +105,16 @@ INSERT INTO `instituicao` (`inst_id`, `inst_nome`, `inst_cnpj`, `inst_email`) VA
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `telefone_esc`
+-- Estrutura da tabela `telefone`
 --
 
-DROP TABLE IF EXISTS `telefone_esc`;
-CREATE TABLE IF NOT EXISTS `telefone_esc` (
-  `telefone_inst_id` int(11) NOT NULL AUTO_INCREMENT,
-  `telefone_inst` varchar(30) NOT NULL,
-  `inst_id` int(11) NOT NULL,
-  PRIMARY KEY (`telefone_inst_id`),
-  KEY `FK_telefoneInst` (`inst_id`)
+DROP TABLE IF EXISTS `telefone`;
+CREATE TABLE IF NOT EXISTS `telefone` (
+  `telefone_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pessoal_telefone` varchar(20) NOT NULL,
+  `fixo_telefone` varchar(20) NOT NULL,
+  `comercial_telefone` varchar(20) NOT NULL,
+  PRIMARY KEY (`telefone_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
