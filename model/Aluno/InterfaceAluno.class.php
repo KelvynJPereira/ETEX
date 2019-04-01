@@ -10,7 +10,7 @@
  *
  * @author Turyng
  */
-interface InterfaceCrudAluno {
+interface InterfaceAluno {
 
     /*
      * Assinaturas

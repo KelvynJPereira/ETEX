@@ -18,7 +18,6 @@
     // Atributos
     
     private $idEndereco; 
-    private $tipoEndereco; // 0 - Admin , 1 - instituicao, 2 -  funcionario,3 - Aluno;
     private $numero = null;
     private $rua = null;
     private $bairro = null;
@@ -29,8 +28,7 @@
 
     // Construtor
     
-    function __construct($tipoEndereco, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep) {
-        $this->tipoEndereco = $tipoEndereco;
+    function __construct($numero, $rua, $bairro, $cidade, $estado, $pais, $cep) {
         $this->numero = $numero;
         $this->rua = $rua;
         $this->bairro = $bairro;
@@ -44,10 +42,6 @@
     
     function getIdEndereco() {
         return $this->idEndereco;
-    }
-
-    function getTipoEndereco() {
-        return $this->tipoEndereco;
     }
 
     function getNumero() {
@@ -76,10 +70,6 @@
 
     function setIdEndereco($idEndereco) {
         $this->idEndereco = $idEndereco;
-    }
-
-    function setTipoEndereco($tipoEndereco) {
-        $this->tipoEndereco = $tipoEndereco;
     }
 
     function setNumero($numero) {

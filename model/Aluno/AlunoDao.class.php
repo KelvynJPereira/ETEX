@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/InterfaceCrudAluno.class.php';
+include_once __DIR__ . '/InterfaceAluno.class.php';
 include_once __DIR__ . '/../../.config/Database.class.php';
 
 
@@ -17,7 +17,7 @@ include_once __DIR__ . '/../../.config/Database.class.php';
  *
  * @author Turyng
  */
-class AlunoDao implements InterfaceCrudAluno {
+class AlunoDao implements InterfaceAluno {
     
     
     // Inserir Aluno

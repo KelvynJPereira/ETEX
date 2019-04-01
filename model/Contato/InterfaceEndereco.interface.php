@@ -14,7 +14,7 @@ interface InterfaceEndereco {
 
     //put your code here
 
-    public function cadastrarEndereco(Endereco $endereco, $id);
+    public function cadastrarEndereco(Endereco $endereco);
     
    /*
     public function listarEnderecos();

@@ -18,7 +18,7 @@ class EnderecoDao implements InterfaceEndereco {
 
     //put your code here
 
-    public function cadastrarEndereco(Endereco $endereco, $id) {
+    public function cadastrarEndereco(Endereco $endereco) {
         
         
         /*
@@ -39,7 +39,6 @@ class EnderecoDao implements InterfaceEndereco {
         $estado = $endereco->getEstado();
         $pais = $endereco->getPais();
         $cep = $endereco->getCep();
-        $tipoEndereco = $endereco->getTipoEndereco(); // 0 - Admin, 1 - Instituicao, 2 - Funcionario, 3 - Aluno;
         
         // Criação da query
 
@@ -50,18 +49,15 @@ class EnderecoDao implements InterfaceEndereco {
                 `endereco_cidade`,
                 `endereco_estado`,
                 `endereco_pais`,
-                `endereco_cep`,
-                `endereco_tipo`,
-                `id_usuario`) 
-                VALUES (:NUMERO,
+                `endereco_cep`) 
+                VALUES 
+                (:NUMERO,
                 :RUA,
                 :BAIRRO,
                 :CIDADE,
                 :ESTADO,
                 :PAIS,
-                :CEP,
-                :TIPO,
-                :ID)");
+                :CEP)");
         
         // União das variáveis com comando slq
 
@@ -72,10 +68,10 @@ class EnderecoDao implements InterfaceEndereco {
         $stmt->bindParam(":ESTADO", $estado);
         $stmt->bindParam(":PAIS", $pais);
         $stmt->bindParam(":CEP", $cep);
-        $stmt->bindParam(":TIPO", $tipoEndereco); // 0 - Admin, 1 - Instituicao, 2 - Funcionario, 3 - Aluno;
-        $stmt->bindParam(":ID", $id);
         
         // Execução da query
+        
+        var_dump($endereco);
 
         try {
             $stmt->execute();
