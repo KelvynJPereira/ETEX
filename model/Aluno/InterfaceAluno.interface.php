@@ -20,13 +20,13 @@ interface InterfaceAluno {
 
     // Create, Update, Read, Delete 
     
-    public function inserirAluno(Aluno $alunoInserir);
+    public function inserirAluno(Aluno $aluno);
 
     public function listarAlunos();
 
-    public function buscarAluno($idBuscar);
+    public function buscarAluno($id);
 
     public function editarAluno(Aluno $aluno, $idAlunoEditar);
 
-    public function excluirAluno($idExcluir);
+    public function excluirAluno($id);
 }

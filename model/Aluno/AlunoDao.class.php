@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/InterfaceAluno.class.php';
+include_once __DIR__ . '/InterfaceAluno.interface.php';
 include_once __DIR__ . '/../../.config/Database.class.php';
 
 
@@ -18,172 +18,270 @@ include_once __DIR__ . '/../../.config/Database.class.php';
  * @author Turyng
  */
 class AlunoDao implements InterfaceAluno {
-    
-    
+
     // Inserir Aluno
-    
-    public function inserirAluno(Aluno $aluno) {  
-      
+
+    public function inserirAluno(Aluno $aluno) {
+
         // Cria conexão 
-        
-        $db_conexao = new Database(); 
+
+        $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Variaveis
+        // Dados
 
         $nome = $aluno->getNome();
         $sobrenome = $aluno->getSobrenome();
         $nascimento = $aluno->getNascimento();
+        $sexo = $aluno->getSexo();
+        $cpf = $aluno->getCpf();
+        $foneF = $aluno->getFoneF();
+        $foneP = $aluno->getFoneP();
+        $email = $aluno->getEmail();
         $cor = $aluno->getCor();
 
-        // Criação da query
+        // Endereco
 
-        $stmt = $conn->prepare("INSERT INTO `alunos_inst`
-                (`nome_aluno`,
-                `sobrenome_aluno`,
-                `nascimento_aluno`,
-                `cor_aluno`)
-                VALUES (:NOME,
-                :SOBRENOME,
-                :NASCIMENTO,
-                :COR)");
-        
-        // União das variáveis com comando slq
+        $numero = $aluno->getNumero();
+        $rua = $aluno->getRua();
+        $bairro = $aluno->getBairro();
+        $cidade = $aluno->getCidade();
+        $estado = $aluno->getEstado();
+        $pais = $aluno->getPais();
+        $cep = $aluno->getCep();
+
+        // Comando SQL
+
+        $stmt = $conn->prepare("INSERT INTO `alunos`
+                    (`nome_aluno`,
+                    `sobrenome_aluno`,
+                    `nascimento_aluno`,
+                    `sexo_aluno`,
+                    `cpf_aluno`,
+                    `fone_fixo_aluno`,
+                    `fone_pessoal_aluno`,
+                    `email_aluno`,
+                    `cor_aluno`,
+                    `numero_endereco_aluno`,
+                    `rua_endereco_aluno`,
+                    `bairro_endereco_aluno`,
+                    `cidade_endereco_aluno`,
+                    `estado_endereco_aluno`,
+                    `pais_endereco_aluno`,
+                    `cep_endereco_aluno`)
+                    VALUES 
+                    (:NOME,
+                    :SOBRENOME,
+                    :NASCIMENTO,
+                    :SEXO,
+                    :CPF,
+                    :FONEF,
+                    :FONEP,
+                    :EMAIL,
+                    :COR,
+                    :NUMERO,
+                    :RUA,
+                    :BAIRRO,
+                    :CIDADE,
+                    :ESTADO,
+                    :PAIS,
+                    :CEP)");
+
+        // União de variáveis com comando sql
 
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":SOBRENOME", $sobrenome);
         $stmt->bindParam(":NASCIMENTO", $nascimento);
+        $stmt->bindParam(":SEXO", $sexo);
+        $stmt->bindParam(":CPF", $cpf);
+        $stmt->bindParam(":FONEF", $foneF);
+        $stmt->bindParam(":FONEP", $foneP);
+        $stmt->bindParam(":EMAIL", $email);
         $stmt->bindParam(":COR", $cor);
+        $stmt->bindParam(":NUMERO", $numero);
+        $stmt->bindParam(":RUA", $rua);
+        $stmt->bindParam(":BAIRRO", $bairro);
+        $stmt->bindParam(":CIDADE", $cidade);
+        $stmt->bindParam(":ESTADO", $estado);
+        $stmt->bindParam(":PAIS", $pais);
+        $stmt->bindParam(":CEP", $cep);
 
-        // Execução da query
+        // Execução do sql
 
         try {
             $stmt->execute();
-            echo 'Aluno cadastrado com sucesso!'; // <= Mudar isso
-        } catch (Exception $exc) {
-            echo 'Erro '. $exc;
+            echo $nome . ' foi cadastrado com sucesso!';
+        } catch (Exception $e) {
+            echo 'Erro: ' . $e;
         }
-    
     }
 
     // Listar Alunos
-    
+
     public function listarAlunos() {
-    
-         // Conexão 
         
-        $db_conexao = new Database(); 
+        // Conexão 
+
+        $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
-        
+
         // Criação da query
-        
-        $stmt = $conn->prepare("SELECT * FROM `alunos_inst`");
+
+        $stmt = $conn->prepare("SELECT * FROM `alunos`");
 
         // Execução da query
-        
+
         try {
             $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($results); // <= Alterar para foreach
-            $conn = null; // <= Fecha conexao
-           
-     
-          
-        } catch (Exception $exc) {
-            echo $exc();
-        } 
-        
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (Exception $e) {
+            echo "Erro: ".$e;
+        }
     }
-    
-    public function buscarAluno($idBuscar) {
-      
+
+    public function buscarAluno($id) {
+
         // Conexão 
-        
-        $db_conexao = new Database(); 
+
+        $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Criação da query
-        
-        $stmt = $conn->prepare("SELECT 
-                `matricula_aluno`,
-                `nome_aluno`,
-                `sobrenome_aluno`,
-                `nascimento_aluno`,
-                `cor_aluno` 
-                FROM `alunos_inst` 
-                WHERE `id_aluno` = :ID");
+
+        $stmt = $conn->prepare("SELECT `matricula_aluno`,
+                    `nome_aluno`,
+                    `sobrenome_aluno`,
+                    `nascimento_aluno`,
+                    `sexo_aluno`,
+                    `cpf_aluno`,
+                    `fone_fixo_aluno`,
+                    `fone_pessoal_aluno`,
+                    `email_aluno`,
+                    `cor_aluno`,
+                    `numero_endereco_aluno`,
+                    `rua_endereco_aluno`,
+                    `bairro_endereco_aluno`,
+                    `cidade_endereco_aluno`,
+                    `estado_endereco_aluno`,
+                    `pais_endereco_aluno`,
+                    `cep_endereco_aluno` 
+                    FROM `alunos` WHERE `id_aluno` = :ID");
 
         // União das variáveis com comando slq
 
-        $stmt->bindParam(":ID", $idBuscar);
+        $stmt->bindParam(":ID", $id);
 
         // Execução da query
 
         try {
-            $stmt->execute(); 
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            var_dump($result); // <= Alterar para foreach
-        } catch (Exception $exc) {
-            echo $exc;
+            $stmt->execute();
+            return $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo "Erro: ".$e;
         }
-        
     }
 
     // Alterar Aluno
-    
-    public function editarAluno(Aluno $aluno, $idAlunoEditar) { // Verificar como escolher o aluno para editar
+
+    public function editarAluno(Aluno $aluno, $idAlunoEditar) {
+       
+        // Conexão 
         
-         // Conexão 
-        
-        $db_conexao = new Database(); 
-        $conn = $db_conexao->dbConexao();      
-        
-         // Variaveis
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Variaveis
+        // Dados
 
         $nome = $aluno->getNome();
         $sobrenome = $aluno->getSobrenome();
         $nascimento = $aluno->getNascimento();
+        $sexo = $aluno->getSexo();
+        $cpf = $aluno->getCpf();
+        $foneF = $aluno->getFoneF();
+        $foneP = $aluno->getFoneP();
+        $email = $aluno->getEmail();
         $cor = $aluno->getCor();
+
+        // Endereco
+
+        $numero = $aluno->getNumero();
+        $rua = $aluno->getRua();
+        $bairro = $aluno->getBairro();
+        $cidade = $aluno->getCidade();
+        $estado = $aluno->getEstado();
+        $pais = $aluno->getPais();
+        $cep = $aluno->getCep();
+
+       
+        // Comando SQL
+
+        $stmt = $conn->prepare("UPDATE SET `alunos`
+                    `nome_aluno` = :NOME,
+                    `sobrenome_aluno` = :SOBRENOME,
+                    `nascimento_aluno` = :NASCIMENTO,
+                    `sexo_aluno` = :SEXO,
+                    `cpf_aluno` = :CPF,
+                    `fone_fixo_aluno` = :FONEF,
+                    `fone_pessoal_aluno` = :FONEP,
+                    `email_aluno` = :EMAIL,
+                    `cor_aluno` = :COR,
+                    `numero_endereco_aluno` = :NUMERO,
+                    `rua_endereco_aluno` = :RUA,
+                    `bairro_endereco_aluno` = :BAIRRO,
+                    `cidade_endereco_aluno` = :CIDADE,
+                    `estado_endereco_aluno` = :ESTADO,
+                    `pais_endereco_aluno`= :PAIS,
+                    `cep_endereco_aluno` = :CEP
+                    WHERE `id_aluno` = :ID");
         
-        // Criação da query
-        
-        $stmt = $conn->prepare("UPDATE `alunos_inst`
-                SET `nome_aluno`=:NOME,
-                `sobrenome_aluno`=:SOBRENOME,
-                `nascimento_aluno`=:NASCIMENTO,
-                `cor_aluno`=:COR
-                WHERE id_aluno = :ID");
-        
-         // União das variáveis com comando slq
+        // União de variáveis com comando sql
 
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":SOBRENOME", $sobrenome);
         $stmt->bindParam(":NASCIMENTO", $nascimento);
-        $stmt->bindParam(":COR", $cor);    
-        $stmt->bindParam(":ID", $idAlunoEditar); // Id do aluno a ser editado
+        $stmt->bindParam(":SEXO", $sexo);
+        $stmt->bindParam(":CPF", $cpf);
+        $stmt->bindParam(":FONEF", $foneF);
+        $stmt->bindParam(":FONEP", $foneP);
+        $stmt->bindParam(":EMAIL", $email);
+        $stmt->bindParam(":COR", $cor);
+        $stmt->bindParam(":NUMERO", $numero);
+        $stmt->bindParam(":RUA", $rua);
+        $stmt->bindParam(":BAIRRO", $bairro);
+        $stmt->bindParam(":CIDADE", $cidade);
+        $stmt->bindParam(":ESTADO", $estado);
+        $stmt->bindParam(":PAIS", $pais);
+        $stmt->bindParam(":CEP", $cep);
+        
+        // id aluno update
+        
+        $stmt->bindParam(":ID", $idAlunoEditar);
         
         // Execução da query
-        
+
         try {
             $stmt->execute(); // Mesmo não editando dá ok!
             echo 'Aluno alterado com sucesso'; // <= Mudar isso
-        } catch (Exception $exc) {
-            echo $exc;
+        } catch (Exception $e) {
+            echo "Erro: ".$e;
         }
     }
-    
+
     // Exclusão de Aluno
 
-    public function excluirAluno($idExcluir) {
-        
+    public function excluirAluno($id) {
+
         // Conexão 
-        
-        $db_conexao = new Database(); 
+
+        $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Criação da query 
 
-        $stmt = $conn->prepare("DELETE FROM `alunos_inst`
+        $stmt = $conn->prepare("DELETE FROM `alunos`
                 WHERE id_aluno = :ID");
 
         // União das variáveis com comando slq
@@ -195,11 +293,32 @@ class AlunoDao implements InterfaceAluno {
         try {
             $stmt->execute(); // Criar um array para erros (não exclui mas diz excluiu)
             echo 'Aluno de matricula ' . $idExcluir . ' foi excluido com sucesso!';
-        } catch (Exception $exc) {
-            echo $exc();
+        } catch (Exception $e) {
+            echo "Erro: ".$e;
         }
-        
     }
-  
+
+    // Consulta o último aluno cadastrado
+
+    public function ultimoAlunoCadastrado() {
+
+        // Cria conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Comando SQL
+
+        $stmt = $conn->prepare("SELECT MAX(id_aluno) from alunos");
+
+        // Execução do sql
+        try {
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo $result['MAX(id_aluno)'];
+        } catch (Exception $e) {
+            echo 'Erro: ' . $e;
+        }
+    }
 
 }

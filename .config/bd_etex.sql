@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 01-Abr-2019 às 20:43
+-- Generation Time: 16-Abr-2019 às 20:17
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -31,91 +31,54 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `alunos`;
 CREATE TABLE IF NOT EXISTS `alunos` (
   `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
-  `matricula_aluno` double DEFAULT NULL,
+  `matricula_aluno` varchar(255) DEFAULT NULL,
   `nome_aluno` varchar(32) NOT NULL,
-  `sobrenome_aluno` varchar(64) NOT NULL,
-  `nascimento_aluno` date NOT NULL,
-  `cor_aluno` varchar(12) NOT NULL,
-  `fk_endereco` int(11) NOT NULL,
-  PRIMARY KEY (`id_aluno`),
-  KEY `fk_endereco` (`fk_endereco`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `sobrenome_aluno` varchar(24) NOT NULL,
+  `nascimento_aluno` varchar(10) NOT NULL,
+  `sexo_aluno` varchar(15) NOT NULL,
+  `cpf_aluno` varchar(24) NOT NULL,
+  `fone_fixo_aluno` varchar(24) NOT NULL,
+  `fone_pessoal_aluno` varchar(24) NOT NULL,
+  `email_aluno` varchar(35) NOT NULL,
+  `cor_aluno` varchar(16) NOT NULL,
+  `numero_endereco_aluno` varchar(12) NOT NULL,
+  `rua_endereco_aluno` varchar(32) NOT NULL,
+  `bairro_endereco_aluno` varchar(15) NOT NULL,
+  `cidade_endereco_aluno` varchar(15) NOT NULL,
+  `estado_endereco_aluno` varchar(15) NOT NULL,
+  `pais_endereco_aluno` varchar(15) NOT NULL,
+  `cep_endereco_aluno` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_aluno`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `cor_aluno`, `fk_endereco`) VALUES
-(1, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
-(2, 1, 'Elyxandre', 'Guedes', '1998-01-21', 'PRETO', 0),
-(3, 2, 'teste', 'teste', '1990-01-01', 'BRANCO', 0),
-(5, 5, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
-(6, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
-(7, 1, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0),
-(8, NULL, 'Kelvyn', 'Pereira', '1997-12-24', 'PRETO', 0);
+INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cpf_aluno`, `fone_fixo_aluno`, `fone_pessoal_aluno`, `email_aluno`, `cor_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`) VALUES
+(14, 'NAO MATRICULADO', 'Mirla', 'Villa Pereira', '1996-09-01', 'Mulher', '458796625', '32614411', '996487526', 'mirlapereira1996@gmail.com', 'Pardo', '154', '17 de agosto', 'Casa Forte', 'Recife', 'Pernambuco', 'Brasil', '52030975'),
+(15, 'NAO MATRICULADO', 'Joao', 'Silva Mota', '2000-09-05', 'Homem', '656565545457', '31254789', '987548978', 'joao.mota@hotmail.com', 'Branco', '65', 'Lauro Freitas', 'Torre', 'Recife', 'Pernambuco', 'Brasil', '56554454545'),
+(16, 'NAO MATRICULADO', 'Julia', 'Maria Fernandes', '2000-01-03', 'Mulher', '78954788963', '31254877', '987548978', 'juliamf@bol.com.br', 'Branco', '65', 'Julio Nobre', 'Madalena', 'Recife', 'Pernambuco', 'Brasil', '5595545487');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `endereco`
+-- Estrutura da tabela `escola`
 --
 
-DROP TABLE IF EXISTS `endereco`;
-CREATE TABLE IF NOT EXISTS `endereco` (
-  `endereco_id` int(11) NOT NULL AUTO_INCREMENT,
-  `endereco_numero` varchar(32) NOT NULL,
-  `endereco_rua` varchar(64) NOT NULL,
-  `endereco_bairro` varchar(20) NOT NULL,
-  `endereco_cidade` varchar(20) NOT NULL,
-  `endereco_estado` varchar(15) NOT NULL,
-  `endereco_pais` varchar(15) NOT NULL,
-  `endereco_cep` varchar(15) NOT NULL,
-  PRIMARY KEY (`endereco_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `endereco`
---
-
-INSERT INTO `endereco` (`endereco_id`, `endereco_numero`, `endereco_rua`, `endereco_bairro`, `endereco_cidade`, `endereco_estado`, `endereco_pais`, `endereco_cep`) VALUES
-(1, '239', 'Rua aluno', 'Bairro aluno', 'Cidade aluno', 'Estado aluno', 'Pais aluno', 'Cep aluno');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `instituicao`
---
-
-DROP TABLE IF EXISTS `instituicao`;
-CREATE TABLE IF NOT EXISTS `instituicao` (
-  `inst_id` int(11) NOT NULL AUTO_INCREMENT,
-  `inst_nome` varchar(32) NOT NULL,
-  `inst_cnpj` varchar(14) NOT NULL,
-  `inst_email` varchar(32) NOT NULL,
-  PRIMARY KEY (`inst_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `instituicao`
---
-
-INSERT INTO `instituicao` (`inst_id`, `inst_nome`, `inst_cnpj`, `inst_email`) VALUES
-(1, 'instituicao teste', '12457845891245', 'teste@teste.com');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `telefone`
---
-
-DROP TABLE IF EXISTS `telefone`;
-CREATE TABLE IF NOT EXISTS `telefone` (
-  `telefone_id` int(11) NOT NULL AUTO_INCREMENT,
-  `pessoal_telefone` varchar(20) NOT NULL,
-  `fixo_telefone` varchar(20) NOT NULL,
-  `comercial_telefone` varchar(20) NOT NULL,
-  PRIMARY KEY (`telefone_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `escola`;
+CREATE TABLE IF NOT EXISTS `escola` (
+  `id_escola` int(11) NOT NULL AUTO_INCREMENT,
+  `escola_nome` varchar(32) NOT NULL,
+  `escola_cnpj` varchar(16) NOT NULL,
+  `escola_fone_fixo` varchar(16) NOT NULL,
+  `escola_fone_comercial` varchar(16) NOT NULL,
+  `escola_email` varchar(24) NOT NULL,
+  `escola_tipoEscola` varchar(24) NOT NULL,
+  `fk_endereco_escola` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_escola`),
+  KEY `fk_endereco_escola` (`fk_endereco_escola`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

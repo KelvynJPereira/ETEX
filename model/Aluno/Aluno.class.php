@@ -18,7 +18,7 @@ include_once __DIR__ . '/../Pessoa/Pessoa.class.php';
 class Aluno extends Pessoa {
 
     // Atributos
-    protected $matricula; // Matricula será ano + serie + turma 
+    protected $matricula = null; // Matricula será ano + serie + turma 
     
     
     // Métodos
