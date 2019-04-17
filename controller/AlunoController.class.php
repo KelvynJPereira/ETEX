@@ -9,7 +9,7 @@ class AlunoController implements InterfaceAluno {
 
     public function inserirAluno(Aluno $aluno) {
         $cadastrar = new AlunoDao();
-        $cadastrar->inserirAluno($aluno);
+        return $cadastrar->inserirAluno($aluno);
     }
 
     public function listarAlunos() {
@@ -19,7 +19,7 @@ class AlunoController implements InterfaceAluno {
 
     public function editarAluno(Aluno $aluno, $idAlunoEditar) {
         $editar = new AlunoDao();
-        $editar->editarAluno($aluno, $idAlunoEditar);
+       return $editar->editarAluno($aluno, $idAlunoEditar);
     }
 
     public function buscarAluno($id) {
@@ -28,6 +28,8 @@ class AlunoController implements InterfaceAluno {
     }
 
     public function excluirAluno($id) {
+        $excluir = new AlunoDao();
+        return $excluir->excluirAluno($id);
         
     }
 

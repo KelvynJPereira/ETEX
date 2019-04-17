@@ -35,10 +35,10 @@
     <div class="input-field col l2 m2">
         <select name="cor">
             <option value="" disabled selected>Cor</option>
-            <option value="B">Branco</option>
-            <option value="N">Negro</option>
-            <option value="P">Pardo</option>
-            <option value="I">Índio</option>
+            <option value="Branco">Branco</option>
+            <option value="Negro">Negro</option>
+            <option value="Pardo">Pardo</option>
+            <option value="Indio">Índio</option>
         </select>
         <label>Escolha uma raça</label>
     </div>

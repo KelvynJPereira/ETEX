@@ -3,9 +3,6 @@
 include_once __DIR__ . '/InterfaceAluno.interface.php';
 include_once __DIR__ . '/../../.config/Database.class.php';
 
-
-// Lembrar de fechar conexões após execuções
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -110,17 +107,19 @@ class AlunoDao implements InterfaceAluno {
         // Execução do sql
 
         try {
-            $stmt->execute();
-            echo $nome . ' foi cadastrado com sucesso!';
+            $result = $stmt->execute();
+            if ($result == 1):
+                return $result = $aluno->getNome()." foi cadastrado com sucesso!";
+            endif;
         } catch (Exception $e) {
-            echo 'Erro: ' . $e;
+            return $result = 'Erro: ' . $e;
         }
     }
 
     // Listar Alunos
 
     public function listarAlunos() {
-        
+
         // Conexão 
 
         $db_conexao = new Database();
@@ -137,7 +136,7 @@ class AlunoDao implements InterfaceAluno {
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } catch (Exception $e) {
-            echo "Erro: ".$e;
+            return $result = "Erro: " . $e;
         }
     }
 
@@ -177,18 +176,18 @@ class AlunoDao implements InterfaceAluno {
 
         try {
             $stmt->execute();
-            return $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
-            echo "Erro: ".$e;
+            return $result = "Erro: " . $e;
         }
     }
 
     // Alterar Aluno
 
     public function editarAluno(Aluno $aluno, $idAlunoEditar) {
-       
+
         // Conexão 
-        
+
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
@@ -215,7 +214,7 @@ class AlunoDao implements InterfaceAluno {
         $pais = $aluno->getPais();
         $cep = $aluno->getCep();
 
-       
+
         // Comando SQL
 
         $stmt = $conn->prepare("UPDATE SET `alunos`
@@ -236,7 +235,7 @@ class AlunoDao implements InterfaceAluno {
                     `pais_endereco_aluno`= :PAIS,
                     `cep_endereco_aluno` = :CEP
                     WHERE `id_aluno` = :ID");
-        
+
         // União de variáveis com comando sql
 
         $stmt->bindParam(":NOME", $nome);
@@ -255,18 +254,20 @@ class AlunoDao implements InterfaceAluno {
         $stmt->bindParam(":ESTADO", $estado);
         $stmt->bindParam(":PAIS", $pais);
         $stmt->bindParam(":CEP", $cep);
-        
+
         // id aluno update
-        
+
         $stmt->bindParam(":ID", $idAlunoEditar);
-        
+
         // Execução da query
 
         try {
-            $stmt->execute(); // Mesmo não editando dá ok!
-            echo 'Aluno alterado com sucesso'; // <= Mudar isso
+           $result = $stmt->execute();
+           if ($result == 1):
+                return "Aluno ".$aluno->getNome()." foi excluído com sucesso!";
+           endif;
         } catch (Exception $e) {
-            echo "Erro: ".$e;
+            return "Erro: " . $e;
         }
     }
 
@@ -286,38 +287,17 @@ class AlunoDao implements InterfaceAluno {
 
         // União das variáveis com comando slq
 
-        $stmt->bindParam(":ID", $idExcluir);
+        $stmt->bindParam(":ID", $id);
 
         // Execução da query
 
         try {
-            $stmt->execute(); // Criar um array para erros (não exclui mas diz excluiu)
-            echo 'Aluno de matricula ' . $idExcluir . ' foi excluido com sucesso!';
+            $result = $stmt->execute();
+            if ($result == 1):
+                return $result = "Aluno excluído com sucesso!";
+            endif;
         } catch (Exception $e) {
-            echo "Erro: ".$e;
-        }
-    }
-
-    // Consulta o último aluno cadastrado
-
-    public function ultimoAlunoCadastrado() {
-
-        // Cria conexão 
-
-        $db_conexao = new Database();
-        $conn = $db_conexao->dbConexao();
-
-        // Comando SQL
-
-        $stmt = $conn->prepare("SELECT MAX(id_aluno) from alunos");
-
-        // Execução do sql
-        try {
-            $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo $result['MAX(id_aluno)'];
-        } catch (Exception $e) {
-            echo 'Erro: ' . $e;
+            return "Erro: " . $e;
         }
     }
 

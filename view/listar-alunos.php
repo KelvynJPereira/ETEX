@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Incluir modal para exclusão
  * Incluir pop-outs
@@ -16,7 +15,6 @@ $listaAlunos = $listar->listarAlunos();
 
 <div class="row">
     <div id="listar-aluno" class="col l12 m12">
-
         <?php
         include_once __DIR__ . './listaAlunos.view.php';
         foreach ($listaAlunos as $dado):
@@ -33,7 +31,9 @@ $listaAlunos = $listar->listarAlunos();
             <td>
                 <a href="editar-aluno.php?id=<?php echo $dado['id_aluno']; ?>" type="hidden" name="id" class="btn-floating btn-medium waves-effect waves-light orange"><i class="material-icons">edit</i></a>
             </td>
-            <td><a class="btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">delete</i></a>
+            <td>
+                <a href="#modelExcluirAluno<?php echo $dado['id_aluno']; ?>" class="btn-floating btn-medium waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
+                <?php require __DIR__ . '/modelExcluirAluno.view.php'; ?>
             </td>
             </tr>
             <?php
@@ -41,8 +41,17 @@ $listaAlunos = $listar->listarAlunos();
         ?>
         </tbody>
         </table>
-        <div class="col l3 offset-l10"></br>
-            <a class="waves-effect waves-light btn green" href="cadastrar-aluno.php"><i class="material-icons right">add_circle</i>Novo Aluno</a>
+        <div id="buttons" class="col l12"></br>
+            <div class="col l6 offset-l2">
+                <a class="btn waves-effect waves-light blue" href="../index.php">Voltar
+                    <i class="material-icons left">arrow_back</i>
+                </a>
+            </div>
+            <div class="col l3 ">
+                <a class="btn waves-effect waves-light green" href="cadastrar-aluno.php">Novo aluno
+                    <i class="material-icons right">person_add</i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
@@ -51,5 +60,19 @@ $listaAlunos = $listar->listarAlunos();
 
 <?php
 include_once __DIR__ . '/../assets/footer.php';
+
+// Reconhecimento de id a ser excluido
+
+if (isset($_POST['excluir-aluno'])):
+
+
+    $idAlunoExcluir = filter_input(INPUT_POST, 'excluir-aluno');
+    $excluir = new AlunoController();
+    $result = $excluir->excluirAluno($idAlunoExcluir);
+    echo $result;
+endif;
 ?>
+
+
+
 

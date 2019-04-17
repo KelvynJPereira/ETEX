@@ -84,12 +84,14 @@ if (isset($_POST['btn-atualizar'])):
     // Chamada do método de edicao  
 
     $alunoController = new AlunoController();
-    $alunoController->editarAluno($objAluno, $idEditarAluno);
+    $result = $alunoController->editarAluno($objAluno, $idEditarAluno);
+    echo $result;
 
 
 // header("location: index.php");
 // implementar not null nas variÃ¡veis
 // implementar session de para eviar cadastro duplo
+// implementar toats de erros
 
 endif;
 ?>

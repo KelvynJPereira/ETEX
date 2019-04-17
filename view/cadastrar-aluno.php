@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Incluir verificaçao de inputs vazios
  * Incluir pop-out de cadastro
@@ -13,17 +12,24 @@ include_once __DIR__ . '/../controller/AlunoController.class.php';
 ?>
 <div class="center"><h3>CADASTRO DE ALUNO</h3></div>
 
-<form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="row">
         <div id="cadastro-aluno" class="col l10 m10 offset-l1">
             <?php
             include_once __DIR__ . './cadastroAluno.view.php';
             include_once __DIR__ . './cadastroEndereco.view.php';
             ?>
-            <div class="col l2 offset-l10">
-                <button class="btn waves-effect waves-light green" type="submit" name="btn-cadastrar">Cadastrar
-                    <i class="material-icons right">add_circle</i>
-                </button>
+            <div id="buttonsCadastrar" class="col l12"></br>
+                <div class="col l6 offset-l2">
+                    <a class="btn waves-effect waves-light blue" href="listar-alunos.php">Voltar
+                        <i class="material-icons left">arrow_back</i>
+                    </a>
+                </div>
+                <div class="col l2">
+                    <button class="btn waves-effect waves-light green" type="submit" name="btn-cadastrar">Cadastrar
+                        <i class="material-icons right">add_circle</i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -69,11 +75,7 @@ if (isset($_POST['btn-cadastrar'])):
     // Chamada do método de cadastro
 
     $alunoController = new AlunoController();
-    $alunoController->inserirAluno($objAluno);
-
-// header("location: index.php");
-// implementar not null nas variÃ¡veis
-// implementar session de para eviar cadastro duplo
-
+    $result = $alunoController->inserirAluno($objAluno);
+    echo $result;
 endif;
 ?>
