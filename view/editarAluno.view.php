@@ -38,10 +38,10 @@ foreach ($dadosAluno as $dado):
     <div class="input-field col l2 m2">
         <select name="cor">
             <option value="" disabled selected>Cor</option>
-            <option value="B">Branco</option>
-            <option value="N">Negro</option>
-            <option value="P">Pardo</option>
-            <option value="I">Índio</option>
+            <option value="BRANCO">Branco</option>
+            <option value="NEGRO">Negro</option>
+            <option value="PARDO">Pardo</option>
+            <option value="INDIO">Índio</option>
         </select>
         <label>Escolha uma raça</label>
     </div>

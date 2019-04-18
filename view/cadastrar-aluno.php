@@ -5,7 +5,6 @@
  * Incluir verificação de erros do banco
  */
 
-
 // Include header
 include_once __DIR__ . '/../assets/header.php';
 include_once __DIR__ . '/../controller/AlunoController.class.php';

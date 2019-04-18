@@ -109,7 +109,7 @@ class AlunoDao implements InterfaceAluno {
         try {
             $result = $stmt->execute();
             if ($result == 1):
-                return $result = $aluno->getNome()." foi cadastrado com sucesso!";
+                return $result = $aluno->getNome() . " foi cadastrado com sucesso!";
             endif;
         } catch (Exception $e) {
             return $result = 'Erro: ' . $e;
@@ -184,7 +184,7 @@ class AlunoDao implements InterfaceAluno {
 
     // Alterar Aluno
 
-    public function editarAluno(Aluno $aluno, $idAlunoEditar) {
+    public function editarAluno(Aluno $aluno, $id) {
 
         // Conexão 
 
@@ -213,28 +213,31 @@ class AlunoDao implements InterfaceAluno {
         $estado = $aluno->getEstado();
         $pais = $aluno->getPais();
         $cep = $aluno->getCep();
-
+        
+        // Aluno a ser editado
+        
+        $idEditarAluno = $id;
 
         // Comando SQL
 
-        $stmt = $conn->prepare("UPDATE SET `alunos`
-                    `nome_aluno` = :NOME,
-                    `sobrenome_aluno` = :SOBRENOME,
-                    `nascimento_aluno` = :NASCIMENTO,
-                    `sexo_aluno` = :SEXO,
-                    `cpf_aluno` = :CPF,
-                    `fone_fixo_aluno` = :FONEF,
-                    `fone_pessoal_aluno` = :FONEP,
-                    `email_aluno` = :EMAIL,
-                    `cor_aluno` = :COR,
-                    `numero_endereco_aluno` = :NUMERO,
-                    `rua_endereco_aluno` = :RUA,
-                    `bairro_endereco_aluno` = :BAIRRO,
-                    `cidade_endereco_aluno` = :CIDADE,
-                    `estado_endereco_aluno` = :ESTADO,
-                    `pais_endereco_aluno`= :PAIS,
-                    `cep_endereco_aluno` = :CEP
-                    WHERE `id_aluno` = :ID");
+        $stmt = $conn->prepare("UPDATE `alunos` SET
+                `nome_aluno`= :NOME,
+                `sobrenome_aluno`= :SOBRENOME,
+                `nascimento_aluno`= :NASCIMENTO,
+                `sexo_aluno`= :SEXO,
+                `cpf_aluno`= :CPF,
+                `fone_fixo_aluno`= :FONEF,
+                `fone_pessoal_aluno`= :FONEP,
+                `email_aluno`= :EMAIL,
+                `cor_aluno`= :COR,
+                `numero_endereco_aluno`= :NUMERO,
+                `rua_endereco_aluno`= :RUA,
+                `bairro_endereco_aluno`= :BAIRRO,
+                `cidade_endereco_aluno`= :CIDADE,
+                `estado_endereco_aluno`= :ESTADO,
+                `pais_endereco_aluno`= :PAIS,
+                `cep_endereco_aluno`= :CEP
+                WHERE id_aluno = :ID");
 
         // União de variáveis com comando sql
 
@@ -257,15 +260,15 @@ class AlunoDao implements InterfaceAluno {
 
         // id aluno update
 
-        $stmt->bindParam(":ID", $idAlunoEditar);
+        $stmt->bindParam(":ID", $idEditarAluno);
 
         // Execução da query
 
         try {
-           $result = $stmt->execute();
-           if ($result == 1):
-                return "Aluno ".$aluno->getNome()." foi excluído com sucesso!";
-           endif;
+            $result = $stmt->execute();
+            if ($result == 1):
+                return "Aluno " . $aluno->getNome() . " foi editado com sucesso!";
+            endif;
         } catch (Exception $e) {
             return "Erro: " . $e;
         }
