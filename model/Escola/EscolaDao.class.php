@@ -1,6 +1,7 @@
 <?php
 
-include_once __DIR__.'/InterfaceEscola.php';
+include_once __DIR__ . "./InterfaceEscola.interface.php";
+include_once __DIR__ . '../../.config/Database.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,17 +15,45 @@ include_once __DIR__.'/InterfaceEscola.php';
  * @author Turyng
  */
 class EscolaDao implements InterfaceEscola {
-    //put your code here
 
-    public function CadastrarEscola(Escola $escola) {
-           
-    }
+    public function inserirEscola(Escola $escola) {
 
-    public function buscarEscola($id) {
+        // Cria conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        /*
+         * Variaveis
+         */
+        
+        // Dados
+        
+        $nome = $escola->getNome();
+        $cnpj = $escola->getCnpj();
+        $tipo = $escola->getTipo();
+        $foneF = $escola->getFoneF();
+        $foneC = $escola->getFoneC();
+        $email = $escola->getEmail();
+        $site = $escola->getSite();
+        
+        // Endereco
+        
+        $numero = $escola->getNumero();
+        $rua = $escola->getRua();
+        $bairro = $escola->getBairro();
+        $cidade = $escola->getCidade();
+        $estado = $escola->getEstado();
+        $pais = $escola->getPais();
+        $cep = $escola->getCep();
         
     }
 
-    public function editarEscola(Escola $aluno, $idEscolaEditar) {
+    public function listarEscolas() {
+        
+    }
+
+    public function editarEscola(Escola $escola, $idEscolaEditar) {
         
     }
 
@@ -32,7 +61,7 @@ class EscolaDao implements InterfaceEscola {
         
     }
 
-    public function listarEscolas() {
+    public function buscarEscola($id) {
         
     }
 

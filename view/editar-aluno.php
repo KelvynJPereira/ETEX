@@ -1,4 +1,14 @@
 <?php
+/*
+ * Implementações necessárias:
+ * 
+ * - Implementar toasts
+ * -      ||     verificação de inputs vazios
+ * -      ||     sessions
+ * -      ||     redirecionamento correto
+ */
+
+
 // Include header
 include_once __DIR__ . '/../assets/header.php';
 include_once __DIR__ . '/../controller/AlunoController.class.php';
@@ -86,12 +96,6 @@ if (isset($_POST['btn-atualizar'])):
     $alunoController = new AlunoController();
     $result = $alunoController->editarAluno($objAluno, $idEditarAluno);
     echo $result;
-
-
-// header("location: index.php");
-// implementar not null nas variÃ¡veis
-// implementar session de para eviar cadastro duplo
-// implementar toats de erros
-
+    
 endif;
 ?>

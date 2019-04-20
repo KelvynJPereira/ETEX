@@ -1,44 +1,38 @@
 <?php
 
 /*
-  include_once 'Telefone.class.php';
-  include_once 'Endereco.class.php';
- */
-
-/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-/* * 4
- * Description of Pessoa
+/**
+ * Description of Empresa
  *
  * @author Turyng
  */
-
-abstract class Pessoa {
-
-    // Atributos
+abstract class Empresa {
+    
+    /*
+     * Atributos
+     */
+    
     // Dados
-
+    
     protected $id;
-    protected $nome = null;
-    protected $sobrenome = null;
-    protected $nascimento = null;
-    protected $sexo = null;
-    protected $cpf = null;
-    protected $cor = null;
+    protected $nome;
+    protected $cnpj;
+    protected $tipo;
     
     // Contato
     
-    protected $foneF;
-    protected $foneP;
+    protected $foneF; // Fone fixo
+    protected $foneC; // Fone comercial
+    protected $site;
     protected $email;
-    
-
-    // Endereco 
-
+  
+    // Endereco
+   
     protected $numero;
     protected $rua;
     protected $bairro;
@@ -47,21 +41,23 @@ abstract class Pessoa {
     protected $pais;
     protected $cep;
     
-    // Imagem
+    // Logo
     
-    protected $fotoPerfil;
-
-    // Construtores
-
-    public function __construct($nome, $sobrenome, $nascimento, $sexo, $cpf, $cor, $foneF, $foneP, $email, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep, $fotoPerfil) {
+    protected $logo;
+    
+    // Financeiro
+    
+    /*
+     * Construtor
+     */
+    
+    function __construct($nome, $cnpj, $tipo, $foneF, $foneC, $site, $email, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep, $logo) {
         $this->nome = $nome;
-        $this->sobrenome = $sobrenome;
-        $this->nascimento = $nascimento;
-        $this->sexo = $sexo;
-        $this->cpf = $cpf;
-        $this->cor = $cor;
+        $this->cnpj = $cnpj;
+        $this->tipo = $tipo;
         $this->foneF = $foneF;
-        $this->foneP = $foneP;
+        $this->foneC = $foneC;
+        $this->site = $site;
         $this->email = $email;
         $this->numero = $numero;
         $this->rua = $rua;
@@ -70,11 +66,11 @@ abstract class Pessoa {
         $this->estado = $estado;
         $this->pais = $pais;
         $this->cep = $cep;
-        $this->fotoPerfil = $fotoPerfil;
+        $this->logo = $logo;
     }
-
-    // Metodos - Getters e Setters
-
+    
+    // Getters and Seterrs
+    
     function getId() {
         return $this->id;
     }
@@ -83,32 +79,24 @@ abstract class Pessoa {
         return $this->nome;
     }
 
-    function getSobrenome() {
-        return $this->sobrenome;
+    function getCnpj() {
+        return $this->cnpj;
     }
 
-    function getNascimento() {
-        return $this->nascimento;
-    }
-
-    function getSexo() {
-        return $this->sexo;
-    }
-
-    function getCpf() {
-        return $this->cpf;
-    }
-
-    function getCor() {
-        return $this->cor;
+    function getTipo() {
+        return $this->tipo;
     }
 
     function getFoneF() {
         return $this->foneF;
     }
 
-    function getFoneP() {
-        return $this->foneP;
+    function getFoneC() {
+        return $this->foneC;
+    }
+
+    function getSite() {
+        return $this->site;
     }
 
     function getEmail() {
@@ -143,6 +131,10 @@ abstract class Pessoa {
         return $this->cep;
     }
 
+    function getLogo() {
+        return $this->logo;
+    }
+
     function setId($id) {
         $this->id = $id;
     }
@@ -151,32 +143,24 @@ abstract class Pessoa {
         $this->nome = $nome;
     }
 
-    function setSobrenome($sobrenome) {
-        $this->sobrenome = $sobrenome;
+    function setCnpj($cnpj) {
+        $this->cnpj = $cnpj;
     }
 
-    function setNascimento($nascimento) {
-        $this->nascimento = $nascimento;
-    }
-
-    function setSexo($sexo) {
-        $this->sexo = $sexo;
-    }
-
-    function setCpf($cpf) {
-        $this->cpf = $cpf;
-    }
-
-    function setCor($cor) {
-        $this->cor = $cor;
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
     }
 
     function setFoneF($foneF) {
         $this->foneF = $foneF;
     }
 
-    function setFoneP($foneP) {
-        $this->foneP = $foneP;
+    function setFoneC($foneC) {
+        $this->foneC = $foneC;
+    }
+
+    function setSite($site) {
+        $this->site = $site;
     }
 
     function setEmail($email) {
@@ -210,14 +194,11 @@ abstract class Pessoa {
     function setCep($cep) {
         $this->cep = $cep;
     }
-    function getFotoPerfil() {
-        return $this->fotoPerfil;
+
+    function setLogo($logo) {
+        $this->logo = $logo;
     }
 
-    function setFotoPerfil($fotoPerfil) {
-        $this->fotoPerfil = $fotoPerfil;
-    }
-
-
-
+  
+    
 }
