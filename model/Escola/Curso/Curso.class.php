@@ -1,7 +1,5 @@
 <?php
 
-include_once __DIR__.'/../Pessoa/Pessoa.class.php';
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,14 +7,22 @@ include_once __DIR__.'/../Pessoa/Pessoa.class.php';
  */
 
 /**
- * Description of Coordenador
+ * Description of Curso
  *
  * @author Turyng
  */
-class Coordenador extends Pessoa{
+class Curso {
     //put your code here
     
-     
+    private $id;
+    private $cursoNome;
+    private $nivel; // <= Fundamental, médio, etc.
+    private $status;
+    private $objetivo;
+    // <= Adicionar um coordenador
+   
+    
+   
     
     
 }

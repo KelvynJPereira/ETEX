@@ -1,6 +1,14 @@
 <?php
 
 /*
+ * IMPLEMENTAR
+ * 
+ * ATT
+ * - estado civil
+ * - escolaridade
+ */
+
+/*
   include_once 'Telefone.class.php';
   include_once 'Endereco.class.php';
  */
@@ -29,7 +37,9 @@ abstract class Pessoa {
     protected $sexo = null;
     protected $cpf = null;
     protected $cor = null;
-    
+    //protected $estadoCivil = null;
+
+
     // Contato
     
     protected $foneF;
