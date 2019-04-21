@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__.'/../Pessoa/Pessoa.class.php';
+include_once __DIR__.'/Funcionario.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,10 +13,12 @@ include_once __DIR__.'/../Pessoa/Pessoa.class.php';
  *
  * @author Turyng
  */
-class Coordenador extends Pessoa{
+class Coordenador extends Funcionario{
     //put your code here
+
     
-     
+    
+    
     
     
 }

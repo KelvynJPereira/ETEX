@@ -42,24 +42,24 @@ abstract class Pessoa {
 
     // Contato
     
-    protected $foneF;
-    protected $foneP;
-    protected $email;
+    protected $foneF = null;
+    protected $foneP = null;
+    protected $email = null;
     
 
     // Endereco 
 
-    protected $numero;
-    protected $rua;
-    protected $bairro;
-    protected $cidade;
-    protected $estado;
-    protected $pais;
-    protected $cep;
+    protected $numero = null;
+    protected $rua = null;
+    protected $bairro = null;
+    protected $cidade = null;
+    protected $estado = null;
+    protected $pais = null;
+    protected $cep = null;
     
     // Imagem
     
-    protected $fotoPerfil;
+    protected $fotoPerfil = null;
 
     // Construtores
 

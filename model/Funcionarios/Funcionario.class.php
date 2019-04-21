@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__.'../Pessoa/Pessoa.class.php';
+include_once __DIR__.'/../Pessoa/Pessoa.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -53,6 +53,183 @@ class Funcionario extends Pessoa{
     private $cursos;
     private $titulos;
     private $idiomas;
+    
+    
+    
+    function getTipo() {
+        return $this->tipo;
+    }
+
+    function getCargo() {
+        return $this->cargo;
+    }
+
+    function getTituloFuncionario() {
+        return $this->tituloFuncionario;
+    }
+
+    function getNRegistro() {
+        return $this->nRegistro;
+    }
+
+    function getHEntrada() {
+        return $this->hEntrada;
+    }
+
+    function getHSaida() {
+        return $this->hSaida;
+    }
+
+    function getDataAdmissao() {
+        return $this->dataAdmissao;
+    }
+
+    function getDataDemissao() {
+        return $this->dataDemissao;
+    }
+
+    function getNContrato() {
+        return $this->nContrato;
+    }
+
+    function getNCTPS() {
+        return $this->nCTPS;
+    }
+
+    function getNPIS() {
+        return $this->nPIS;
+    }
+
+    function getStatus() {
+        return $this->status;
+    }
+
+    function getBanco() {
+        return $this->banco;
+    }
+
+    function getAgencia() {
+        return $this->agencia;
+    }
+
+    function getConta() {
+        return $this->conta;
+    }
+
+    function getTipoRemuneracao() {
+        return $this->tipoRemuneracao;
+    }
+
+    function getSalarioFixo() {
+        return $this->salarioFixo;
+    }
+
+    function getSalarioHA() {
+        return $this->salarioHA;
+    }
+
+    function getCursos() {
+        return $this->cursos;
+    }
+
+    function getTitulos() {
+        return $this->titulos;
+    }
+
+    function getIdiomas() {
+        return $this->idiomas;
+    }
+
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+
+    function setCargo($cargo) {
+        $this->cargo = $cargo;
+    }
+
+    function setTituloFuncionario($tituloFuncionario) {
+        $this->tituloFuncionario = $tituloFuncionario;
+    }
+
+    function setNRegistro($nRegistro) {
+        $this->nRegistro = $nRegistro;
+    }
+
+    function setHEntrada($hEntrada) {
+        $this->hEntrada = $hEntrada;
+    }
+
+    function setHSaida($hSaida) {
+        $this->hSaida = $hSaida;
+    }
+
+    function setDataAdmissao($dataAdmissao) {
+        $this->dataAdmissao = $dataAdmissao;
+    }
+
+    function setDataDemissao($dataDemissao) {
+        $this->dataDemissao = $dataDemissao;
+    }
+
+    function setNContrato($nContrato) {
+        $this->nContrato = $nContrato;
+    }
+
+    function setNCTPS($nCTPS) {
+        $this->nCTPS = $nCTPS;
+    }
+
+    function setNPIS($nPIS) {
+        $this->nPIS = $nPIS;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
+    }
+
+    function setBanco($banco) {
+        $this->banco = $banco;
+    }
+
+    function setAgencia($agencia) {
+        $this->agencia = $agencia;
+    }
+
+    function setConta($conta) {
+        $this->conta = $conta;
+    }
+
+    function setTipoRemuneracao($tipoRemuneracao) {
+        $this->tipoRemuneracao = $tipoRemuneracao;
+    }
+
+    function setSalarioFixo($salarioFixo) {
+        $this->salarioFixo = $salarioFixo;
+    }
+
+    function setSalarioHA($salarioHA) {
+        $this->salarioHA = $salarioHA;
+    }
+
+    function setCursos($cursos) {
+        $this->cursos = $cursos;
+    }
+
+    function setTitulos($titulos) {
+        $this->titulos = $titulos;
+    }
+
+    function setIdiomas($idiomas) {
+        $this->idiomas = $idiomas;
+    }
+
+
+    
+    
+    
+    
+    
     
     
     

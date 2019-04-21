@@ -34,7 +34,8 @@
         $(function () {
             // Plugin initialization
             $('select').not('.disabled').formSelect();
-             $('.modal').modal();
+            $('.modal').modal();
+            $('.tabs').tabs();
         });
     })(jQuery); // end of jQuery name space
 </script>

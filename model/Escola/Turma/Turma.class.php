@@ -1,5 +1,7 @@
 <?php
-include_once __DIR__."/Funcionario.class.php";
+
+include_once __DIR__.'';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,13 +9,16 @@ include_once __DIR__."/Funcionario.class.php";
  */
 
 /**
- * Description of Professor
+ * Description of Turma
  *
  * @author Turyng
  */
-class Professor extends Funcionario{
+class Turma {
     //put your code here
     
-    private $disciplina;
+    
+    
+   
+    
     
 }
