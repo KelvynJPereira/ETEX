@@ -16,7 +16,7 @@ include_once __DIR__.'/../Pessoa/Pessoa.class.php';
 class Funcionario extends Pessoa{
     //put your code here
     
-    private $tipo; // <= Tipo de funcionário, pode ter 1 ou + funcoes
+    private $tipo; // Organico ou terceirizado
     private $cargo;
     private $tituloFuncionario;
     private $nRegistro;

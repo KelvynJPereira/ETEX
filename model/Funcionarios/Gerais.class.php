@@ -7,22 +7,10 @@
  */
 
 /**
- * Description of Curso
+ * Description of Gerais
  *
  * @author Turyng
  */
-class Curso {
+class Gerais {
     //put your code here
-    
-    private $id;
-    private $status; // True ou false
-    private $nome;
-    private $nivel; // Fundamental, médio, etc.
-    private $objetivo;
-   
-   
-    
-   
-    
-    
 }

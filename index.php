@@ -3,17 +3,44 @@
  * header
  */
 include_once __DIR__.'/assets/header.php';
-include_once "./model/Funcionarios/Coordenador.class.php";
 ?>
+
+
 <?php
 
-$coordenador = new Coordenador();
+/*
+
+Teste escola 
+ 
+include_once './model/Escola/Escola.class.php';
+
+$escola = new Escola();
+$escola->setNome("Miguel batista");
+$escola->setTipo("pública");
+$escola->setTipoEnsino("médio técnico");
+
+echo "A ".$escola->getNome()." é uma escola ".$escola->getTipo().", que oferce o ensino ".$escola->getTipoEnsino()." a pupulação Pernambucana.";
+
+*/
+
+/*
+Teste curso
+*/
+
+
+
 
 
 
 
 
 ?>
+
+
+
+
+
+
 
 
 

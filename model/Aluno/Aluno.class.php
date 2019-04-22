@@ -2,6 +2,12 @@
 
 include_once __DIR__ . '/../Pessoa/Pessoa.class.php';
 
+/*
+ * Implementacoes
+ * 
+ * - Adicionar atributo Responsavel financeiro a classe AlunoDao
+ */
+
 
 
 /*
@@ -18,9 +24,12 @@ include_once __DIR__ . '/../Pessoa/Pessoa.class.php';
 class Aluno extends Pessoa {
 
     // Atributos
-    protected $matricula = null; // Matricula será ano + serie + turma 
-    
-    
+    private $matricula = null; // Matricula será ano + serie + turma 
+    private $respFinanceiro = false; // Verdadeiro ou falso
+
+
+
+
     // Métodos
 
     function getMatricula() {

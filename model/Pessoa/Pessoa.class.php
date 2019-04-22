@@ -8,10 +8,6 @@
  * - escolaridade
  */
 
-/*
-  include_once 'Telefone.class.php';
-  include_once 'Endereco.class.php';
- */
 
 /*
  * To change this license header, choose License Headers in Project Properties.
