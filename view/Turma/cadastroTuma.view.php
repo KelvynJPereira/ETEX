@@ -1,0 +1,63 @@
+
+<div class="input-field col l2 m2">
+    <input type="date" name="dtInicio" id="birthday">
+    <label for="birthday">Data Início</label>
+</div> 
+        
+        <div class="input-field col l2 m2">
+    <input type="date" name="dtFim" id="birthday">
+    <label for="birthday">Data Fim</label>
+</div> 
+
+<div class="col l12">
+    <label><span>Período</span></label>
+    <p>
+        <label>
+            <input name="group1" type="radio"  />
+            <span>Matutino</span>
+        </label>
+    </p>
+     <p>
+        <label>
+            <input name="group1" type="radio"  />
+            <span>Vespertino</span>
+        </label>
+    </p>
+    <p>
+        <label>
+            <input name="group1" type="radio"  />
+            <span>Diurno</span>
+        </label>
+    </p>
+    
+    <p>
+        <label>
+            <input name="group1" type="radio"  />
+            <span>Noturno</span>
+        </label>
+    </p>
+</div>
+
+<div class="input-field col l2 m2">
+    <input type="text" name="nome" id="name">
+    <label for="name">Identificação da turma</label>
+</div>
+
+<div class="input-field col l2 m2">
+    <select name="status">
+      
+        <option value="">Aberta</option>
+        <option value="">Fechada</option>
+    </select>
+    <label>Status da turma</label>
+</div>
+
+<div class="input-field col l1 m2">
+    <input type="number" name="nome" id="name">
+    <label for="name">Quant. Vagas</label>
+</div>
+
+<div class="input-field col l1 m2">
+    <input type="number" name="nome" id="name">
+    <label for="name">N° de Meses</label>
+</div>

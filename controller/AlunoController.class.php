@@ -32,6 +32,10 @@ class AlunoController implements InterfaceAluno {
         return $excluir->excluirAluno($id);
         
     }
+    
+    public function matricularAluno($id){
+        
+    }
 
 
 }

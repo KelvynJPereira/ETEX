@@ -303,5 +303,20 @@ class AlunoDao implements InterfaceAluno {
             return "Erro: " . $e;
         }
     }
+    
+    public function matricularAluno($id){
+         
+        // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+        
+        $stmt = $conn->prepare("INSERT INTO `aluno`
+                (matricula_aluno)
+                VALUES
+                (:MATRICULA)");
+        
+        $stmt->execute();
+    }
 
 }

@@ -38,6 +38,8 @@
             $('.tabs').tabs();
         });
     })(jQuery); // end of jQuery name space
+
+
 </script>
 </body>   
 </html>
