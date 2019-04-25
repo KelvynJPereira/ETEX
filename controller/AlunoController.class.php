@@ -7,9 +7,9 @@ include_once __DIR__ . '/../model/Aluno/InterfaceAluno.interface.php';
 
 class AlunoController implements InterfaceAluno {
 
-    public function inserirAluno(Aluno $aluno) {
+    public function cadastrarAluno(Aluno $aluno) {
         $cadastrar = new AlunoDao();
-        return $cadastrar->inserirAluno($aluno);
+        return $cadastrar->cadastrarAluno($aluno);
     }
 
     public function listarAlunos() {

@@ -16,7 +16,7 @@ include_once __DIR__ . '/../../.config/Database.class.php';
  */
 class EscolaDao implements InterfaceEscola {
 
-    public function inserirEscola(Escola $escola) {
+    public function cadastrarEscola(Escola $escola) {
 
         // Cria conexão 
 
@@ -116,6 +116,7 @@ class EscolaDao implements InterfaceEscola {
 
     public function listarEscolas() {
         
+        
     }
 
     public function editarEscola(Escola $escola, $idEscolaEditar) {
@@ -128,6 +129,25 @@ class EscolaDao implements InterfaceEscola {
 
     public function buscarEscola($id) {
         
+    }
+
+    public function listarEscolasAdmin($id) {
+       
+        // Cria conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+        
+        // Variaveis 
+        
+        $idAdmin = $id;
+        
+        $stmt = $conn->prepare("SELECT nome_escola from escola WHERE fk_id_adm = :ID");
+        
+        $stmt->bindParam(":ID",$idAdmin);
+        
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

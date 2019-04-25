@@ -20,7 +20,7 @@ interface InterfaceAluno {
 
     // Create, Update, Read, Delete 
     
-    public function inserirAluno(Aluno $aluno);
+    public function cadastrarAluno(Aluno $aluno);
 
     public function listarAlunos();
 

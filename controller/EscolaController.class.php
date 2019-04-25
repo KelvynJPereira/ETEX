@@ -18,7 +18,7 @@ class EscolaController implements InterfaceEscola {
 
     //put your code here
 
-    public function inserirEscola(Escola $escola) {
+    public function cadastrarEscola(Escola $escola) {
         $inserir = new EscolaDao();
         return $inserir->inserirEscola($escola);
     }
@@ -36,6 +36,12 @@ class EscolaController implements InterfaceEscola {
     }
 
     public function listarEscolas() {
+        
+    }
+
+    public function listarEscolasAdmin( $id) {
+        $listar = new EscolaDao();
+        return $listar->listarEscolasAdmin($id);
         
     }
 

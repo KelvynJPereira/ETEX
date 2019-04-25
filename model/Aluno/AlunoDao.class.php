@@ -18,7 +18,7 @@ class AlunoDao implements InterfaceAluno {
 
     // Inserir Aluno
 
-    public function inserirAluno(Aluno $aluno) {
+    public function cadastrarAluno(Aluno $aluno) {
 
         // Cria conexão 
 

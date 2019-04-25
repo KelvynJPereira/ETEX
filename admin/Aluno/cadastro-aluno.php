@@ -75,7 +75,7 @@ if (isset($_POST['btn-cadastrar'])):
     // Chamada do método de cadastro
 
     $alunoController = new AlunoController();
-    $result = $alunoController->inserirAluno($objAluno);
+    $result = $alunoController->cadastrarAluno($objAluno);
     echo $result;
 endif;
 ?>

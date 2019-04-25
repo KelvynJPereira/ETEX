@@ -13,7 +13,7 @@
 interface InterfaceEscola {
     //put your code here
     
-    public function inserirEscola(Escola $escola);
+    public function cadastrarEscola(Escola $escola);
 
     public function listarEscolas();
 
@@ -23,4 +23,6 @@ interface InterfaceEscola {
 
     public function excluirEscola($id);
     
+    public function listarEscolasAdmin($id);
+        
 }

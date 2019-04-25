@@ -53,11 +53,11 @@
 </div>
 
 <div class="input-field col l1 m2">
-    <input type="number" name="nome" id="name">
-    <label for="name">Quant. Vagas</label>
+    <input type="number" name="quantVagas" id="quantVagas">
+    <label for="quantVagas">Quant. Vagas</label>
 </div>
 
 <div class="input-field col l1 m2">
-    <input type="number" name="nome" id="name">
-    <label for="name">N° de Meses</label>
+    <input type="number" name="nMeses" id="nMeses">
+    <label for="nMeses">N° de Meses</label>
 </div>

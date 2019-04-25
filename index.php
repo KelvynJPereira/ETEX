@@ -3,6 +3,8 @@
  * header
  */
 include_once __DIR__.'/assets/header.php';
+include_once __DIR__.'/model/Usuario/Usuario.class.php';
+include_once __DIR__.'./controller/UsuarioController.class.php';
 ?>
 
 
@@ -24,8 +26,18 @@ echo "A ".$escola->getNome()." é uma escola ".$escola->getTipo().", que oferce 
 */
 
 /*
-Teste curso
+Teste usuario
 */
+
+$user = new Usuario(0, 'admin', 'admin');
+$cadastrar = new UsuarioController();
+echo $cadastrar->cadastrarUsuario($user);
+
+
+
+
+
+
 
 
 
