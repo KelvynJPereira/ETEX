@@ -16,7 +16,6 @@ include_once __DIR__.'/../Pessoa/Pessoa.class.php';
 class Funcionario extends Pessoa{
     //put your code here
     
-    private $tipo; // Organico ou terceirizado
     private $cargo;
     private $tituloFuncionario;
     private $nRegistro;
@@ -42,11 +41,9 @@ class Funcionario extends Pessoa{
     private $agencia;
     private $conta;
     
-    // Tipo de pagamento
-    
-    private $tipoRemuneracao;
-    private $salarioFixo;
-    private $salarioHA; // <= Hora aula
+    // Salario
+
+    private $salario;
     
     // Formacao academica
     
@@ -56,10 +53,6 @@ class Funcionario extends Pessoa{
     
     
     
-    function getTipo() {
-        return $this->tipo;
-    }
-
     function getCargo() {
         return $this->cargo;
     }
@@ -116,16 +109,8 @@ class Funcionario extends Pessoa{
         return $this->conta;
     }
 
-    function getTipoRemuneracao() {
-        return $this->tipoRemuneracao;
-    }
-
-    function getSalarioFixo() {
-        return $this->salarioFixo;
-    }
-
-    function getSalarioHA() {
-        return $this->salarioHA;
+    function getSalario() {
+        return $this->salario;
     }
 
     function getCursos() {
@@ -138,10 +123,6 @@ class Funcionario extends Pessoa{
 
     function getIdiomas() {
         return $this->idiomas;
-    }
-
-    function setTipo($tipo) {
-        $this->tipo = $tipo;
     }
 
     function setCargo($cargo) {
@@ -200,16 +181,8 @@ class Funcionario extends Pessoa{
         $this->conta = $conta;
     }
 
-    function setTipoRemuneracao($tipoRemuneracao) {
-        $this->tipoRemuneracao = $tipoRemuneracao;
-    }
-
-    function setSalarioFixo($salarioFixo) {
-        $this->salarioFixo = $salarioFixo;
-    }
-
-    function setSalarioHA($salarioHA) {
-        $this->salarioHA = $salarioHA;
+    function setSalario($salario) {
+        $this->salario = $salario;
     }
 
     function setCursos($cursos) {
@@ -225,13 +198,5 @@ class Funcionario extends Pessoa{
     }
 
 
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

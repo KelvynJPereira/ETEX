@@ -12,7 +12,7 @@
  */
 interface InterfaceUsuario {
     //put your code here
-    
-    public function cadastrarUsuario(Usuario $usuario);
+       
+    public function cadastrarUsuario($tipo, $login, $senha);
     
 }

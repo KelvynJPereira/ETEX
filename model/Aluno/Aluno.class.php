@@ -27,9 +27,6 @@ class Aluno extends Pessoa {
     private $matricula = null; // Matricula será ano + serie + turma 
     private $respFinanceiro = false; // Verdadeiro ou falso
 
-
-
-
     // Métodos
 
     function getMatricula() {
