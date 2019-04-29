@@ -17,15 +17,17 @@ class Usuario {
     
     private $id;
     private $tipo; // Admin, Funcionario, Aluno
+    private $pessoa;
     private $login;
     private $senha;
     
-    function __construct($tipo, $login, $senha) {
+    function __construct($id, $tipo, $pessoa, $login, $senha) {
+        $this->id = $id;
         $this->tipo = $tipo;
+        $this->pessoa = $pessoa;
         $this->login = $login;
         $this->senha = $senha;
     }
-
     
     function getId() {
         return $this->id;
@@ -33,6 +35,10 @@ class Usuario {
 
     function getTipo() {
         return $this->tipo;
+    }
+
+    function getPessoa() {
+        return $this->pessoa;
     }
 
     function getLogin() {
@@ -51,6 +57,10 @@ class Usuario {
         $this->tipo = $tipo;
     }
 
+    function setPessoa($pessoa) {
+        $this->pessoa = $pessoa;
+    }
+
     function setLogin($login) {
         $this->login = $login;
     }
@@ -58,6 +68,5 @@ class Usuario {
     function setSenha($senha) {
         $this->senha = $senha;
     }
-
 
 }

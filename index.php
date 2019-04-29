@@ -65,17 +65,6 @@ if (isset($_POST['btn-logar'])):
             break;
     }
 
-
-
-
-
-
-
-
-
-
-
-
 endif;
 include_once './assets/footer.php';
 ?>

@@ -13,6 +13,7 @@ and open the template in the editor.
         <?php
         
         session_start();
+        $_SESSION['logado'] = 1;
         echo $_SESSION['logado'];
         
             echo "admin";
