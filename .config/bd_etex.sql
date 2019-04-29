@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 29-Abr-2019 às 19:39
+-- Generation Time: 29-Abr-2019 às 20:18
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -73,16 +73,18 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   `pais_endereco_aluno` varchar(15) NOT NULL,
   `cep_endereco_aluno` varchar(15) NOT NULL,
   `fotoPerfil_aluno` blob,
-  PRIMARY KEY (`id_aluno`)
+  `fk_id_escola` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_aluno`),
+  KEY `id_escola` (`fk_id_escola`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cpf_aluno`, `fone_fixo_aluno`, `fone_pessoal_aluno`, `email_aluno`, `cor_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `fotoPerfil_aluno`) VALUES
-(14, 'NAO MATRICULADO', 'Julio', 'Silva Santos', '1997-12-24', 'Homem', '70260277436', '31254877', '988547789', 'kelvyn@gmail.com', 'Negro', '789', 'Massaramduba', 'Dois irmÃ£os', 'Recife', 'PERNAMBUCO', 'Brasil', '521478975', ''),
-(16, 'NAO MATRICULADO', 'Carla', 'Souza', '1998-01-03', 'Mulher', '', '', '', '', 'Branca', '', '', '', '', '', '', '', NULL);
+INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cpf_aluno`, `fone_fixo_aluno`, `fone_pessoal_aluno`, `email_aluno`, `cor_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `fotoPerfil_aluno`, `fk_id_escola`) VALUES
+(14, 'NAO MATRICULADO', 'Julio', 'Silva Santos', '1997-12-24', 'Homem', '70260277436', '31254877', '988547789', 'kelvyn@gmail.com', 'Negro', '789', 'Massaramduba', 'Dois irmÃ£os', 'Recife', 'PERNAMBUCO', 'Brasil', '521478975', '', 3),
+(16, 'NAO MATRICULADO', 'Carla', 'Souza', '1998-01-03', 'Mulher', '', '', '', '', 'Branca', '', '', '', '', '', '', '', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -138,9 +140,9 @@ CREATE TABLE IF NOT EXISTS `tipo_usuario` (
 
 INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `descricao`) VALUES
 (1, 'administrador'),
-(2, 'funcionario'),
-(3, 'aluno'),
-(4, 'outro');
+(2, 'diretor'),
+(3, 'coordenador'),
+(4, 'aluno');
 
 -- --------------------------------------------------------
 
@@ -179,6 +181,12 @@ INSERT INTO `usuarios` (`id_usuario`, `fk_tipo_usuario`, `id_pessoa`, `login_usu
 ALTER TABLE `admin_escola`
   ADD CONSTRAINT `admin_escola_ibfk_1` FOREIGN KEY (`fk_id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE NO ACTION,
   ADD CONSTRAINT `admin_escola_ibfk_2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION;
+
+--
+-- Limitadores para a tabela `alunos`
+--
+ALTER TABLE `alunos`
+  ADD CONSTRAINT `alunos_ibfk_1` FOREIGN KEY (`fk_id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `usuarios`
