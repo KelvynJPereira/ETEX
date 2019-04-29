@@ -1,0 +1,172 @@
+﻿-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Disciplinas (
+descri_disciplina VARCHAR(45),
+id_disciplina INT PRIMARY KEY
+);
+
+CREATE TABLE Colab_Disci (
+id_colab_disci INT PRIMARY KEY,
+id_funcionario INT,
+id_disciplina INT,
+FOREIGN KEY(id_disciplina) REFERENCES Disciplinas (id_disciplina)
+);
+
+CREATE TABLE Chamada (
+id_chamada INT PRIMARY KEY,
+id_turma INT,
+id_funcionario INT
+);
+
+CREATE TABLE Cargos (
+id_cargo INT PRIMARY KEY,
+tipo_cargo VARCHAR(45)
+);
+
+CREATE TABLE Funcionarios (
+id_funcionario INT PRIMARY KEY,
+nome_funcionario VARCHAR(45),
+sobrenome_funcionario VARCHAR(45),
+nacimento_funcionario VARCHAR(45),
+sexo_funcionario VARCHAR(45),
+cpf_funcionario VARCHAR(45),
+cor_funcionario VARCHAR(45),
+foneF_funcionario VARCHAR(45),
+foneP_funcionario VARCHAR(45),
+email_funcionario VARCHAR(45),
+numero_endereco_funcionario VARCHAR(45),
+rua_endereco_funcionario VARCHAR(45),
+bairro_endereco_funcionario VARCHAR(45),
+cidade_endereco_funcionario VARCHAR(45),
+pais_endereco_funcionario VARCHAR(45),
+estado_endereco_funcionario VARCHAR(45),
+cep_endereco_funcionario VARCHAR(45),
+id_escola INT,
+id_cargo INT,
+id_usuario INT,
+FOREIGN KEY(id_cargo) REFERENCES Cargos (id_cargo)
+);
+
+CREATE TABLE Turmas (
+id_turma INT PRIMARY KEY,
+descri_turma VARCHAR(45)
+);
+
+CREATE TABLE Responsaveis (
+id_responsavel INT PRIMARY KEY,
+nome_responsavel VARCHAR(45),
+nascimento_responsavel VARCHAR(45),
+sobrenome_responsavel VARCHAR(45),
+sexo_respnsavel VARCHAR(45),
+fone_pessoal_responsavel VARCHAR(45),
+cpf_responsavel VARCHAR(45),
+email_responsavel VARCHAR(45)
+);
+
+CREATE TABLE Boletim (
+id_boletim INT PRIMARY KEY,
+id_disci_turma INT,
+id_aluno INT
+);
+
+CREATE TABLE Disci_Turmas (
+id_disci_turma INT PRIMARY KEY,
+id_turma INT,
+id_disciplina INT,
+FOREIGN KEY(id_turma) REFERENCES Turmas (id_turma),
+FOREIGN KEY(id_disciplina) REFERENCES Disciplinas (id_disciplina)
+);
+
+CREATE TABLE Mensalidade (
+id_mensalidade INT PRIMARY KEY
+);
+
+CREATE TABLE Receitas (
+id_receita INT PRIMARY KEY,
+id_escola INT
+);
+
+CREATE TABLE Gastos (
+id_gasto INT PRIMARY KEY,
+id_escola INT
+);
+
+CREATE TABLE Empresas (
+id_empresa INT PRIMARY KEY,
+area_atuacao VARCHAR(45),
+Atributo1 VARCHAR(45),
+id_escola INT
+);
+
+CREATE TABLE Escola (
+numero_endereco_escola VARCHAR(45),
+bairro_endereco_estado VARCHAR(45),
+cidade_endereco_estado VARCHAR(45),
+pais_endereco_escola VARCHAR(45),
+cnpj_escola VARCHAR(45),
+nome_escola VARCHAR(45),
+site_escola VARCHAR(45),
+email_escola VARCHAR(45),
+tipo_escola VARCHAR(45),
+cep_endereco_escola VARCHAR(45),
+rua_endereco_escola VARCHAR(45),
+logo_escola VARCHAR(45),
+estado_endereco_estado VARCHAR(45),
+id_escola INT PRIMARY KEY,
+foneF_escola VARCHAR(45),
+foneC_escola VARCHAR(45)
+);
+
+CREATE TABLE Alunos (
+estado_endereco_aluno VARCHAR(45),
+pais_endereco_aluno VARCHAR(45),
+nome_aluno VARCHAR(45),
+sexo_aluno VARCHAR(45),
+id_aluno INT PRIMARY KEY,
+sobrenome_aluno VARCHAR(45),
+nascimento_aluno VARCHAR(45),
+rua_endereco_aluno VARCHAR(45),
+cor_aluno VARCHAR(45),
+cpf_aluno VARCHAR(45),
+email_aluno VARCHAR(45),
+fone_pessoal_aluno VARCHAR(45),
+fone_fixo_aluno VARCHAR(45),
+bairro_endereco_aluno VARCHAR(45),
+cidade_endereco_aluno VARCHAR(45),
+cep_endereco_aluno VARCHAR(45),
+numero_endereco_aluno VARCHAR(45),
+id_turma INT,
+id_mensalidade INT,
+id_responsavel INT,
+id_usuario INT,
+FOREIGN KEY(id_turma) REFERENCES Turmas (id_turma),
+FOREIGN KEY(id_mensalidade) REFERENCES Mensalidade (id_mensalidade),
+FOREIGN KEY(id_responsavel) REFERENCES Responsaveis (id_responsavel)
+);
+
+CREATE TABLE Usuarios (
+login_usuario VARCHAR(50),
+senha_usuario VARCHAR(45),
+id_usuario INT PRIMARY KEY,
+id_tipo_usuario INT
+);
+
+CREATE TABLE Tipo_usuario (
+id_tipo_usuario INT PRIMARY KEY
+);
+
+ALTER TABLE Colab_Disci ADD FOREIGN KEY(id_funcionario) REFERENCES Funcionarios (id_funcionario);
+ALTER TABLE Chamada ADD FOREIGN KEY(id_turma) REFERENCES Turmas (id_turma);
+ALTER TABLE Chamada ADD FOREIGN KEY(id_funcionario) REFERENCES Funcionarios (id_funcionario);
+ALTER TABLE Funcionarios ADD FOREIGN KEY(id_escola) REFERENCES Escola (id_escola);
+ALTER TABLE Funcionarios ADD FOREIGN KEY(id_usuario) REFERENCES Usuarios (id_usuario);
+ALTER TABLE Boletim ADD FOREIGN KEY(id_disci_turma) REFERENCES Disci_Turmas (id_disci_turma);
+ALTER TABLE Boletim ADD FOREIGN KEY(id_aluno) REFERENCES Alunos (id_aluno);
+ALTER TABLE Receitas ADD FOREIGN KEY(id_escola) REFERENCES Escola (id_escola);
+ALTER TABLE Gastos ADD FOREIGN KEY(id_escola) REFERENCES Escola (id_escola);
+ALTER TABLE Empresas ADD FOREIGN KEY(id_escola) REFERENCES Escola (id_escola);
+ALTER TABLE Alunos ADD FOREIGN KEY(id_usuario) REFERENCES Usuarios (id_usuario);
+ALTER TABLE Usuarios ADD FOREIGN KEY(id_tipo_usuario) REFERENCES Tipo_usuario (id_tipo_usuario);
