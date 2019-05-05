@@ -36,6 +36,8 @@
             $('select').not('.disabled').formSelect();
             $('.modal').modal();
             $('.tabs').tabs();
+            $('.parallax').parallax();
+            
         });
     })(jQuery); // end of jQuery name space
 

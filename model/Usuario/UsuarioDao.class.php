@@ -17,7 +17,7 @@ include_once __DIR__ . '/InterfaceUsuario.interface.php';
  */
 class UsuarioDao implements InterfaceUsuario {
 
-    public function cadastrarUsuario($tipo, $login, $senha) {
+    public function cadastrarUsuario($login, $senha) {
 
         // Cria conexão 
 
