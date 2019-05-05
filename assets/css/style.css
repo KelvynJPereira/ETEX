@@ -8,10 +8,12 @@ and open the template in the editor.
     Author     : Turyng
 */
 
+/* FONTES */
+
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 
-
+/* INÍCIO */
 
 * {
     margin: 0;
@@ -49,6 +51,8 @@ nav #login, #cadastro{
 }
 
 
+
+
 /*
     Models
 */
@@ -69,7 +73,7 @@ nav #login, #cadastro{
 /* Container */
 
 .container-1{
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 
 .container-1 img{
@@ -89,7 +93,7 @@ nav #login, #cadastro{
     border-radius: 0 10px 10px 0;
     padding: 10px;
     position: absolute;
-    top: 370px;
+    top: 350px;
     z-index: 1;
     box-shadow: 0 1px 22px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     background-color: #fff;
