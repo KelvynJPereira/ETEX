@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col l5 offset-l5">
-                <button class="btn waves-effect waves-light green btn-medium" type="submit" name="logar">Cadastrar
+                <button class="btn waves-effect waves-light green btn-medium" type="submit" name="btn-cadastrar">Cadastrar
                 </button>
             </div>  
         </div>

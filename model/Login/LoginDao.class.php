@@ -26,7 +26,7 @@ class LoginDao {
 
         // Criação da query
         
-         $stmt = $conn->prepare("SELECT `id_usuario`, `tipo_usuario` FROM `usuarios` WHERE `login_usuario` = :LOGIN AND `senha_usuairo` = :SENHA");
+         $stmt = $conn->prepare("SELECT `cpf_usuario`, `permissao_usuario`  FROM `usuarios` WHERE `login_usuario` = :LOGIN AND `senha_usuario` = :SENHA");
          
          $stmt->bindParam(":LOGIN", $login);
          $stmt->bindParam(":SENHA", $senha);

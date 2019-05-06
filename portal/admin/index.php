@@ -1,3 +1,15 @@
+<?php
+
+include_once '../../controller/';
+
+
+session_start();
+echo $_SESSION['user'];
+
+
+?>
+
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -12,11 +24,7 @@ and open the template in the editor.
     <body>
         <?php
         
-        session_start();
-        $_SESSION['logado'] = 1;
-        echo $_SESSION['logado'];
         
-            echo "admin";
         ?>
     </body>
 </html>

@@ -1,3 +1,4 @@
+
 <div id="model-logar" class="modal">
     <div class="modal-content">
         <div id="login-page" class="row">
@@ -19,12 +20,11 @@
                 </div>
             </div>
             <div class="col l7 offset-l5">
-                <button class="btn waves-effect waves-light green btn-medium" type="submit" name="logar">Entrar
+                <button class="btn waves-effect waves-light green btn-medium" type="submit" name="btn-logar">Entrar
                 </button>
             </div>
             <div class="col l12 offset-l1">
-                <p class="col l6"><a href="#">Esqueceu a senha?</a></p></br>
-                
+                <p class="col l6"><a href="#">Esqueceu a senha?</a></p></br>  
             </div>  
         </div>
     </div>
