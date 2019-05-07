@@ -1,12 +1,16 @@
 <?php
 
-include_once '../../controller/';
-
-
 session_start();
-echo $_SESSION['user'];
 
+if($_SESSION['logado'] != true):
+    header("Location: ../../index.php");
+endif;
 
+$user = $_SESSION['user'];
+
+include_once __DIR__.'/../../controller/AdminController.class.php';
+$buscar = new AdminController();
+$admin = $buscar->buscarUsuario($user);
 ?>
 
 
@@ -24,7 +28,17 @@ and open the template in the editor.
     <body>
         <?php
         
+       // Incluir controller da tabela Escolas do admin tal.
+        
+        
+        echo "<h1>Seja bem-vindo ".$admin['nome_admin']."</h1>";
+        
+        
         
         ?>
+        
+        <a href="../../index.php">Sair</a>
+        
+        
     </body>
 </html>

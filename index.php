@@ -1,40 +1,61 @@
 <?php
-  
+
+// Limpeza de session
+
+session_start();
+session_unset();
+session_destroy();
+
+
+// Solicitacao de login
 
 if (isset($_POST['btn-logar'])):
 
+    // Sanitizacao
+    
     $filter = $_POST;
 
     $login = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
     $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 
-    include_once __DIR__.'/controller/LoginController.class.php';
+    // Verificação de login
+    
+    include_once __DIR__ . '/controller/LoginController.class.php';
     $logar = new LoginController();
     $result = $logar->logar($login, $senha);
-
-    // Redireciona usuario 
    
-    switch ($result):
-        case $result['permissao_usuario'] == 1;
-            echo "Admin";
-            $usuario = $result['cpf_usuario'];
-            $_SESSION['user'] = $usuario;
-            header("Location: portal/admin/index.php");
-            break;
-        case $result['permissao_usuario'] == 2;
-            echo "Funcionario";
-            break;
-        case $result['permissao_usuario'] == 3;
-            echo "Aluno";
-            break;
-        default;
-            echo "Não encontrado";
-            break;
-    endswitch;
+    
+    // Se login encontrado, redireciona usuario 
 
-
-
-
+    if ($result != false):
+        switch ($result):
+            case $result['permissao_usuario'] == 1;
+                echo "Admin";
+                $usuario = $result['cpf_usuario'];
+                session_start();
+                $_SESSION['logado'] = true;
+                $_SESSION['user'] = $usuario;
+                header("Location: portal/admin/index.php");
+                break;
+            case $result['permissao_usuario'] == 2;
+                echo "Funcionario";
+                $usuario = $result['cpf_usuario'];
+                session_start();
+                $_SESSION['user'] = $usuario;
+                header("Location: portal/funcionario/index.php");
+                break;
+            case $result['permissao_usuario'] == 3;
+                echo "Aluno";
+                $usuario = $result['cpf_usuario'];
+                session_start();
+                $_SESSION['user'] = $usuario;
+                header("Location: portal/aluno/index.php");
+                break;
+            default;
+                echo "Não encontrado";
+                break;
+        endswitch;
+    endif;
 endif;
 
 if (isset($_POST['btn-cadastrar'])):
@@ -74,7 +95,7 @@ endif;
 
         <!-- Formulários de login e cadastro --> 
 
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <?php
             include_once './view/Login/login.view.php';
             ?>
@@ -145,7 +166,10 @@ endif;
         </div>
 
         <div class="parallax-container">
+            
             <div class="parallax"><img src="assets/img/school.png"></div>
+            
+            
         </div>
 
 
@@ -157,11 +181,6 @@ endif;
 
 
 <?php
-
-
-
-
-
-include_once __DIR__.'/assets/footer.php';
+include_once __DIR__ . '/assets/footer.php';
 ?>
 
