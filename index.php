@@ -1,5 +1,4 @@
 <?php
-
 // Limpeza de session
 
 session_start();
@@ -12,19 +11,34 @@ session_destroy();
 if (isset($_POST['btn-logar'])):
 
     // Sanitizacao
-    
+
     $filter = $_POST;
 
     $login = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
     $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 
+
+    /*
+      // Encriptacao
+
+      $options = [
+      'cost' => 10
+      ];
+
+      $senha = password_hash($senha, PASSWORD_DEFAULT, $options);
+
+      if(password_verify($password, $senhabanco)):
+      echo 'true';
+      endif;
+     */
+
+
     // Verificação de login
-    
+
     include_once __DIR__ . '/controller/LoginController.class.php';
     $logar = new LoginController();
     $result = $logar->logar($login, $senha);
-   
-    
+
     // Se login encontrado, redireciona usuario 
 
     if ($result != false):
@@ -60,7 +74,33 @@ endif;
 
 if (isset($_POST['btn-cadastrar'])):
 
+    // Sanitizacao
 
+    $filter = $_POST;
+
+    $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+    $cpf = $filter['cpf'] = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
+    $email = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+    $nomeEscola = $filter['nome-escola'] = filter_input(INPUT_POST, 'nome-escola', FILTER_SANITIZE_STRING);
+    $cnpjEscola = $filter['cnpj'] = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_NUMBER_INT);
+    
+
+    // Cadastrar usuario
+    
+    include_once __DIR__.'/model/Admin/Admin.class.php';
+    include_once __DIR__.'/model/Usuario/Usuario.class.php';
+    include_once __DIR__.'/model/Escola/Escola.class.php';
+    
+    $admin = new Admin($nome, null, null, null, $cpf, null, null, null, null, null, null, null, null, null, null, null, null);
+    $usuario = new Usuario($email, $senha, $cpf, 1);
+    $escola = new Escola($nomeEscola, $cnpjEscola, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        
+    include_once __DIR__.'/controller/AdminController.class.php';
+    
+    $adminController = new AdminController();
+    $id = $adminController->cadastrarAdmin($admin, $usuario, $escola);
+   
 endif;
 ?>
 <!DOCTYPE html>
@@ -166,10 +206,10 @@ endif;
         </div>
 
         <div class="parallax-container">
-            
+
             <div class="parallax"><img src="assets/img/school.png"></div>
-            
-            
+
+
         </div>
 
 
@@ -181,6 +221,6 @@ endif;
 
 
 <?php
-include_once __DIR__ . '/assets/footer.php';
+include_once __DIR__ .'/assets/footer.php';
 ?>
 
