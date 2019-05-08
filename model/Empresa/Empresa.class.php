@@ -12,28 +12,26 @@
  * @author Turyng
  */
 abstract class Empresa {
-    
     /*
      * Atributos
      */
-    
+
     // Dados
-    
+
     protected $id;
     protected $nome;
     protected $cnpj;
     protected $tipo; // Privada ou pública
     
     // Contato
-    
+
     protected $foneF; // Fone fixo
     protected $foneC; // Fone comercial
     protected $email;
     protected $site;
-   
-  
+    
     // Endereco
-   
+
     protected $numero;
     protected $rua;
     protected $bairro;
@@ -41,12 +39,28 @@ abstract class Empresa {
     protected $estado;
     protected $pais;
     protected $cep;
-    
+  
     // Logo
-    
+
     protected $logo;
-    
-    
+
+    function __construct($nome, $cnpj, $tipo, $foneF, $foneC, $email, $site, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep, $logo) {
+        $this->nome = $nome;
+        $this->cnpj = $cnpj;
+        $this->tipo = $tipo;
+        $this->foneF = $foneF;
+        $this->foneC = $foneC;
+        $this->email = $email;
+        $this->site = $site;
+        $this->numero = $numero;
+        $this->rua = $rua;
+        $this->bairro = $bairro;
+        $this->cidade = $cidade;
+        $this->estado = $estado;
+        $this->pais = $pais;
+        $this->cep = $cep;
+        $this->logo = $logo;
+    }
 
     function getId() {
         return $this->id;
@@ -176,6 +190,4 @@ abstract class Empresa {
         $this->logo = $logo;
     }
 
-
-    
 }

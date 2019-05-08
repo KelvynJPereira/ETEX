@@ -6,11 +6,12 @@ if($_SESSION['logado'] != true):
     header("Location: ../../index.php");
 endif;
 
-$user = $_SESSION['user'];
+$cpfUser = $_SESSION['user'];
 
 include_once __DIR__.'/../../controller/AdminController.class.php';
-$buscar = new AdminController();
-$admin = $buscar->buscarUsuario($user);
+$controllerAdmin = new AdminController();
+$admin = $controllerAdmin->buscarAdmin($cpfUser);
+
 ?>
 
 

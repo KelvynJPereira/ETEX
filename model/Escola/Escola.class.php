@@ -9,7 +9,6 @@ class Escola extends Empresa {
     private $gre; // Gerencia regional de educacao 
     
     
-    
     // Getters and Setters
    
     function getIdAdministrativo() {

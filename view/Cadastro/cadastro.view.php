@@ -35,9 +35,9 @@
                 </div>
 
                 <div class="input-field col l5">
-                    <i class="material-icons prefix">phone</i>
-                    <input class="validate" id="telefone" name="telefone" type="number">
-                    <label for="telefone" data-error="wrong" data-success="right">Telefone</label>
+                    <i class="material-icons prefix">assignment</i>
+                    <input class="validate" id="cpnj" name="cnpj" type="number">
+                    <label for="cnpj" data-error="wrong" data-success="right">CNPJ</label>
                 </div>
             </div>
             <div class="col l5 offset-l5">

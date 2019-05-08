@@ -122,7 +122,7 @@ endif;
     <body>
         <nav id="menu-inicial">
             <div class="nav-wrapper">
-                <a class="brand-logo">LOGO</a>
+                <a href="index.php" class="brand-logo"><img src="assets\img\logo.png"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.php">Inicío</a></li>
                     <li><a href="#">Gestão Escolar</a></li>
@@ -178,7 +178,7 @@ endif;
 
                 <div class="card col l3 offset-l1">
                     <div class="card-image">
-                        <img src="assets/img/class.png">
+                        <img src="assets/img/class-1.png">
                     </div>
                     <div class="card-title center">
                         <span>Controle de Funcionários</span>
