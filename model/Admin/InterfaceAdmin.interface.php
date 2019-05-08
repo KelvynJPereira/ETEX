@@ -8,7 +8,7 @@
 
 interface InterfaceAdmin {
    
-    public function cadastrarAdmin(Admin $admin, Usuario $usario, Escola $escola);
+    public function cadastrarAdmin(Admin $admin, Usuario $usuario, Escola $escola);
 
     public function buscarAdmin($cpfAdmin);
 }

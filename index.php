@@ -99,7 +99,14 @@ if (isset($_POST['btn-cadastrar'])):
     include_once __DIR__.'/controller/AdminController.class.php';
     
     $adminController = new AdminController();
-    $id = $adminController->cadastrarAdmin($admin, $usuario, $escola);
+    $ids = $adminController->cadastrarAdmin($admin, $usuario, $escola);
+    
+    
+    // Associcao do admin a escola
+    
+    $adminController->cadastrarAdminEscola($ids['admin'], $ids['escola']);
+    
+    
    
 endif;
 ?>
@@ -122,7 +129,7 @@ endif;
     <body>
         <nav id="menu-inicial">
             <div class="nav-wrapper">
-                <a href="index.php" class="brand-logo"><img src="assets\img\logo.png"></a>
+                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets\img\logo.png"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.php">Inicío</a></li>
                     <li><a href="#">Gestão Escolar</a></li>

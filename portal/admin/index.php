@@ -12,6 +12,13 @@ include_once __DIR__.'/../../controller/AdminController.class.php';
 $controllerAdmin = new AdminController();
 $admin = $controllerAdmin->buscarAdmin($cpfUser);
 
+// Escolas que pertencem ao admin
+
+$escola = $controllerAdmin->buscarAdminEscola($admin['id_admin']);
+
+
+
+
 ?>
 
 
@@ -33,6 +40,10 @@ and open the template in the editor.
         
         
         echo "<h1>Seja bem-vindo ".$admin['nome_admin']."</h1>";
+        echo "<h1>Unidades cadastradas:</h1>";
+        foreach ($escola as $item):
+           echo $item['nome_escola']."</br>";
+        endforeach;
         
         
         

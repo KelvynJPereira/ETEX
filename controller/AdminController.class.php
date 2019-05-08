@@ -12,9 +12,9 @@ include_once __DIR__ . '/../model/Admin/InterfaceAdmin.interface.php';
 
 class AdminController implements InterfaceAdmin {
 
-    public function cadastrarAdmin(Admin $admin, Usuario $usario, Escola $escola) {
+    public function cadastrarAdmin(Admin $admin, Usuario $usuario, Escola $escola) {
         $cadastrar = new AdminDao();
-        return $cadastrar->cadastrarAdmin($admin, $usario, $escola);
+        return $cadastrar->cadastrarAdmin($admin, $usuario, $escola);
     }
 
     public function buscarAdmin($cpfAdmin) {
@@ -22,12 +22,17 @@ class AdminController implements InterfaceAdmin {
         return $buscar->buscarAdmin($cpfAdmin);
     }
     
-   /* public function cadastrarAdminEscola($idAdmin, $idEscola) {
+   public function cadastrarAdminEscola($idAdmin, $idEscola) {
         $cadastrar = new AdminDao();
-        $cadastrar->
+        $cadastrar->cadastrarAdminEscola($idAdmin, $idEscola);
+    }
+    
+    public function buscarAdminEscola($idAdmin) {
+        $buscar = new AdminDao();
+        return $buscar->buscarAdminEscola($idAdmin);
     }
     
     
-    */
+   
 
 }

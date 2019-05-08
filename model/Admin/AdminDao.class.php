@@ -13,7 +13,7 @@ include_once __DIR__ . '/../../.config/Database.class.php';
 
 class AdminDao implements InterfaceAdmin {
 
-    public function cadastrarAdmin(Admin $admin, Usuario $usario, Escola $escola) {
+    public function cadastrarAdmin(Admin $admin, Usuario $usuario, Escola $escola) {
 
         // Conexão 
 
@@ -30,10 +30,10 @@ class AdminDao implements InterfaceAdmin {
 
         // Usuario
 
-        $login = $usario->getLogin();
-        $senha = $usario->getSenha();
+        $login = $usuario->getLogin();
+        $senha = $usuario->getSenha();
         $cpfUsuario = $cpf; // CPF do admin
-        $permissao = $usario->getPermissao();
+        $permissao = $usuario->getPermissao();
 
         // Escola
 
@@ -44,7 +44,7 @@ class AdminDao implements InterfaceAdmin {
 
         $stmt = $conn->prepare("INSERT INTO `admin` (`nome_admin`, `cpf_admin`) VALUES (:NOME, :CPF)");
         $stmt2 = $conn->prepare("INSERT INTO `usuarios` (`login_usuario`, `senha_usuario`, `cpf_usuario`, `permissao_usuario`) VALUES (:LOGIN, :SENHA, :CPFUSUARIO, :PERMISSAO)");
-        $stmt3 = $conn->prepare("INSERT INTO `escola`(`nome_escola`, `cnpj_escola`) VALUES (:NOMEESCOLA, :CNPJ)");
+        $stmt3 = $conn->prepare("INSERT INTO `escolas`(`nome_escola`, `cnpj_escola`) VALUES (:NOMEESCOLA, :CNPJ)");
 
 
         // União de variáveis com comando sql
@@ -60,20 +60,17 @@ class AdminDao implements InterfaceAdmin {
         $stmt3->bindParam(":NOMEESCOLA", $nomeEscola);
         $stmt3->bindParam(":CNPJ", $cnpjEscola);
 
-
-        // Tratar erros!
         
-            $stmt->execute();
-            $id['admin'] = $conn->lastInsertId();
+        $stmt->execute();
+        $id['admin'] = $conn->lastInsertId();
+        
+        $stmt2->execute();
+        $id['usuario'] = $conn->lastInsertId();
 
-            $stmt2->execute();
-            $id['usuario'] = $conn->lastInsertId();
+        $stmt3->execute();
+        $id['escola'] = $conn->lastInsertId();
 
-            $stmt3->execute();
-            $id['escola'] = $conn->lastInsertId();
-
-            return $ids = $id;
-     
+        return $ids = $id;
     }
 
     public function buscarAdmin($cpfAdmin) {
@@ -85,7 +82,7 @@ class AdminDao implements InterfaceAdmin {
 
         // Criação da query 
 
-        $stmt = $conn->prepare("SELECT `nome_admin` FROM `admin` WHERE `cpf_admin`  = :CPF");
+        $stmt = $conn->prepare("SELECT `id_admin`, `nome_admin` FROM `admin` WHERE `cpf_admin`  = :CPF");
 
         // União das variáveis com comando slq
 
@@ -100,12 +97,47 @@ class AdminDao implements InterfaceAdmin {
             return "Erro: " . $e;
         }
     }
-    
-    
+
     public function cadastrarAdminEscola($idAdmin, $idEscola) {
+
+        // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query 
+
+        $stmt = $conn->prepare("INSERT INTO `admin_escola` (`id_admin`, `id_escola`) VALUES (:IDADMIN, :IDESCOLA);");
+
+        // União das variáveis com comando slq
+
+        $stmt->bindParam(":IDADMIN", $idAdmin);
+        $stmt->bindParam(":IDESCOLA", $idEscola);
+
+        $stmt->execute();
+    }
+
+    public function buscarAdminEscola($idAdminEscola) {
+
+        // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query 
+
+        $stmt = $conn->prepare("select e.id_escola, e.nome_escola, e.cnpj_escola from escolas e join admin_escola a_e on e.id_escola = a_e.id_escola where a_e.id_admin = :IDADMIN");
+
+        // União das variáveis com comando slq
+
+        $stmt->bindParam(":IDADMIN", $idAdminEscola);
         
-        // inner join
-        
+         try {
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            return "Erro: " . $e;
+        }
     }
 
 }

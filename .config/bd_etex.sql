@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 08-Maio-2019 às 01:44
+-- Generation Time: 08-Maio-2019 às 18:08
 -- Versão do servidor: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -35,38 +35,21 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `cpf_admin` varchar(45) NOT NULL,
   PRIMARY KEY (`id_admin`),
   UNIQUE KEY `cpf_admin` (`cpf_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `admin`
---
-
-INSERT INTO `admin` (`id_admin`, `nome_admin`, `cpf_admin`) VALUES
-(1, 'Kelvyn', '70260277436'),
-(2, 'Elyxandre', '123'),
-(26, 'Rosiberto Goncalves', '12345678');
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `admin_possui_escola`
+-- Estrutura da tabela `admin_escola`
 --
 
-DROP TABLE IF EXISTS `admin_possui_escola`;
-CREATE TABLE IF NOT EXISTS `admin_possui_escola` (
+DROP TABLE IF EXISTS `admin_escola`;
+CREATE TABLE IF NOT EXISTS `admin_escola` (
   `id_admin` int(45) NOT NULL,
   `id_escola` int(11) NOT NULL,
-  KEY `fk_escola` (`id_escola`),
-  KEY `fk_admin` (`id_admin`)
+  KEY `fk_admin` (`id_admin`),
+  KEY `fk_escola` (`id_escola`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `admin_possui_escola`
---
-
-INSERT INTO `admin_possui_escola` (`id_admin`, `id_escola`) VALUES
-(1, 1),
-(1, 2);
 
 -- --------------------------------------------------------
 
@@ -131,11 +114,11 @@ INSERT INTO `disciplinas` (`id_disciplina`, `nome_disciplina`, `fk_professor_dis
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `escola`
+-- Estrutura da tabela `escolas`
 --
 
-DROP TABLE IF EXISTS `escola`;
-CREATE TABLE IF NOT EXISTS `escola` (
+DROP TABLE IF EXISTS `escolas`;
+CREATE TABLE IF NOT EXISTS `escolas` (
   `id_escola` int(11) NOT NULL AUTO_INCREMENT,
   `nome_escola` varchar(40) DEFAULT NULL,
   `cnpj_escola` varchar(40) DEFAULT NULL,
@@ -152,17 +135,9 @@ CREATE TABLE IF NOT EXISTS `escola` (
   `pais_endereco_escola` varchar(40) DEFAULT NULL,
   `cep_endereco_escola` varchar(40) DEFAULT NULL,
   `logo_escola` blob,
-  PRIMARY KEY (`id_escola`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `escola`
---
-
-INSERT INTO `escola` (`id_escola`, `nome_escola`, `cnpj_escola`, `tipo_escola`, `foneF_escola`, `foneC_escola`, `email_escola`, `site_escola`, `numero_endereco_escola`, `rua_endereco_escola`, `bairro_endereco_estado`, `cidade_endereco_estado`, `estado_endereco_estado`, `pais_endereco_escola`, `cep_endereco_escola`, `logo_escola`) VALUES
-(1, 'Coronel Othon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Miguel Batista', '051457889000169', 'PUBLICA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'Escola Miguel Batista', '12457892145', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+  PRIMARY KEY (`id_escola`),
+  UNIQUE KEY `cnpj_unique` (`cnpj_escola`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -241,30 +216,20 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `permissao_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `cpf_usuario_UNIQUE` (`cpf_usuario`),
+  UNIQUE KEY `email_unique` (`login_usuario`),
   KEY `fk_permissao` (`permissao_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id_usuario`, `login_usuario`, `senha_usuario`, `cpf_usuario`, `permissao_usuario`) VALUES
-(1, 'kelvyn@etex.com', 'admin', '70260277436', 1),
-(2, 'func@func', '123', '45454545454', 2),
-(3, 'maria@etex.com', 'maria123', '123456789', 3),
-(5, 'elyxandre@etex.com', 'admin', '123', 1),
-(17, 'rosiberto@etex.com', 'admin', '12345678', 1);
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Limitadores para a tabela `admin_possui_escola`
+-- Limitadores para a tabela `admin_escola`
 --
-ALTER TABLE `admin_possui_escola`
-  ADD CONSTRAINT `fk_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`),
-  ADD CONSTRAINT `fk_escola` FOREIGN KEY (`id_escola`) REFERENCES `escola` (`id_escola`);
+ALTER TABLE `admin_escola`
+  ADD CONSTRAINT `fk_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id_admin`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_escola` FOREIGN KEY (`id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `disciplinas`

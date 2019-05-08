@@ -13,6 +13,6 @@
 interface InterfaceUsuario {
     //put your code here
        
-    public function cadastrarUsuario($login, $senha, $id);
+    public function cadastrarUsuario($login, $senha, $tipo);
     
 }
