@@ -24,6 +24,8 @@ class EscolaController implements InterfaceEscola {
     }
 
     public function buscarEscola($id) {
+        $buscar = new EscolaDao();
+        return $buscar->buscarEscola($id);
         
     }
 
@@ -39,7 +41,7 @@ class EscolaController implements InterfaceEscola {
         
     }
 
-    public function listarEscolasAdmin( $id) {
+    public function listarEscolasAdmin($id) {
         $listar = new EscolaDao();
         return $listar->listarEscolasAdmin($id);
         

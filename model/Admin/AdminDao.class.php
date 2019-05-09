@@ -126,7 +126,7 @@ class AdminDao implements InterfaceAdmin {
 
         // Criação da query 
 
-        $stmt = $conn->prepare("select e.id_escola, e.nome_escola, e.cnpj_escola from escolas e join admin_escola a_e on e.id_escola = a_e.id_escola where a_e.id_admin = :IDADMIN");
+        $stmt = $conn->prepare("select e.id_escola, e.nome_escola, e.cnpj_escola, e.logo_escola from escolas e join admin_escola a_e on e.id_escola = a_e.id_escola where a_e.id_admin = :IDADMIN");
 
         // União das variáveis com comando slq
 

@@ -129,6 +129,44 @@ class EscolaDao implements InterfaceEscola {
 
     public function buscarEscola($id) {
         
+              // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query
+
+        $stmt = $conn->prepare("SELECT `nome_escola`,
+                `cnpj_escola`,
+                `tipo_escola`,
+                `foneF_escola`,
+                `foneC_escola`,
+                `email_escola`,
+                `site_escola`,
+                `numero_endereco_escola`,
+                `rua_endereco_escola`,
+                `bairro_endereco_estado`,
+                `cidade_endereco_estado`,
+                `estado_endereco_estado`,
+                `pais_endereco_escola`,
+                `cep_endereco_escola`,
+                `logo_escola`
+                FROM `escolas`
+                WHERE `id_escola` = :ID");
+
+        // União das variáveis com comando slq
+
+        $stmt->bindParam(":ID", $id);
+
+        // Execução da query
+
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            return $result = "Erro: " . $e;
+        }
+        
     }
 
     public function listarEscolasAdmin($id) {

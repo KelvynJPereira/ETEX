@@ -37,7 +37,10 @@
             $('.modal').modal();
             $('.tabs').tabs();
             $('.parallax').parallax();
-            
+            $('.tabs').tabs();
+            $('.dropdown-trigger').dropdown();
+            $('.collapsible').collapsible();
+
         });
     })(jQuery); // end of jQuery name space
 
