@@ -40,6 +40,7 @@
             $('.tabs').tabs();
             $('.dropdown-trigger').dropdown();
             $('.collapsible').collapsible();
+            $('.datepicker').datepicker();
 
         });
     })(jQuery); // end of jQuery name space
