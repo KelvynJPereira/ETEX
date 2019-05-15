@@ -115,10 +115,16 @@ endif;
   endif;
  */
 
-// Exibicao de erros
+// Exibicao de erros no toast
 if (!empty($erros)):
     foreach ($erros as $erro):
-        echo $erro;
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>'.$erro.'</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
     endforeach;
 endif;
 ?>
@@ -190,8 +196,8 @@ endif;
                         <span>Gestão de Ensino</span>
                     </div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <p>Gerencie facilmente atividades pedagógicas, administrativas e financeiras da sua instiuição.
+                            Conduza sua instituição em tempo real, em qualquer lugar.</p>
                     </div>
                 </div>
 
@@ -200,11 +206,11 @@ endif;
                         <img src="assets/img/class-1.png">
                     </div>
                     <div class="card-title center">
-                        <span>Controle de Funcionários</span>
+                        <span>Controle de Colaboradores</span>
                     </div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <p>Administre, sem burocracia todos os colaboradores de sua instituição, tendo acesso a detalhes
+                            e informações de forma simplificada.</p>
                     </div>
                 </div>
 
@@ -216,8 +222,8 @@ endif;
                         <span>Análise de Resultados</span>
                     </div>
                     <div class="card-content">
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <p>Consulte dados, gere relatórios, verifique índices, e visualize dados de produtividade
+                            através de gráficos com os principais componentes administrativos.</p>
 
                     </div>
                 </div>

@@ -149,3 +149,10 @@ footer{
 
 
 
+.toast.rounded{
+  background-color: #fff;
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  left:7%;
+}

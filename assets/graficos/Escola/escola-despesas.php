@@ -23,7 +23,7 @@
         options: {
             responsive: true,
             animation: {
-                duration: 8000 // general animation time
+                duration: 10000 // general animation time
             },
             title: {
                 display: true,

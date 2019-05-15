@@ -1,12 +1,14 @@
 <div class="row">
-    <div class="chip col l1 offset-l10">
+    <!-- Chip de identificacao -->
+    <div class="chip col l1 offset-l10 animated zoomIn delay-1s">
         <?php
         echo '<img style="width:50px heigth:50px;" src="data:image/jpeg;base64,' . base64_encode($dados_admin['logo_admin']) . '"/>';
         echo $dados_admin['nome_admin'];
         ?>
     </div>
-    <div class="container-1">
-        <div class="col l12 m12 center animated bounce delay-1s"></br>
+    <!-- Nome da escola -->
+    <div class="container-1 animated zoomIn">
+        <div class="col l12 m12 center animated bounce delay-1s">
             <?php
             foreach ($escola as $dado):
                 echo '<h4><b>Escola ' . $dado['nome_escola'];
@@ -15,8 +17,7 @@
             ?>
         </div>
     </div>
-
-
+    <!-- Gráficos -->
     <div class="container-2">
         <div class="col l11 m11">
             </br> <div class="col l5 offset-l1 m11 animated fadeInLeft delay-0.9s">
@@ -32,9 +33,9 @@
             </div>
         </div>
     </div>
-
+    <!-- Slide de opcoes -->
     <div class="container-3">
-        <div class="animated fadeIn delay-1s">
+        <div class="animated fadeInLeft delay-2s">
             <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
                 <li class="tab"><a class="active" href="#test1">Escola</a></li>
                 <li class="tab"><a  href="#test2">Alunos</a></li>
