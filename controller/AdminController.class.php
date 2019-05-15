@@ -17,22 +17,19 @@ class AdminController implements InterfaceAdmin {
         return $cadastrar->cadastrarAdmin($admin, $usuario, $escola);
     }
 
-    public function buscarAdmin($cpfAdmin) {
+    public function buscarAdmin($cpf) {
         $buscar = new AdminDao();
-        return $buscar->buscarAdmin($cpfAdmin);
+        return $buscar->buscarAdmin($cpf);
     }
-    
-   public function cadastrarAdminEscola($idAdmin, $idEscola) {
+
+    public function cadastrarAdminEscola($idAdmin, $idEscola) {
         $cadastrar = new AdminDao();
         $cadastrar->cadastrarAdminEscola($idAdmin, $idEscola);
     }
-    
+
     public function buscarAdminEscola($idAdmin) {
         $buscar = new AdminDao();
         return $buscar->buscarAdminEscola($idAdmin);
     }
     
-    
-   
-
 }

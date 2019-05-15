@@ -6,18 +6,23 @@
         <!--Import materialize.css-->
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Native style.css -->
+        <link rel="stylesheet" href="../../assets/css/style-logado.css">
+        <!-- Animate css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <nav>
+        <nav id="menu-inicial">
             <div class="nav-wrapper">
-                <a href="../../index.php" class="brand-logo">Logo</a>
+                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="../../assets/img/logo.png"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">JavaScript</a></li>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="#">Minha Conta</a></li>
+                    <li><a href='../../index.php'>Sair</a></li>
                 </ul>
             </div>
         </nav>
+       
 

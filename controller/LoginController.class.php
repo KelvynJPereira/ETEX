@@ -1,8 +1,6 @@
 <?php
 
-include_once __DIR__.'/../model/Login/LoginDao.class.php';
-
-
+include_once __DIR__ . '/../model/Login/LoginDao.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,8 +18,8 @@ class LoginController {
     //put your code here
 
     public function logar($login, $senha) {
-        $entrar = new LoginDao();
-        return $entrar->logar($login, $senha);
+        $logar = new LoginDao();
+        return $logar->logar($login, $senha);
     }
 
 }

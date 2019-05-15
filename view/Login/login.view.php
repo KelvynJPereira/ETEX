@@ -1,4 +1,3 @@
-
 <div id="model-logar" class="modal">
     <div class="modal-content">
         <div id="login-page" class="row">

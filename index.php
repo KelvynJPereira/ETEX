@@ -1,113 +1,125 @@
 <?php
 // Limpeza de session
-
 session_start();
 session_unset();
 session_destroy();
 
 
 // Solicitacao de login
-
 if (isset($_POST['btn-logar'])):
 
-    // Sanitizacao
+    // Variavel de erros
+    $erros = [];
 
+    // Sanitizacao
     $filter = $_POST;
 
     $login = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
     $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 
+    // Verifcacao de campos vazios
+    if (!empty($login) && !empty($senha)):
 
-    /*
-      // Encriptacao
+        // Consulta de login
+        include_once __DIR__ . '/controller/LoginController.class.php';
+        $logar = new LoginController();
+        $dados = $logar->logar($login, $senha);
 
-      $options = [
-      'cost' => 10
-      ];
+        // Verificao de resposta da consulta
+        if (!empty($dados)):
 
-      $senha = password_hash($senha, PASSWORD_DEFAULT, $options);
+            switch ($dados):
 
-      if(password_verify($password, $senhabanco)):
-      echo 'true';
-      endif;
-     */
+                case $dados['permissao_usuario'] == 1;
 
+                    session_start();
+                    $_SESSION['logado'] = true;
+                    $_SESSION['cpf_admin'] = $dados['cpf_usuario'];
+                    header("Location: portal/admin/index.php");
+                    break;
 
-    // Verificação de login
+                case $dados['permissao_usuario'] == 2;
 
-    include_once __DIR__ . '/controller/LoginController.class.php';
-    $logar = new LoginController();
-    $result = $logar->logar($login, $senha);
+                    session_start();
+                    $_SESSION['cpf_funcionario'] = $dados['cpf_usuario'];
+                    header("Location: portal/funcionario/index.php");
+                    break;
 
-    // Se login encontrado, redireciona usuario 
+                case $dados['permissao_usuario'] == 3;
 
-    if ($result != false):
-        switch ($result):
-            case $result['permissao_usuario'] == 1;
-                echo "Admin";
-                $usuario = $result['cpf_usuario'];
-                session_start();
-                $_SESSION['logado'] = true;
-                $_SESSION['user'] = $usuario;
-                header("Location: portal/admin/index.php");
-                break;
-            case $result['permissao_usuario'] == 2;
-                echo "Funcionario";
-                $usuario = $result['cpf_usuario'];
-                session_start();
-                $_SESSION['user'] = $usuario;
-                header("Location: portal/funcionario/index.php");
-                break;
-            case $result['permissao_usuario'] == 3;
-                echo "Aluno";
-                $usuario = $result['cpf_usuario'];
-                session_start();
-                $_SESSION['user'] = $usuario;
-                header("Location: portal/aluno/index.php");
-                break;
-            default;
-                echo "Não encontrado";
-                break;
-        endswitch;
+                    session_start();
+                    $_SESSION['cpf_aluno'] = $dados['cpf_usuario'];
+                    header("Location: portal/aluno/index.php");
+                    break;
+
+                default;
+                    array_push($erros, 'Erro ao realizar login'); // <- redirecionar para tela 404 not found
+                    break;
+            endswitch;
+
+        else:
+            array_push($erros, 'Usuário não encontrado');
+        endif;
+
+    else:
+        array_push($erros, 'Existem campos vazios');
     endif;
 endif;
 
-if (isset($_POST['btn-cadastrar'])):
 
-    // Sanitizacao
+/*
+  if (isset($_POST['btn-cadastrar'])):
 
-    $filter = $_POST;
+  // Sanitizacao
+  $filter = $_POST;
 
-    $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
-    $cpf = $filter['cpf'] = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
-    $email = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-    $nomeEscola = $filter['nome-escola'] = filter_input(INPUT_POST, 'nome-escola', FILTER_SANITIZE_STRING);
-    $cnpjEscola = $filter['cnpj'] = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_NUMBER_INT);
-    
+  $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+  $cpf = $filter['cpf'] = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
+  $email = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+  $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+  $nomeEscola = $filter['nome-escola'] = filter_input(INPUT_POST, 'nome-escola', FILTER_SANITIZE_STRING);
+  $cnpjEscola = $filter['cnpj'] = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_NUMBER_INT);
 
-    // Cadastrar usuario
-    
-    include_once __DIR__.'/model/Admin/Admin.class.php';
-    include_once __DIR__.'/model/Usuario/Usuario.class.php';
-    include_once __DIR__.'/model/Escola/Escola.class.php';
-    
-    $admin = new Admin($nome, null, null, null, $cpf, null, null, null, null, null, null, null, null, null, null, null, null);
-    $usuario = new Usuario($email, $senha, $cpf, 1);
-    $escola = new Escola($nomeEscola, $cnpjEscola, null, null, null, null, null, null, null, null, null, null, null, null, null);
-        
-    include_once __DIR__.'/controller/AdminController.class.php';
-    
-    $adminController = new AdminController();
-    $ids = $adminController->cadastrarAdmin($admin, $usuario, $escola);
-    
-    
-    // Associcao do admin a escola
-    
-    $adminController->cadastrarAdminEscola($ids['admin'], $ids['escola']);
-    
-    
-   
+
+  // Cadastrar usuario
+  include_once __DIR__ . '/model/Admin/Admin.class.php';
+  include_once __DIR__ . '/model/Usuario/Usuario.class.php';
+  include_once __DIR__ . '/model/Escola/Escola.class.php';
+
+  $admin = new Admin($nome, null, null, null, $cpf, null, null, null, null, null, null, null, null, null, null, null, null);
+  $usuario = new Usuario($email, $senha, $cpf, 1);
+  $escola = new Escola($nomeEscola, $cnpjEscola, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+  include_once __DIR__ . '/controller/AdminController.class.php';
+
+  $adminController = new AdminController();
+  $ids = $adminController->cadastrarAdmin($admin, $usuario, $escola);
+  endif;
+
+  // Associcao do admin a escola
+
+  $adminController->cadastrarAdminEscola($ids['admin'], $ids['escola']);
+
+
+  /*
+  // Encriptacao
+
+  $options = [
+  'cost' => 10
+  ];
+
+  $senha = password_hash($senha, PASSWORD_DEFAULT, $options);
+
+  if(password_verify($password, $senhabanco)):
+  echo 'true';
+  endif;
+ */
+
+// Exibicao de erros
+if (!empty($erros)):
+    foreach ($erros as $erro):
+        echo $erro;
+    endforeach;
 endif;
 ?>
 <!DOCTYPE html>
@@ -129,12 +141,12 @@ endif;
     <body>
         <nav id="menu-inicial">
             <div class="nav-wrapper">
-                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets\img\logo.png"></a>
+                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets/img/logo.png"</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.php">Inicío</a></li>
                     <li><a href="#">Gestão Escolar</a></li>
                     <li><a id="login" class="modal-trigger" href="#model-logar">Login</a></li>
-                    <li><a id="cadastro" class="modal-trigger" href="#model-cadastro">Cadastre-se</a></li>
+                    <li><a id="cadastro" class="modal-trigger" href="#model-cadastro">Cadastre</a></li>
                 </ul>
             </div>
         </nav>
@@ -228,6 +240,6 @@ endif;
 
 
 <?php
-include_once __DIR__ .'/assets/footer.php';
+include_once __DIR__ . '/assets/footer.php';
 ?>
 

@@ -76,20 +76,16 @@ class AdminDao implements InterfaceAdmin {
     public function buscarAdmin($cpfAdmin) {
 
         // Conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Criação da query 
-
-        $stmt = $conn->prepare("SELECT `id_admin`, `nome_admin` FROM `admin` WHERE `cpf_admin`  = :CPF");
+        $stmt = $conn->prepare("SELECT * FROM `admin` WHERE `cpf_admin`  = :CPF");
 
         // União das variáveis com comando slq
-
         $stmt->bindParam(":CPF", $cpfAdmin);
 
         // Execução da query
-
         try {
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);

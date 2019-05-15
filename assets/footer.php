@@ -29,12 +29,16 @@
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
 
+
+
 <script>
     (function ($) {
         $(function () {
             // Plugin initialization
             $('select').not('.disabled').formSelect();
             $('.modal').modal();
+            $('#modal-selecionar-escola').modal();
+            $('#modal-selecionar-escola').modal('open'); 
             $('.tabs').tabs();
             $('.parallax').parallax();
             $('.tabs').tabs();

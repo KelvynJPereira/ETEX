@@ -172,18 +172,16 @@ class EscolaDao implements InterfaceEscola {
     public function listarEscolasAdmin($id) {
        
         // Cria conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
+       
+        // Criacao da query
+        $stmt = $conn->prepare("select * from escolas e join admin_escola a_e on e.id_escola = a_e.id_escola where a_e.id_admin = :ID");
         
-        // Variaveis 
+        // Uniao da variavel com query
+        $stmt->bindParam(":ID",$id);
         
-        $idAdmin = $id;
-        
-        $stmt = $conn->prepare("SELECT nome_escola from escola WHERE fk_id_adm = :ID");
-        
-        $stmt->bindParam(":ID",$idAdmin);
-        
+        // Execucao e retorno da query
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
