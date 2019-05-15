@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   `estado_endereco_aluno` varchar(40) DEFAULT NULL,
   `pais_endereco_aluno` varchar(40) DEFAULT NULL,
   `cep_endereco_aluno` varchar(40) DEFAULT NULL,
-  `fotol_aluno` blob,
+  `foto_aluno` blob,
   PRIMARY KEY (`id_aluno`),
   UNIQUE KEY `cpf_aluno` (`cpf_aluno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `matricula_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cor_aluno`, `cpf_aluno`, `email_aluno`, `fone_pessoal_aluno`, `fone_fixo_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `fotol_aluno`) VALUES
+INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `matricula_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cor_aluno`, `cpf_aluno`, `email_aluno`, `fone_pessoal_aluno`, `fone_fixo_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `foto_aluno`) VALUES
 (1, 'Mirla', NULL, 'Villa Pereira', '1996-09-01', 'Mulher', 'Parda', '75487875456', 'mirlapereira1996@gmail.com', '996487526', '32614411', '154', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------

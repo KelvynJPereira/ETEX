@@ -57,7 +57,7 @@ if ($stmt->rowCount() > 0) {
             'estado_endereco' => $row['estado_endereco_aluno'],
             'pais_endereco' => $row['pais_endereco_aluno'],
             'cep_endereco' => $row['cep_endereco_aluno'],
-            'foto_aluno' => $row['foto_aluno']      
+            'foto_aluno' => base64_encode($row['foto_aluno'])      
         ];
         // Insercao array de alunos e dados 
         array_push($alunos_array, $dados_alunos);
