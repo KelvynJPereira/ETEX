@@ -33,8 +33,9 @@ class EscolaController implements InterfaceEscola {
         
     }
 
-    public function excluirEscola($id) {
-        
+    public function excluirEscola($idEscolaExcluir) {
+        $excluir = new EscolaDao();
+        return $excluir->excluirEscola($idEscolaExcluir);
     }
 
     public function listarEscolas() {

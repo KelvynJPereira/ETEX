@@ -5,7 +5,7 @@
         if (!empty($dados_admin['logo_admin'])):
             echo '<img style="width:50px heigth:50px;" src="data:image/jpeg;base64,' . base64_encode($dados_admin['logo_admin']) . '"/>';
         endif;
-        echo '<b>'.$dados_admin['nome_admin'].'</br>';
+        echo '<b>' . $dados_admin['nome_admin'] . '</br>';
         ?>
     </div>
     <!-- Nome da escola -->
@@ -45,9 +45,158 @@
                 <li class="tab"><a href="#test4">Financeiro</a></li>
                 <li class="tab"><a href="#test0">Administrativo</a></li>
             </ul>
-            <div id="test1" class="col s12"><p>Test 1</p></div>
-            <div id="test2" class="col s12"><p>Test 2</p></div>
-            <div id="test3" class="col s12"><p>Test 3</p></div>
+
+
+
+
+
+            <div id="test1" class="col l12"><p>
+
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <a href="../../app/escola/cadastro-escola.php"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Nova escola
+                                <span class="new badge">4</span></div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <a href="../../app/escola/listar-escolas.php?id=<?php echo $dados_admin['id_admin'];?>"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Escolas
+                                <span class="badge">1</span></div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Escola
+                            <span class="badge">1</span></div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
+
+
+
+
+
+
+                </p></div>
+
+            <div id="test2" class="col l12"><p>
+
+
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">add</i>
+                            Matricular Aluno
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">add_circle</i>
+                            Novo Aluno
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">list</i>
+                            Listar Alunos
+                            <span class="new badge">54</span>
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Aluno
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">edit</i>
+                            Editar Aluno
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">delete</i>
+                            Excluir Aluno
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
+
+
+
+                </p></div>
+            <div id="test3" class="col s12"><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <a href="#"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Cadastrar Funcionário
+                            </div>
+                        </li></a>
+                    <a href="#"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Funcionários
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Funcionário
+                            <span class="badge">1</span></div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">edit</i>
+                            Editar Funcionário
+                            <span class="badge">1</span></div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">delete</i>
+                            Excluir Funcionário
+                            <span class="badge">1</span></div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
+
+
+
+                </p></div>
             <div id="test4" class="col s12"><p>Test 4</p></div>
             <div id="test0" class="col s12"><p>Test 5</p></div>
         </div>

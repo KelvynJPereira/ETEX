@@ -26,7 +26,7 @@ class EscolaDao implements InterfaceEscola {
         /*
          * Variaveis
          */
-        
+
         // Dados
 
         $nome = $escola->getNome();
@@ -116,7 +116,6 @@ class EscolaDao implements InterfaceEscola {
 
     public function listarEscolas() {
         
-        
     }
 
     public function editarEscola(Escola $escola, $idEscolaEditar) {
@@ -124,12 +123,31 @@ class EscolaDao implements InterfaceEscola {
     }
 
     public function excluirEscola($id) {
-        
+
+        // Conexão 
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+
+        $stmt = $conn->prepare("DELETE FROM `escolas` WHERE `escolas`.`id_escola` = :IDESCOLA");
+
+        // União das variáveis com comando slq
+
+        $stmt->bindParam(":IDESCOLA", $id);
+
+        // Execução da query
+
+        try {
+            $stmt->execute();
+            return true;
+        } catch (Exception $ex) {
+            return $ex = "Erro: " . $ex;
+        }
     }
 
     public function buscarEscola($id) {
-        
-              // Conexão 
+
+        // Conexão 
 
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
@@ -166,21 +184,20 @@ class EscolaDao implements InterfaceEscola {
         } catch (Exception $e) {
             return $result = "Erro: " . $e;
         }
-        
     }
 
     public function listarEscolasAdmin($id) {
-       
+
         // Cria conexão 
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
-       
+
         // Criacao da query
         $stmt = $conn->prepare("select * from escolas e join admin_escola a_e on e.id_escola = a_e.id_escola where a_e.id_admin = :ID");
-        
+
         // Uniao da variavel com query
-        $stmt->bindParam(":ID",$id);
-        
+        $stmt->bindParam(":ID", $id);
+
         // Execucao e retorno da query
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

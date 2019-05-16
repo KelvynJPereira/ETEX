@@ -8,8 +8,8 @@ session_destroy();
 // Solicitacao de login
 if (isset($_POST['btn-logar'])):
 
-    // Variavel de erros
-    $erros = [];
+    // Variavel de mensagens ou erros
+    $msgs = [];
 
     // Sanitizacao
     $filter = $_POST;
@@ -53,16 +53,16 @@ if (isset($_POST['btn-logar'])):
                     break;
 
                 default;
-                    array_push($erros, 'Erro ao realizar login'); // <- redirecionar para tela 404 not found
+                    array_push($msgs, 'Erro ao realizar login'); // <- redirecionar para tela 404 not found
                     break;
             endswitch;
 
         else:
-            array_push($erros, 'Usuário não encontrado');
+            array_push($msgs, 'Usuário não encontrado');
         endif;
 
     else:
-        array_push($erros, 'Existem campos vazios');
+        array_push($msgs, 'Existem campos vazios');
     endif;
 endif;
 
@@ -104,11 +104,11 @@ if (isset($_POST['btn-cadastrar'])):
 
     // Verifica se consulta retornou erros
     if (count($dados) == 1):
-        array_push($erros, $dados);
+        array_push($msgs, $dados);
     else:
         // Associcao do admin a escola
         $adminController->cadastrarAdminEscola($dados['id_admin'], $dados['id_escola']);
-        array_push($erros, 'Cadastrado com sucesso!');
+        array_push($msgs, 'Cadastrado com sucesso!');
     endif;
 endif;
 /*
@@ -125,13 +125,13 @@ endif;
   endif;
  */
 
-// Exibicao de erros no toast
-if (!empty($erros)):
-    foreach ($erros as $erro):
+// Exibicao de mensagens no toast
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
         ?>
         <script>
             window.onload = function () {
-                M.toast({html: '<?php echo '<b>' . $erro . '</br>'; ?>', classes: 'orange rounded'});
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
             };
         </script>
         <?php
