@@ -67,41 +67,51 @@ if (isset($_POST['btn-logar'])):
 endif;
 
 
+// Cadastrar admin
+if (isset($_POST['btn-cadastrar'])):
+
+    // Sanitizacao
+    $filter = $_POST;
+
+    // Associacao de dados recebidos com variaveis
+    $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
+    $cpf = $filter['cpf'] = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
+    $email = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+    $nomeEscola = $filter['nome-escola'] = filter_input(INPUT_POST, 'nome-escola', FILTER_SANITIZE_STRING);
+    $cnpjEscola = $filter['cnpj'] = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_NUMBER_INT);
+
+
+    // Includes de objetos
+    include_once __DIR__ . '/model/Admin/Admin.class.php';
+    include_once __DIR__ . '/model/Usuario/Usuario.class.php';
+    include_once __DIR__ . '/model/Escola/Escola.class.php';
+
+
+    // Criacao de objetos
+    $admin = new Admin($nome, null, null, null, $cpf, null, null, null, null, null, null, null, null, null, null, null, null);
+    $usuario = new Usuario($email, $senha, $cpf, 1);
+    $escola = new Escola($nomeEscola, $cnpjEscola, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+    // Include de controller
+    include_once __DIR__ . '/controller/AdminController.class.php';
+
+    // Criacao do objeto controller
+    $adminController = new AdminController();
+
+    // Cadastro de dados
+    $dados = $adminController->cadastrarAdmin($admin, $usuario, $escola);
+
+    // Verifica se consulta retornou erros
+    if (count($dados) == 1):
+        array_push($erros, $dados);
+    else:
+        // Associcao do admin a escola
+        $adminController->cadastrarAdminEscola($dados['id_admin'], $dados['id_escola']);
+        array_push($erros, 'Cadastrado com sucesso!');
+    endif;
+endif;
 /*
-  if (isset($_POST['btn-cadastrar'])):
-
-  // Sanitizacao
-  $filter = $_POST;
-
-  $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
-  $cpf = $filter['cpf'] = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
-  $email = $filter['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-  $senha = $filter['senha'] = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-  $nomeEscola = $filter['nome-escola'] = filter_input(INPUT_POST, 'nome-escola', FILTER_SANITIZE_STRING);
-  $cnpjEscola = $filter['cnpj'] = filter_input(INPUT_POST, 'cnpj', FILTER_SANITIZE_NUMBER_INT);
-
-
-  // Cadastrar usuario
-  include_once __DIR__ . '/model/Admin/Admin.class.php';
-  include_once __DIR__ . '/model/Usuario/Usuario.class.php';
-  include_once __DIR__ . '/model/Escola/Escola.class.php';
-
-  $admin = new Admin($nome, null, null, null, $cpf, null, null, null, null, null, null, null, null, null, null, null, null);
-  $usuario = new Usuario($email, $senha, $cpf, 1);
-  $escola = new Escola($nomeEscola, $cnpjEscola, null, null, null, null, null, null, null, null, null, null, null, null, null);
-
-  include_once __DIR__ . '/controller/AdminController.class.php';
-
-  $adminController = new AdminController();
-  $ids = $adminController->cadastrarAdmin($admin, $usuario, $escola);
-  endif;
-
-  // Associcao do admin a escola
-
-  $adminController->cadastrarAdminEscola($ids['admin'], $ids['escola']);
-
-
-  /*
   // Encriptacao
 
   $options = [
@@ -121,7 +131,7 @@ if (!empty($erros)):
         ?>
         <script>
             window.onload = function () {
-                M.toast({html: '<?php echo '<b>'.$erro.'</br>'; ?>', classes: 'orange rounded'});
+                M.toast({html: '<?php echo '<b>' . $erro . '</br>'; ?>', classes: 'orange rounded'});
             };
         </script>
         <?php
@@ -152,7 +162,7 @@ endif;
                     <li><a href="index.php">Inicío</a></li>
                     <li><a href="#">Gestão Escolar</a></li>
                     <li><a id="login" class="modal-trigger" href="#model-logar">Login</a></li>
-                    <li><a id="cadastro" class="modal-trigger" href="#model-cadastro">Cadastre</a></li>
+                    <li><a id="cadastro" class="modal-trigger" href="#model-cadastro">Cadastre-se</a></li>
                 </ul>
             </div>
         </nav>

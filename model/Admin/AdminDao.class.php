@@ -4,6 +4,8 @@ include_once __DIR__ . '/InterfaceAdmin.interface.php';
 include_once __DIR__ . '/../../.config/Database.class.php';
 
 
+// Array de erros
+$erros = [];
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +18,6 @@ class AdminDao implements InterfaceAdmin {
     public function cadastrarAdmin(Admin $admin, Usuario $usuario, Escola $escola) {
 
         // Conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
@@ -24,31 +25,26 @@ class AdminDao implements InterfaceAdmin {
         // Variaveis
         // Dados
         // Usuario
-
         $nome = $admin->getNome();
         $cpf = $admin->getCpf();
 
         // Usuario
-
         $login = $usuario->getLogin();
         $senha = $usuario->getSenha();
         $cpfUsuario = $cpf; // CPF do admin
         $permissao = $usuario->getPermissao();
 
         // Escola
-
         $nomeEscola = $escola->getNome();
         $cnpjEscola = $escola->getCnpj();
 
         // Comando SQL
-
         $stmt = $conn->prepare("INSERT INTO `admin` (`nome_admin`, `cpf_admin`) VALUES (:NOME, :CPF)");
         $stmt2 = $conn->prepare("INSERT INTO `usuarios` (`login_usuario`, `senha_usuario`, `cpf_usuario`, `permissao_usuario`) VALUES (:LOGIN, :SENHA, :CPFUSUARIO, :PERMISSAO)");
         $stmt3 = $conn->prepare("INSERT INTO `escolas`(`nome_escola`, `cnpj_escola`) VALUES (:NOMEESCOLA, :CNPJ)");
 
 
         // União de variáveis com comando sql
-
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":CPF", $cpf);
 
@@ -60,17 +56,46 @@ class AdminDao implements InterfaceAdmin {
         $stmt3->bindParam(":NOMEESCOLA", $nomeEscola);
         $stmt3->bindParam(":CNPJ", $cnpjEscola);
 
-        
-        $stmt->execute();
-        $id['admin'] = $conn->lastInsertId();
-        
-        $stmt2->execute();
-        $id['usuario'] = $conn->lastInsertId();
+        // Array de ids
+        $ids = [];
 
-        $stmt3->execute();
-        $id['escola'] = $conn->lastInsertId();
+        // Execucao de querys com tratamento
+        try {
+            $stmt->execute();
+            $admin = $conn->lastInsertId();
+            $ids['id_admin'] = $admin;
+        } catch (Exception $ex) {
+            if ($ex->getCode() == '23000'):
+                $erros = 'CPF já cadastrado!';
+                return $erros;
+            endif;
+            exit();
+        }
+        try {
+            $stmt2->execute();
+            $usuario = $conn->lastInsertId();
+            $ids['id_usuario'] = $usuario;
+        } catch (Exception $ex) {
+            if ($ex->getCode() == '23000'):
+                $erros = 'E-mail já cadastrado!';
+                return $erros;
+                exit();
+            endif;
+        }
+        try {
+            $stmt3->execute();
+            $escola = $conn->lastInsertId();
+            $ids['id_escola'] = $escola;
+        } catch (Exception $ex) {
+            if ($ex->getCode() == '23000'):
+                $erros = 'CNPJ já cadastrado!';
+                return $erros;
+                exit();
+            endif;
+        }
 
-        return $ids = $id;
+        // Retorno de ids dos objetos cadastrados
+        return $ids;
     }
 
     public function buscarAdmin($cpfAdmin) {
@@ -97,19 +122,17 @@ class AdminDao implements InterfaceAdmin {
     public function cadastrarAdminEscola($idAdmin, $idEscola) {
 
         // Conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Criação da query 
-
         $stmt = $conn->prepare("INSERT INTO `admin_escola` (`id_admin`, `id_escola`) VALUES (:IDADMIN, :IDESCOLA);");
 
         // União das variáveis com comando slq
-
         $stmt->bindParam(":IDADMIN", $idAdmin);
         $stmt->bindParam(":IDESCOLA", $idEscola);
-
+        
+// Execucao da query
         $stmt->execute();
     }
 
@@ -127,8 +150,8 @@ class AdminDao implements InterfaceAdmin {
         // União das variáveis com comando slq
 
         $stmt->bindParam(":IDADMIN", $idAdminEscola);
-        
-         try {
+
+        try {
             $stmt->execute();
             return $stmt->fetchAll();
         } catch (Exception $e) {

@@ -2,8 +2,10 @@
     <!-- Chip de identificacao -->
     <div class="chip col l1 offset-l10 animated zoomIn delay-1s">
         <?php
-        echo '<img style="width:50px heigth:50px;" src="data:image/jpeg;base64,' . base64_encode($dados_admin['logo_admin']) . '"/>';
-        echo $dados_admin['nome_admin'];
+        if (!empty($dados_admin['logo_admin'])):
+            echo '<img style="width:50px heigth:50px;" src="data:image/jpeg;base64,' . base64_encode($dados_admin['logo_admin']) . '"/>';
+        endif;
+        echo '<b>'.$dados_admin['nome_admin'].'</br>';
         ?>
     </div>
     <!-- Nome da escola -->
