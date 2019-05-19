@@ -157,7 +157,7 @@ endif;
     <body>
         <nav id="menu-inicial">
             <div class="nav-wrapper">
-                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets/img/logo.png"</a>
+                <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets/img/designer/logo.png"</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.php">Inicío</a></li>
                     <li><a href="#">Gestão Escolar</a></li>
@@ -183,7 +183,7 @@ endif;
         </form>   
 
         <div class="container-1">
-            <img class="responsive-img" src="assets/img/background.png"></img>
+            <img class="responsive-img" src="assets/img/designer/background.png"></img>
         </div>
 
         <div id="ad">
@@ -200,7 +200,7 @@ endif;
             </br><div class="col l11 offset-l1">
                 <div class="card col l3">
                     <div class="card-image">
-                        <img src="assets/img/estudent.png">
+                        <img src="assets/img/designer/estudent.png">
                     </div>
                     <div class="card-title center">
                         <span>Gestão de Ensino</span>
@@ -213,7 +213,7 @@ endif;
 
                 <div class="card col l3 offset-l1">
                     <div class="card-image">
-                        <img src="assets/img/class-1.png">
+                        <img src="assets/img/designer/class-1.png">
                     </div>
                     <div class="card-title center">
                         <span>Controle de Colaboradores</span>
@@ -226,7 +226,7 @@ endif;
 
                 <div class="card col l3 offset-l1">
                     <div class="card-image">
-                        <img src="assets/img/analize.png">
+                        <img src="assets/img/designer/analize.png">
                     </div>
                     <div class="card-title center">
                         <span>Análise de Resultados</span>
@@ -242,7 +242,7 @@ endif;
 
         <div class="parallax-container">
 
-            <div class="parallax"><img src="assets/img/school.png"></div>
+            <div class="parallax"><img src="assets/img/designer/school.png"></div>
 
 
         </div>

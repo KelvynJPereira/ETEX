@@ -7,19 +7,17 @@
 
 // Includes
 
-include_once __DIR__.'/../../assets/header.php';
-include_once __DIR__.'/../../model/Aluno/Aluno.class.php';
-include_once __DIR__.'/../../controller/AlunoController.class.php';
-
+include_once __DIR__ . '/../../assets/header.php';
+include_once __DIR__ . '/../../model/Aluno/Aluno.class.php';
+include_once __DIR__ . '/../../controller/AlunoController.class.php';
 ?>
 <div class="center"><h3>CADASTRO DE ALUNO</h3></div>
-
 <form method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="row">
         <div id="cadastro-aluno" class="col l10 m10 offset-l1">
             <?php
-            include_once __DIR__.'/../../view/Aluno/cadastroAluno.view.php';
-            include_once __DIR__.'/../../view/Endereco/cadastroEndereco.view.php';
+            include_once __DIR__ . '/../../view/Aluno/cadastroAluno.view.php';
+            include_once __DIR__ . '/../../view/Endereco/cadastroEndereco.view.php';
             ?>
             <div id="buttonsCadastrar" class="col l12"></br>
                 <div class="col l6 offset-l2">
@@ -39,9 +37,9 @@ include_once __DIR__.'/../../controller/AlunoController.class.php';
 </br>
 <?php
 // Includes
-include_once __DIR__.'/../../assets/footer.php';
+include_once __DIR__ . '/../../assets/footer.php';
 
-if (isset($_POST['btn-cadastrar'])):   
+if (isset($_POST['btn-cadastrar'])):
 
     // Sanitização
 

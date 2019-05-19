@@ -20,7 +20,7 @@ class EscolaController implements InterfaceEscola {
 
     public function cadastrarEscola(Escola $escola) {
         $inserir = new EscolaDao();
-        return $inserir->inserirEscola($escola);
+        return $inserir->cadastrarEscola($escola);
     }
 
     public function buscarEscola($id) {

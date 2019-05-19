@@ -40,10 +40,13 @@
         <div class="animated fadeInLeft delay-2s">
             <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
                 <li class="tab"><a class="active" href="#test1">Escola</a></li>
+                <li class="tab"><a href="#test0">Cursos</a></li>
+                <li class="tab"><a href="#test0">Turmas</a></li>
                 <li class="tab"><a  href="#test2">Alunos</a></li>
                 <li class="tab "><a href="#test3">Funcionários</a></li>
                 <li class="tab"><a href="#test4">Financeiro</a></li>
                 <li class="tab"><a href="#test0">Administrativo</a></li>
+                <li class="tab"><a href="#test0">Usuários</a></li>
             </ul>
 
 
@@ -57,23 +60,49 @@
                             <div class="collapsible-header">
                                 <i class="material-icons">add_circle</i>
                                 Nova escola
-                                <span class="new badge">4</span></div>
+                            </div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
-                    <a href="../../app/escola/listar-escolas.php?id=<?php echo $dados_admin['id_admin'];?>"><li>
+                    <a href="../../app/escola/listar-escolas.php?id=<?php echo $dados_admin['id_admin']; ?>"><li>
                             <div class="collapsible-header">
                                 <i class="material-icons">list</i>
-                                Listar Escolas
-                                <span class="badge">1</span></div>
+                                <?php
+                                echo (count($escolas_admin) > 1) ? "Listar Escolas" : "Listar Escola";
+                                ?>
+
+                                <span class="badge"><?php echo count($escolas_admin); ?></span></div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
                     <li>
                         <div class="collapsible-header">
                             <i class="material-icons">search</i>
                             Buscar Escola
-                            <span class="badge">1</span></div>
+                        </div>
                         <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                     </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">attach_money</i>
+                            Gestão Financeira
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">school</i>
+                            Gestão Pedagogica
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">business</i>
+                            Gestão admninistrativa
+                        </div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+
                 </ul>
 
 
@@ -193,6 +222,10 @@
                         <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                     </li>
                 </ul>
+
+
+
+
 
 
 

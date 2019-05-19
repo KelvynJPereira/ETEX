@@ -4,36 +4,20 @@ include_once __DIR__.'/../Empresa/Empresa.class.php';
 
 class Escola extends Empresa {
     
-    private $idAdministrativo; // Identificador administrativo
-    private $tipoEnsino;  // Ensino fundamental, médio, técnico, etc.
-    private $gre; // Gerencia regional de educacao 
+
+    private $ensino;  // Ensino fundamental, médio, técnico, etc.    
     
     
-    // Getters and Setters
-   
-    function getIdAdministrativo() {
-        return $this->idAdministrativo;
+    function getEnsino() {
+        return $this->ensino;
     }
 
-    function getTipoEnsino() {
-        return $this->tipoEnsino;
+    function setEnsino($ensino) {
+        $this->ensino = $ensino;
     }
 
-    function getGre() {
-        return $this->gre;
-    }
 
-    function setIdAdministrativo($idAdministrativo) {
-        $this->idAdministrativo = $idAdministrativo;
-    }
 
-    function setTipoEnsino($tipoEnsino) {
-        $this->tipoEnsino = $tipoEnsino;
-    }
-
-    function setGre($gre) {
-        $this->gre = $gre;
-    }
 
 
 

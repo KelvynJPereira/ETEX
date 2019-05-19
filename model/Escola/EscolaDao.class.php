@@ -19,16 +19,11 @@ class EscolaDao implements InterfaceEscola {
     public function cadastrarEscola(Escola $escola) {
 
         // Cria conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
-
-        /*
-         * Variaveis
-         */
-
+        
+      
         // Dados
-
         $nome = $escola->getNome();
         $cnpj = $escola->getCnpj();
         $tipo = $escola->getTipo();
@@ -38,7 +33,6 @@ class EscolaDao implements InterfaceEscola {
         $site = $escola->getSite();
 
         // Endereco
-
         $numero = $escola->getNumero();
         $rua = $escola->getRua();
         $bairro = $escola->getBairro();
@@ -48,12 +42,10 @@ class EscolaDao implements InterfaceEscola {
         $cep = $escola->getCep();
 
         // Logo
-
         $logo = $escola->getLogo();
 
         // Preparacao da query
-
-        $stmt = $conn->prepare("INSERT INTO `escola`
+        $stmt = $conn->prepare("INSERT INTO `escolas`
                 (`nome_escola`,
                 `cnpj_escola`,
                 `tipo_escola`,
@@ -87,7 +79,6 @@ class EscolaDao implements InterfaceEscola {
                 :LOGO)");
 
         // União de variáveis com comando sql
-
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":CNPJ", $cnpj);
         $stmt->bindParam(":TIPO", $tipo);
@@ -105,10 +96,10 @@ class EscolaDao implements InterfaceEscola {
         $stmt->bindParam(":LOGO", $logo);
 
         // Execucao da query
-
         try {
             $stmt->execute();
-            return "Escola cadastrada com sucesso!";
+            $id_escola['id_escola'] = $conn->lastInsertId();
+            return $id_escola;
         } catch (Exception $e) {
             return "Erro: " . $e;
         }

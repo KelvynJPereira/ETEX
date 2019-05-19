@@ -1,7 +1,7 @@
 <div id="modal-selecionar-escola" class="modal">
     <div class="modal-content center">
         <div>
-            <h4 class="center">Escolha uma escola:</h4></br>
+            <h4 class="center">Selecionar uma escola:</h4></br>
         </div>
         <div class="row">
             <div class="col l8 push-l2">

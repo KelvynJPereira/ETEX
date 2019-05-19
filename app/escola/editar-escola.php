@@ -8,12 +8,11 @@
  * -      ||     redirecionamento correto
  */
 
-
 // Include header
-
 include_once __DIR__.'/../../assets/header.php';
 include_once __DIR__.'/../../model/Escola/Escola.class.php';
 include_once __DIR__.'/../../controller/EscolaController.class.php';
+
 
 // Recuperação de id
 
