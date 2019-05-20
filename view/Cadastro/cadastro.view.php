@@ -7,12 +7,12 @@
             <div class="row">
                 <div class="input-field col l5 offset-l1">
                     <i class="material-icons prefix">person</i>
-                    <input class="validate" id="nome" name="nome" type="text">
+                    <input id="nome" name="nome" type="text">
                     <label for="nome" data-error="wrong" data-success="right">Nome Completo</label>
                 </div>
                 <div class="input-field col l5">
                     <i class="material-icons prefix">featured_play_list</i>
-                    <input class="validate" id="cpf" name="cpf" type="number">
+                    <input id="cpf" name="cpf" type="number">
                     <label for="cpf" data-error="wrong" data-success="right">CPF</label>
                 </div>
 
@@ -30,13 +30,13 @@
 
                 <div class="input-field col l5 offset-l1">
                     <i class="material-icons prefix">account_balance</i>
-                    <input class="validate" id="nome-escola" name="nome-escola" type="text">
+                    <input id="nome-escola" name="nome-escola" type="text">
                     <label for="nome-escola" data-error="wrong" data-success="right">Nome da Instituição</label>
                 </div>
 
                 <div class="input-field col l5">
                     <i class="material-icons prefix">assignment</i>
-                    <input class="validate" id="cpnj" name="cnpj" type="number">
+                    <input  id="cpnj" name="cnpj" type="number">
                     <label for="cnpj" data-error="wrong" data-success="right">CNPJ</label>
                 </div>
             </div>

@@ -28,18 +28,22 @@ class EscolaController implements InterfaceEscola {
         return $buscar->buscarEscola($id);
         
     }
+    
+     public function buscarEscolaCnpj($idCnpj) {
+        $buscar = new EscolaDao();
+        return $buscar->buscarEscolaCnpj($idCnpj);
+        
+    }
 
-    public function editarEscola(\Escola $escola, $idEscolaEditar) {
+    public function editarEscola(Escola $escola, $idEscolaEditar) {
+        $editar = new EscolaDao();
+        return $editar->editarEscola($escola, $idEscolaEditar);
         
     }
 
     public function excluirEscola($idEscolaExcluir) {
         $excluir = new EscolaDao();
         return $excluir->excluirEscola($idEscolaExcluir);
-    }
-
-    public function listarEscolas() {
-        
     }
 
     public function listarEscolasAdmin($id) {

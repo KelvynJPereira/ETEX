@@ -15,8 +15,6 @@ interface InterfaceEscola {
     
     public function cadastrarEscola(Escola $escola);
 
-    public function listarEscolas();
-
     public function buscarEscola($id);
 
     public function editarEscola(Escola $escola, $idEscolaEditar);
@@ -24,5 +22,7 @@ interface InterfaceEscola {
     public function excluirEscola($id);
     
     public function listarEscolasAdmin($id);
+    
+    public function buscarEscolaCnpj($cnpj);
         
 }

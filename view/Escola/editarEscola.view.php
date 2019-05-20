@@ -1,68 +1,62 @@
 <?php
-foreach ($dadosEscola as $dado):
+foreach ($dados as $dado):
     ?>
-    </br>    
-    <div class="col l12 m12">
-        <h5>Dados</h5>
+    <div class="row">
+        <div class="input-field col l2 m2 offset-l5">
+            <img class="materialboxed" width="124" src="../../assets/img/escola/uploads/<?php echo $dado['logo_escola'];?>">
+            <input type="file" name="logo" id="image"></input>
+        </div> 
+    </div></br>
+    <div class="row">
+        <div class="col l12 offset-l1">
+            <h5>Dados</h5>
+        </div>
+        </br>
+        <div class="input-field col l2 m2 offset-l1">
+            <input type="text" name="nome" value="<?php echo $dado['nome_escola'];?>" id="nome">
+            <label for="nome">Razão social</label>
+        </div>
+        <div class="input-field col l2 m2">
+            <input type="text" name="cnpj" value="<?php echo $dado['cnpj_escola'];?>" id="cnpj">
+            <label for="cnpj">CNPJ</label>
+        </div>
+        <div class="input-field col l2 m2">
+            <select name="ensino" value="<?php echo $dado['tipo_escola'];?>">
+                <option value="Ensino Fundamental">Ensino Fundamental</option>
+                <option value="Ensino Médio">Ensino Médio</option>
+                <option value="Ensino Fundamental e Médio">Ensino Fundamental e Médio</option>
+                <option value="Ensino Médio Técnico">Ensino Médio Técnico</option>
+            </select>
+            <label>Tipo Ensino</label>
+        </div>
+
+        <div class="input-field col l2 m2">
+            <i class="material-icons prefix">phone</i>
+            <input type="number" name="foneF" value="<?php echo $dado['fone_fixo_escola'];?>" id="foneF">
+            <label for="foneF">Telefone fixo</label>
+        </div>
+
+        <div class="input-field col l2 m2">
+            <input type="number" name="foneC"  value="<?php echo $dado['fone_comercial_escola'];?>" id="foneC">
+            <label for="foneC">Telefone Comercial</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col l3 m2 offset-l1">
+            <input type="text" name="email" value="<?php echo $dado['email_escola'];?>" id="email">
+            <label for="email">Email</label>
+        </div>
+
+        <div class="input-field col l3 m2">
+            <input type="text" name="site" value="<?php echo $dado['site_escola'];?>" id="site">
+            <label for="site">Site</label>
+        </div>
     </div>
 
-    <div class="input-field col l2 m2">
-        <input type="text" name="nome" id="name" value="<?php echo $dado['nome_escola']; ?>">
-        <label for="name">Nome Fantasia</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <input type="text" name="sobrenome" id="lastName" value="<?php echo $dado['cnpj_escola']; ?>">
-        <label for="lastName">CNPJ</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <select name="sexo">
-            <option value="" disabled selected>Sexo</option>
-            <option value="Homem">Masculino</option>
-            <option value="Mulher">Feminino</option>
-        </select>
-        <label>Escolha um sexo</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <input type="date" name="nascimento" id="birthday" value="<?php echo $dado['nascimento_aluno']; ?>">
-        <label for="birthday">Nascimento</label>
-    </div> 
-
-    <div class="input-field col l2 m2">
-        <input type="number" name="cpf" id="cpf" value="<?php echo $dado['cpf_aluno']; ?>">
-        <label for="cpf">CPF</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <select name="cor">
-            <option value="" disabled selected>Cor</option>
-            <option value="BRANCO">Branco</option>
-            <option value="NEGRO">Negro</option>
-            <option value="PARDO">Pardo</option>
-            <option value="INDIO">Índio</option>
-        </select>
-        <label>Escolha uma raça</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <input type="number" name="foneF" id="foneF" value="<?php echo $dado['fone_fixo_aluno']; ?>">
-        <label for="foneF">Telefone fixo</label>
-    </div>
-
-    <div class="input-field col l2 m2">
-        <input type="number" name="foneP" id="foneP" value="<?php echo $dado['fone_pessoal_aluno']; ?>">
-        <label for="foneP">Telefone pessoal</label>
-    </div>
-
-    <div class="input-field col l3 m2">
-        <input type="email" name="email" id="email" value="<?php echo $dado['email_aluno']; ?>">
-        <label for="email">E-mail</label>
-    </div>
     <?php
 endforeach;
 ?>
+
 
 
 

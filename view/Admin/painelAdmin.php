@@ -78,7 +78,13 @@
                             <i class="material-icons">search</i>
                             Buscar Escola
                         </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o CNPJ da instituicao</label>
+                            <form method="POST" action="../../app/escola/buscar-escola.php">
+                                <input name="cnpj" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
+                        </div>
                     </li>
                     <li>
                         <div class="collapsible-header">

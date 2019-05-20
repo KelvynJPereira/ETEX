@@ -1,6 +1,6 @@
 <div class="row">
     <div class="input-field col l2 m2 offset-l5">
-        <img class="materialboxed" width="124" src="../../assets/img/escola/uploads/logo-padrao.png">
+        <img class="materialboxed" width="124" src="../../assets/img/escola/uploads/escola-padrao.png">
         <input type="file" name="logo" id="image"></input>
     </div> 
 </div></br>

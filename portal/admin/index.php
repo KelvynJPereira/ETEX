@@ -57,6 +57,7 @@ include_once __DIR__ . '/../../assets/header.php';
 ?>
 
 <?php
+
 // Verifica quantidade de escolas do admin
 if ($qtd_escolas > 1):
     include_once __DIR__ . '/../../view/Admin/selecionarEscolaAdmin.view.php';
@@ -65,9 +66,8 @@ elseif ($qtd_escolas = 1):
 endif;
 ?>
 
-
-
 <?php
+
 // Footer
 include_once __DIR__ . '/../../assets/footer.php';
 ?>

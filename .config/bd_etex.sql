@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 19-Maio-2019 às 04:39
+-- Generation Time: 20-Maio-2019 às 21:28
 -- Versão do servidor: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `admin_escola` (
 INSERT INTO `admin_escola` (`id_admin`, `id_escola`) VALUES
 (1, 122),
 (1, 123),
-(1, 124),
-(3, 129);
+(3, 129),
+(1, 131);
 
 -- --------------------------------------------------------
 
@@ -162,17 +162,17 @@ CREATE TABLE IF NOT EXISTS `escolas` (
   `logo_escola` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_escola`),
   UNIQUE KEY `cnpj_unique` (`cnpj_escola`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `escolas`
 --
 
 INSERT INTO `escolas` (`id_escola`, `nome_escola`, `cnpj_escola`, `tipo_escola`, `fone_fixo_escola`, `fone_comercial_escola`, `email_escola`, `site_escola`, `numero_endereco_escola`, `rua_endereco_escola`, `bairro_endereco_escola`, `cidade_endereco_escola`, `estado_endereco_escola`, `pais_endereco_escola`, `cep_endereco_escola`, `logo_escola`) VALUES
-(122, 'Coronel Othon', '22242227000186', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '01.jpg'),
+(122, 'Coronel Othon', '210', 'Ensino Fundamental', '51', '1', '121', 'sdsd', '112', '1212', '2323', '2323', '232323', '232323', '52090274', '01.jpg'),
 (123, 'Miguel Batista', '90824516000143', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '03.jpg'),
-(124, 'Abel Gueiros', '85136228000166', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '02.jpg'),
-(129, 'Centro Educandario Lira', '55600946000180', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', 'escola-padrao.png');
+(129, 'Centro Educandario Lira', '55600946000180', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', 'escola-padrao.png'),
+(131, 'Abel Gueiros', '214578963145', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '02.jpg');
 
 -- --------------------------------------------------------
 
