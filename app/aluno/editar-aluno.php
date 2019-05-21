@@ -11,9 +11,9 @@
 
 // Include header
 
-include_once __DIR__.'/../../assets/header.php';
-include_once __DIR__.'/../../model/Aluno/Aluno.class.php';
-include_once __DIR__.'/../../controller/AlunoController.class.php';
+include_once __DIR__ . '/../../assets/header.php';
+include_once __DIR__ . '/../../model/Aluno/Aluno.class.php';
+include_once __DIR__ . '/../../controller/AlunoController.class.php';
 
 // Recuperação de id
 
@@ -33,13 +33,15 @@ $idEditarAluno = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
             <?php
             if ($idEditarAluno != ""):
                 $buscarAluno = new AlunoController();
-                $dadosAluno = $buscarAluno->buscarAluno($idEditarAluno);
-                include_once __DIR__.'/../../view/Aluno/editarAluno.view.php';
-                include_once __DIR__.'/../../view/Endereco/editarEndereco.view.php';
+                $dados = $buscarAluno->buscarAluno($idEditarAluno);
+                foreach ($dados as $dado):
+                    include_once __DIR__ . '/../../view/Aluno/editarAluno.view.php';
+                    include_once __DIR__ . '/../../view/Aluno/editarEndereco.view.php';
+                endforeach;
             endif;
             ?>
             <div id="buttons" class="col l12"></br>
-                <div class="col l3 offset-l3">
+               </br> <div class="col l3 offset-l3">
                     <a class="waves-effect waves-light btn blue" href="listar-alunos.php"><i class="material-icons left">arrow_back</i>Voltar</a>
                 </div>
                 <div class="col l3 offset-l2">
@@ -55,7 +57,7 @@ $idEditarAluno = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 <?php
 // Includes
-include_once __DIR__.'/../../assets/footer.php';
+include_once __DIR__ . '/../../assets/footer.php';
 
 if (isset($_POST['btn-atualizar'])):
 
@@ -97,6 +99,6 @@ if (isset($_POST['btn-atualizar'])):
     $alunoController = new AlunoController();
     $result = $alunoController->editarAluno($objAluno, $idEditarAluno);
     echo $result;
-    
+
 endif;
 ?>

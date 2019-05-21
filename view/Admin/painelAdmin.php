@@ -35,26 +35,21 @@
             </div>
         </div>
     </div>
+
     <!-- Slide de opcoes -->
     <div class="container-3">
         <div class="animated fadeInLeft delay-2s">
             <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-                <li class="tab"><a class="active" href="#test1">Escola</a></li>
-                <li class="tab"><a href="#test0">Cursos</a></li>
-                <li class="tab"><a href="#test0">Turmas</a></li>
-                <li class="tab"><a  href="#test2">Alunos</a></li>
-                <li class="tab "><a href="#test3">Funcionários</a></li>
-                <li class="tab"><a href="#test4">Financeiro</a></li>
-                <li class="tab"><a href="#test0">Administrativo</a></li>
-                <li class="tab"><a href="#test0">Usuários</a></li>
+                <li class="tab"><a class="active" href="#escola">Escola</a></li>
+                <li class="tab"><a href="#cursos">Cursos</a></li>
+                <li class="tab"><a href="#turmas">Turmas</a></li>
+                <li class="tab"><a  href="#alunos">Alunos</a></li>
+                <li class="tab "><a href="#funcionarios">Funcionários</a></li>
+                <li class="tab"><a href="#usuarios">Usuários</a></li>
             </ul>
 
-
-
-
-
-            <div id="test1" class="col l12"><p>
-
+            <!-- Escola -->
+            <div id="escola" class="col l12"><p>
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
                     <a href="../../app/escola/cadastro-escola.php"><li>
                             <div class="collapsible-header">
@@ -67,9 +62,8 @@
                             <div class="collapsible-header">
                                 <i class="material-icons">list</i>
                                 <?php
-                                echo (count($escolas_admin) > 1) ? "Listar Escolas" : "Listar Escola";
+                                echo (count($escolas_admin) > 1) ? "Listar Minhas Escolas" : "Listar Minha Escola";
                                 ?>
-
                                 <span class="badge"><?php echo count($escolas_admin); ?></span></div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
@@ -79,7 +73,7 @@
                             Buscar Escola
                         </div>
                         <div class="collapsible-body">
-                            <label for="buscar">Informe o CNPJ da instituicao</label>
+                            <label for="buscar">Informe o CNPJ da instituicao:</label>
                             <form method="POST" action="../../app/escola/buscar-escola.php">
                                 <input name="cnpj" id="buscar" type="number"> 
                                 <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
@@ -110,17 +104,80 @@
                     </li>
 
                 </ul>
+                </p></div>
 
 
+            <!-- Cursos  -->
 
+            <div id="cursos" class="col s12"><p>
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <a href="../../app/curso/cadastro-curso.php"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Cadastrar Curso
+                            </div>
+                        </li></a>
+                    <a href="../../app/curso/listar-cursos"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Cursos
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Curso
+                        </div>
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o código do curso:</label>
+                            <form method="POST" action="#">
+                                <input name="codigo-curso" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                </p></div>
 
+            <!-- Turmas  -->
 
+            <div id="turmas" class="col l12"><p>
+
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <a href="../../app/turma/cadastro-turma.php"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Cadastrar Turma
+                            </div>
+                        </li></a>
+                    <a href="../../app/curso/listar-cursos"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Turmas
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Turma
+                        </div>
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o código da Tuma:</label>
+                            <form method="POST" action="#">
+                                <input name="codigo-turma" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
 
                 </p></div>
 
-            <div id="test2" class="col l12"><p>
+            <!-- Alunos -->
 
-
+            <div id="alunos" class="col l12"><p>
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
                     <li>
                         <div class="collapsible-header">
@@ -129,68 +186,40 @@
                         </div>
                         <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                     </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">add_circle</i>
-                            Novo Aluno
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">list</i>
-                            Listar Alunos
-                            <span class="new badge">54</span>
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
+                    <a href="../../app/aluno/cadastro-aluno.php"> <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Novo Aluno
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <a href="../../app/aluno/listar-alunos.php"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Alunos
+                                <span class="new badge">54</span>
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
                     <li>
                         <div class="collapsible-header">
                             <i class="material-icons">search</i>
                             Buscar Aluno
                         </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">edit</i>
-                            Editar Aluno
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o código da matricula:</label>
+                            <form method="POST" action="#">
+                                <input name="matricula" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
                         </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">delete</i>
-                            Excluir Aluno
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                     </li>
                 </ul>
-
-
-
                 </p></div>
-            <div id="test3" class="col s12"><p>
 
+            <!-- Funcionários -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div id="funcionarios" class="col s12"><p>
 
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
                     <a href="#"><li>
@@ -210,34 +239,52 @@
                         <div class="collapsible-header">
                             <i class="material-icons">search</i>
                             Buscar Funcionário
-                            <span class="badge">1</span></div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">edit</i>
-                            Editar Funcionário
-                            <span class="badge">1</span></div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">delete</i>
-                            Excluir Funcionário
-                            <span class="badge">1</span></div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </div>
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o código da matricula:</label>
+                            <form method="POST" action="#">
+                                <input name="matricula-funcionario" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
+                        </div>
                     </li>
                 </ul>
-
-
-
-
-
-
-
                 </p></div>
-            <div id="test4" class="col s12"><p>Test 4</p></div>
-            <div id="test0" class="col s12"><p>Test 5</p></div>
+
+            <!-- Usuarios -->
+            <div id="usuarios" class="col l12"><p>
+                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                    <a href="#"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">add_circle</i>
+                                Nova Usuário
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <a href="#"><li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">list</i>
+                                Listar Usuários da Escola
+                            </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li></a>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">search</i>
+                            Buscar Usuário
+                        </div>
+                        <div class="collapsible-body">
+                            <label for="buscar">Informe o email do úsuario:</label>
+                            <form method="POST" action="#">
+                                <input name="matricula-funcionario" id="buscar" type="number"> 
+                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </li>
+
+                </ul>
+                </p>
+            </div>
         </div>
     </div>
 </div>
@@ -256,5 +303,3 @@
 
 
 
-
-</div>

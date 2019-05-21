@@ -29,6 +29,11 @@ if (!empty($dados_admin)):
     // Quantidade de escolas
     $qtd_escolas = count($escolas_admin);
 
+    // Caso o admin nao possua uma escola, e redirecionado para cadastra-la
+    if ($qtd_escolas < 1):
+        header("Location: ../../app/escola/cadastro-escola.php");
+    endif;
+
     // Escola escolhida
     $escola = $escolas_admin;
 
@@ -71,6 +76,4 @@ endif;
 // Footer
 include_once __DIR__ . '/../../assets/footer.php';
 ?>
-
-
 

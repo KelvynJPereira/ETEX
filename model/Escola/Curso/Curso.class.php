@@ -12,26 +12,30 @@
  * @author Turyng
  */
 class Curso {
+
     //put your code here
-    
     private $id;
+    private $codigo; // Codigo da turma
     private $status; // Ativa ou invativa
     private $nome;
     private $nivel; // Fundamental, médio, etc.
     private $objetivo;
-   
-   
-    function __construct($id, $status, $nome, $nivel, $objetivo) {
-        $this->id = $id;
+
+    // Construtor
+    function __construct($status, $nome, $nivel, $objetivo) {
         $this->status = $status;
         $this->nome = $nome;
         $this->nivel = $nivel;
-        $this->objetivo = $objetivo;   
+        $this->objetivo = $objetivo;
     }
 
-    
+    // Getters and Setters
     function getId() {
         return $this->id;
+    }
+
+    function getCodigo() {
+        return $this->codigo;
     }
 
     function getStatus() {
@@ -54,6 +58,10 @@ class Curso {
         $this->id = $id;
     }
 
+    function setCodigo($codigo) {
+        $this->codigo = $codigo;
+    }
+
     function setStatus($status) {
         $this->status = $status;
     }
@@ -70,9 +78,4 @@ class Curso {
         $this->objetivo = $objetivo;
     }
 
-
-    
-   
-    
-    
 }

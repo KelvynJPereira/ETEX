@@ -8,7 +8,6 @@
 // Includes
 
 include_once __DIR__ . '/../../assets/header.php';
-include_once __DIR__ . '/../../model/Aluno/Aluno.class.php';
 include_once __DIR__ . '/../../controller/AlunoController.class.php';
 ?>
 <div class="center"><h3>CADASTRO DE ALUNO</h3></div>
@@ -68,7 +67,7 @@ if (isset($_POST['btn-cadastrar'])):
     $cep = $filter['cep'] = filter_input(INPUT_POST, 'cep', FILTER_SANITIZE_STRING);
 
     // Criação do objeto
-
+    include_once __DIR__ . '/../../model/Aluno/Aluno.class.php';
     $objAluno = new Aluno($nome, $sobrenome, $nascimento, $sexo, $cpf, $cor, $foneF, $foneP, $email, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep);
 
     // Chamada do método de cadastro

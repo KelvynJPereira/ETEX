@@ -165,7 +165,8 @@ class AlunoDao implements InterfaceAluno {
                     `cidade_endereco_aluno`,
                     `estado_endereco_aluno`,
                     `pais_endereco_aluno`,
-                    `cep_endereco_aluno` 
+                    `cep_endereco_aluno`,
+                    `foto_aluno`
                     FROM `alunos` WHERE `id_aluno` = :ID");
 
         // União das variáveis com comando slq
