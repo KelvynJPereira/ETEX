@@ -1,0 +1,8 @@
+﻿1º No botão voltar em todos os cadastro está faltando o ".php" para a listagem da escola.
+2º Cadastra escola sem nenhuma informação.
+3º Página inicial não se adequa ao monitor do curso.
+4º Tentaativa de cadastrar ADM só com nome "Warning: array_push() expects parameter 1 to be array, null given in C:\xampp\htdocs\ETEX-master\index.php on line 107"
+5º Alterar mensagem de exclusão.
+6º "listar-cursos" não está funcionando.
+7º imagem muito pequena na parte da foto de ADM.
+8º
