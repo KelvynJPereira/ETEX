@@ -11,7 +11,7 @@
 
     <div class="col l12 offset-l1">
         <label>
-            <input type="checkbox" class="filled-in" name="status">
+            <input type="checkbox" class="filled-in" name="status" value="Ativo">
             <span>Curso ativo?</span>
         </label>
     </div>

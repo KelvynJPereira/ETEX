@@ -42,6 +42,9 @@ if (!empty($dados_admin)):
         $qtd_escolas = 1;
         $id = $_POST['id_escola'];
         $escola = [$escola[$id]];
+        // Guarda escola selecionada na session
+        $id_escola = reset($escola);
+        $_SESSION['id_escola'] = $id_escola['id_escola'];
     endif;
 
 // Caso usuario nao seja encontrado, salva erro

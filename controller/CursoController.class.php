@@ -18,9 +18,9 @@ include_once __DIR__.'/../model/Escola/Curso/CursoDao.class.php';
 class CursoController implements InterfaceCurso{
     //put your code here
     
-    public function cadastrarCurso($curso) {
+    public function cadastrarCurso(Curso $curso, $id_coordenador, $id_professor, $id_escola) {
         $cadastrar = new CursoDao();
-        return $cadastrar->cadastrarCurso($curso);
+        return $cadastrar->cadastrarCurso($curso, $id_coordenador, $id_professor, $id_escola);
     }
     
     public function buscarCurso($codigo) {
@@ -31,7 +31,9 @@ class CursoController implements InterfaceCurso{
         
     }
 
-    public function listarCursos() {
+    public function listarCursos($idEscola) {
+        $listar = new CursoDao();
+        return $listar->listarCursos($idEscola);
         
     }
 
