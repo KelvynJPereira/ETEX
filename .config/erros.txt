@@ -5,4 +5,4 @@
 5º Alterar mensagem de exclusão.
 6º "listar-cursos" não está funcionando.
 7º imagem muito pequena na parte da foto de ADM.
-8º
+8º Mesmo colocando a matricula do aluno já existente ele não faz a busca, retornando "Notice: Undefined index: id_escola in C:\xampp\htdocs\ETEX-master\portal\admin\index.php on line 43"  "Notice: Undefined index: in C:\xampp\htdocs\ETEX-master\portal\admin\index.php on line 44".
