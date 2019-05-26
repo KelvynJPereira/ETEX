@@ -279,4 +279,26 @@ class EscolaDao implements InterfaceEscola {
         }
     }
 
+    public function listarDisciplinasProfessores($idEscola) {
+
+        // Cria conexão 
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query
+        // Professores
+        $stmt = $conn->prepare("select f.id_funcionario, f.nome_funcionario, d.id_disciplina, d.nome_disciplina from funcionarios f, disciplinas d, disciplinas_professores d_p where f.id_funcionario = d_p.id_professor and d.id_disciplina = d_p.id_disciplina AND d_p.id_escola = :IDESCOLA");
+        
+        // União das variáveis com comando slq
+        $stmt->bindParam(":IDESCOLA", $idEscola);
+
+        // Execução da query
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            return $result = "Erro: " . $e;
+        }
+    }
+
 }

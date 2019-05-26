@@ -42,7 +42,6 @@
             <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
                 <li class="tab"><a class="active" href="#escola">Escola</a></li>
                 <li class="tab"><a href="#cursos">Cursos</a></li>
-                <li class="tab"><a href="#turmas">Turmas</a></li>
                 <li class="tab"><a  href="#alunos">Alunos</a></li>
                 <li class="tab "><a href="#funcionarios">Funcionários</a></li>
                 <li class="tab"><a href="#usuarios">Usuários</a></li>
@@ -131,48 +130,13 @@
                         </div>
                         <div class="collapsible-body">
                             <label for="buscar">Informe o código do curso:</label>
-                            <form method="POST" action="#">
-                                <input name="codigo-curso" id="buscar" type="number"> 
+                            <form method="POST" action="../../app/curso/buscar-curso.php">
+                                <input name="codigo-curso" id="buscar" type="text"> 
                                 <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
                             </form>
                         </div>
                     </li>
                 </ul>
-                </p></div>
-
-            <!-- Turmas  -->
-
-            <div id="turmas" class="col l12"><p>
-
-                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <a href="../../app/turma/cadastro-turma.php"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">add_circle</i>
-                                Cadastrar Turma
-                            </div>
-                        </li></a>
-                    <a href="../../app/curso/listar-cursos"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">list</i>
-                                Listar Turmas
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">search</i>
-                            Buscar Turma
-                        </div>
-                        <div class="collapsible-body">
-                            <label for="buscar">Informe o código da Tuma:</label>
-                            <form method="POST" action="#">
-                                <input name="codigo-turma" id="buscar" type="number"> 
-                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-
                 </p></div>
 
             <!-- Alunos -->

@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__.'/../Pessoa/Pessoa.class.php';
+include_once __DIR__ . '/../Pessoa/Pessoa.class.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,14 +13,12 @@ include_once __DIR__.'/../Pessoa/Pessoa.class.php';
  *
  * @author Turyng
  */
-class Funcionario extends Pessoa{
+class Funcionario extends Pessoa {
+
     //put your code here
-    
+    // Profissionais
     private $cargo;
-    private $tituloFuncionario;
-    private $nRegistro;
-    
-    
+    private $matricula;
     // Contrato
     private $hEntrada; // Horário de entrada
     private $hSaida;
@@ -28,41 +26,46 @@ class Funcionario extends Pessoa{
     private $dataDemissao;
     private $nContrato; // N° do contrato
     private $nCTPS;
-    private $nPIS;
-    
     // Status
-    
     private $status; // Ativo ou não
-    // <= Adicionar unidade de lotacao
-    
     // Financeiro
-    
     private $banco;
     private $agencia;
     private $conta;
-    
     // Salario
-
     private $salario;
-    
     // Formacao academica
-    
     private $cursos;
     private $titulos;
     private $idiomas;
-    
-    
-    
+
+    // Construtor
+    function __construct($cargo, $matricula, $hEntrada, $hSaida, $dataAdmissao, $dataDemissao, $nContrato, $nCTPS, $status, $banco, $agencia, $conta, $salario, $cursos, $titulos, $idiomas) {
+        $this->cargo = $cargo;
+        $this->matricula = $matricula;
+        $this->hEntrada = $hEntrada;
+        $this->hSaida = $hSaida;
+        $this->dataAdmissao = $dataAdmissao;
+        $this->dataDemissao = $dataDemissao;
+        $this->nContrato = $nContrato;
+        $this->nCTPS = $nCTPS;
+        $this->status = $status;
+        $this->banco = $banco;
+        $this->agencia = $agencia;
+        $this->conta = $conta;
+        $this->salario = $salario;
+        $this->cursos = $cursos;
+        $this->titulos = $titulos;
+        $this->idiomas = $idiomas;
+    }
+
+    // Getters and setters
     function getCargo() {
         return $this->cargo;
     }
 
-    function getTituloFuncionario() {
-        return $this->tituloFuncionario;
-    }
-
-    function getNRegistro() {
-        return $this->nRegistro;
+    function getMatricula() {
+        return $this->matricula;
     }
 
     function getHEntrada() {
@@ -87,10 +90,6 @@ class Funcionario extends Pessoa{
 
     function getNCTPS() {
         return $this->nCTPS;
-    }
-
-    function getNPIS() {
-        return $this->nPIS;
     }
 
     function getStatus() {
@@ -129,12 +128,8 @@ class Funcionario extends Pessoa{
         $this->cargo = $cargo;
     }
 
-    function setTituloFuncionario($tituloFuncionario) {
-        $this->tituloFuncionario = $tituloFuncionario;
-    }
-
-    function setNRegistro($nRegistro) {
-        $this->nRegistro = $nRegistro;
+    function setMatricula($matricula) {
+        $this->matricula = $matricula;
     }
 
     function setHEntrada($hEntrada) {
@@ -159,10 +154,6 @@ class Funcionario extends Pessoa{
 
     function setNCTPS($nCTPS) {
         $this->nCTPS = $nCTPS;
-    }
-
-    function setNPIS($nPIS) {
-        $this->nPIS = $nPIS;
     }
 
     function setStatus($status) {
@@ -197,6 +188,4 @@ class Funcionario extends Pessoa{
         $this->idiomas = $idiomas;
     }
 
-
-    
 }

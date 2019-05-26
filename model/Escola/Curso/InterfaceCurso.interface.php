@@ -16,9 +16,13 @@ interface InterfaceCurso {
     //put your code here
     public function cadastrarCurso(Curso $curso, $id_coordenador, $id_professor, $id_escola);
 
-    public function editarCurso($id, $curso);
-
-    public function buscarCurso(Curso $codigo);
+    public function buscarCurso($id);
     
     public function listarCursos($idEscola);
+    
+    public function excluirCurso($idCurso);
+    
+    public function buscarCursoCodigo($codigo_curso, $id_escola);
+    
+  
 }

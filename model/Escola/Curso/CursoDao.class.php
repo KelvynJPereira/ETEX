@@ -33,7 +33,7 @@ class CursoDao implements InterfaceCurso {
         // Criacao do codigo do curso
         $date = new DateTime();
         $yc = date_format($date, 'Y');
-        $nc = substr($nome, 0, 1);
+        $nc = strtoupper(substr($objetivo, 0, 1));
         $nv = strtoupper(substr($nivel, 0, 1));
         $vr = rand(100, 999);
 
@@ -62,12 +62,25 @@ class CursoDao implements InterfaceCurso {
         }
     }
 
-    public function buscarCurso($codigo) {
-        
-    }
+    public function buscarCurso($id) {
 
-    public function editarCurso($id, $curso) {
-        
+        // Cria Conexao
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criacao da query
+        $stmt = $conn->prepare("SELECT * FROM `cursos` WHERE `id_curso` = :IDCURSO");
+
+        // Uniao de variavel com sql
+        $stmt->bindParam(":IDCURSO", $id);
+
+        // Execucao da query com tratamento
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
     public function listarCursos($idEscola) {
@@ -77,10 +90,52 @@ class CursoDao implements InterfaceCurso {
         $conn = $db_conexao->dbConexao();
 
         // Criacao da query
-        $stmt = $conn->prepare("select id_curso, c.ativo_curso,c.codigo_curso, c.nome_curso, c.nivel_curso from cursos c join escolas e on e.id_escola = c.fk_escola where e.id_escola = :IDESCOLA");
+        $stmt = $conn->prepare("select id_curso, c.ativo_curso, c.codigo_curso, c.nome_curso, c.objetivo_curso, c.nivel_curso from cursos c join escolas e on e.id_escola = c.fk_escola where e.id_escola = :IDESCOLA");
 
         // Uniao das variaveis com query
-        $stmt->bindParam("IDESCOLA", $idEscola);
+        $stmt->bindParam(":IDESCOLA", $idEscola);
+
+        // Execucao da query com tratamento
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function excluirCurso($idCurso) {
+
+        // Cria conexão 
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criacao da query
+        $stmt = $conn->prepare("DELETE FROM `cursos` WHERE `id_curso` = :IDCURSO");
+
+        // Uniao das variaveis com query
+        $stmt->bindParam(":IDCURSO", $idCurso);
+
+        // Execucao da query com tratamento
+        try {
+            return $stmt->execute();
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
+    }
+
+    public function buscarCursoCodigo($codigo_curso, $id_escola) {
+
+        // Cria Conexao
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criacao da query
+        $stmt = $conn->prepare("SELECT * FROM `cursos` WHERE `codigo_curso` = :CODIGOCURSO AND `fk_escola` = :IDESCOLA");
+
+        // Uniao de variavel com sql
+        $stmt->bindParam(":CODIGOCURSO", $codigo_curso);
+        $stmt->bindParam(":IDESCOLA", $id_escola);
 
         // Execucao da query com tratamento
         try {

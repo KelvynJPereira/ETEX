@@ -18,19 +18,23 @@ if (isset($_POST['btn-cadastrar'])):
     $nome = $filter['nome'] = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_STRING);
     $nivel = $filter['nivel'] = filter_input(INPUT_POST, 'nivel', FILTER_SANITIZE_STRING);
     $objetivo = $filter['objetivo'] = filter_input(INPUT_POST, 'objetivo', FILTER_SANITIZE_STRING);
-    $id_professor = $filter['professor'] = filter_input(INPUT_POST, 'professor', FILTER_SANITIZE_STRING);
+
+    // Recupera Coordenador
     $id_coordenador = $filter['coordenador'] = filter_input(INPUT_POST, 'coordenador', FILTER_SANITIZE_STRING);
 
-
-    $id_professor = 1;
-    $id_coordenador = 1;
-
+    // Recupera escola
     $id_escola = $_SESSION['id_escola'];
 
+    // Recupera Disciplina
+    $id_disciplina = substr($filter['professorDisciplina'] = filter_input(INPUT_POST, 'professorDisciplina', FILTER_SANITIZE_STRING), 1);
+
+    // Recupera Professor
+    $id_professor = substr($filter['professorDisciplina'] = filter_input(INPUT_POST, 'professorDisciplina', FILTER_SANITIZE_STRING), 0, 1);
+
+    // Caso o curso esteja desativado
     if (empty($status)):
         $status = 'Desabilitado';
     endif;
-
 
     // Instancia do objeto curso
     include_once __DIR__ . '/../../model/Escola/Curso/Curso.class.php';
@@ -39,14 +43,12 @@ if (isset($_POST['btn-cadastrar'])):
     // Instancia do controller curso
     include_once __DIR__ . '/../../controller/CursoController.class.php';
     $controllerCurso = new CursoController();
-    $codigo_curso = $controllerCurso->cadastrarCurso($curso, $id_coordenador, $id_professor, $id_escola); // Passar coordenador e professor dessa escola
+    $codigo_curso = $controllerCurso->cadastrarCurso($curso, $id_coordenador, $id_professor, $id_escola);
+
+    // Ajeitar
+    var_dump($codigo_curso);
+
 endif;
-
-
-
-
-
-
 
 // Includes
 include_once __DIR__ . '/../../assets/header.php';
@@ -59,7 +61,7 @@ include_once __DIR__ . '/../../assets/header.php';
     <div class="row"
          <div id="buttons" class=""></br>
             </br><div class="col l2 offset-l3">
-                <a class="waves-effect waves-light btn blue" href="../../portal/admin/index.php"><i class="material-icons left">arrow_back</i>Voltar</a>
+                <a class="waves-effect waves-light btn blue" href="listar-cursos.php"><i class="material-icons left">arrow_back</i>Voltar</a>
             </div>
             <div class="col l3 offset-l3">
                 <button class="btn waves-effect waves-light green" type="submit" name="btn-cadastrar">Cadastrar
@@ -69,8 +71,6 @@ include_once __DIR__ . '/../../assets/header.php';
         </div>
     </div>
 </form>
-
-
 
 <?php
 // Includes

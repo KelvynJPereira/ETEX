@@ -1,3 +1,18 @@
+<?php
+// Recuperacao do id da escola
+$id_escola = $_SESSION['id_escola'];
+
+// Listagem de coordenadores
+include_once __DIR__ . '/../../controller/FuncionarioController.class.php';
+$controllerFuncionarios = new FuncionarioController();
+$coordenadores = $controllerFuncionarios->listarCoordenadores($id_escola);
+
+// Listagem de Professores e Disciplinas cadastrados na escola
+include_once __DIR__ . '/../../controller/EscolaController.class.php';
+$controllerEscola = new EscolaController();
+$professoresDisciplinas = $controllerEscola->listarDisciplinasProfessores($id_escola);
+?>
+
 </br>    
 <div class="row">
 
@@ -15,58 +30,72 @@
             <span>Curso ativo?</span>
         </label>
     </div>
-    
+
     <div class="input-field col l2 m2 offset-l1">
         </br><select name="coordenador">
             <option value="" disabled selected>Coordenador</option>
-            <option value="">Mauricio</option>
-            <option value="">Ana Bidancu</option>
+            <?php
+            // Lista todos os coordenadores cadastrados na escola
+            foreach ($coordenadores as $dado):
+                ?>
+                <option value = "<?php echo $dado['id_funcionario']; ?>"><?php echo $dado['nome_funcionario']; ?></option>
+                <?php
+            endforeach;
+            ?>
         </select>
         </br> <label>Escolha um coordenador</label>
     </div>
 
-    <div class="input-field col l2">
-        </br><textarea id="textarea1" name="objetivo" class="materialize-textarea"></textarea>
-        <label for="textarea1">Objetivo:</label>
+    <div class = "input-field col l3 m2">
+        </br><input type = "text" name = "nome" id = "name">
+        <label for = "name">Nome do curso</label>
     </div>
 
-    <div class="input-field col l3 m2">
-        </br><input type="text" name="nome" id="name">
-        <label for="name">Nome do curso</label>
+    <div class = "input-field col l2">
+        </br><textarea id = "textarea1" name = "objetivo" class = "materialize-textarea"></textarea>
+        <label for = "textarea1">Objetivo:</label>
     </div>
-    
+
+
     <div class="input-field col l3 m2">
-        </br><select name="professor">
-            <option value="">Mauricio</option>
-            <option value="">Ana Bidancu</option>
+        </br><select name="professorDisciplina">
+            <option value="0" disabled selected>Disciplina - Professor</option>
+            <?php
+            // Lista todas os professores e disciplinas cadastrados na escola
+            foreach ($professoresDisciplinas as $dado):
+                ?>
+                <option value = "<?php echo $dado['id_funcionario'] . $dado['id_disciplina']; ?>"><?php echo $dado['nome_funcionario'] . ' - ' . $dado['nome_disciplina']; ?></option>
+                <?php
+            endforeach;
+            ?>
         </select>
-        </br> <label>Escolha um professor</label>
+        </br> <label>Selecionar Professor e disciplina</label>
     </div>
 
-    <div class="col l12 offset-l1">
+    <div class = "col l12 offset-l1">
         <label><span>Nível</span></label>
         <p>
             <label>
-                <input name="nivel" type="radio" value="Infantil"/>
+                <input name = "nivel" type = "radio" value = "Infantil"/>
                 <span>Infantil</span>
             </label>
         </p>
         <p>
             <label>
-                <input name="nivel" type="radio" value="Fundamental"/>
+                <input name = "nivel" type = "radio" value = "Fundamental"/>
                 <span>Fundamental</span>
             </label>
         </p>
         <p>
             <label>
-                <input name="nivel" type="radio" value="Médio"/>
+                <input name = "nivel" type = "radio" value = "Médio"/>
                 <span>Médio</span>
             </label>
         </p>
 
         <p>
             <label>
-                <input name="nivel" type="radio" value="Técnico"/>
+                <input name = "nivel" type = "radio" value = "Técnico"/>
                 <span>Técnico</span>
             </label>
         </p>

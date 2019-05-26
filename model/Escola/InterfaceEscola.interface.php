@@ -24,5 +24,7 @@ interface InterfaceEscola {
     public function listarEscolasAdmin($id);
     
     public function buscarEscolaCnpj($cnpj);
+    
+    public function listarDisciplinasProfessores($idEscola);
         
 }

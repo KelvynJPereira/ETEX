@@ -1,9 +1,7 @@
 <?php
-/*
- * Incluir modal para exclusão
- * Incluir pop-outs
- * Incluir botão de voltar
- */
+
+session_start();
+$id_escola = $_SESSION['id_escola'];
 
 // Includes
 
@@ -30,10 +28,21 @@ include_once __DIR__ . '/../../controller/AlunoController.class.php';
             </thead>
             <?php
             $listar = new AlunoController();
-            $listaAlunos = $listar->listarAlunos();
+            $listaAlunos = $listar->listarAlunos($id_escola);
             foreach ($listaAlunos as $dado):
                 ?>
-                <td class="center-align"><?php echo $dado['matricula_aluno']; ?></td>
+                <td class="center-align">
+                    
+                    <?php 
+                    
+                    echo !empty($dado['matricula_aluno']) ? $dado['matricula_aluno'] : '<a class="btn-small waves-effect waves-light purple" href="matricular-aluno?id_aluno='.$dado['id_aluno'].'">'
+                            . ' Matricular'
+                            . ' <i class="material-icons left">school</i> </a>';
+                    
+                    
+                    ?>
+            
+                </td>
                 <td class="center-align"><?php echo $dado['nome_aluno']; ?></td>
                 <td class="center-align"><?php echo $dado['sobrenome_aluno']; ?></td>
                 <td class="center-align"><?php
@@ -76,8 +85,6 @@ include_once __DIR__ . '/../../assets/footer.php';
 // Reconhecimento de id a ser excluido
 
 if (isset($_POST['excluir-aluno'])):
-
-
     $idAlunoExcluir = filter_input(INPUT_POST, 'excluir-aluno');
     $excluir = new AlunoController();
     $result = $excluir->excluirAluno($idAlunoExcluir);

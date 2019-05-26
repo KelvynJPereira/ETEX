@@ -3,6 +3,12 @@ session_start();
 $id_escola = $_SESSION['id_escola'];
 
 
+// Busca de curso por codigo
+if (isset($_POST['codigo-curso'])):
+    $codigo_curso = $_POST['codigo-curso'];
+endif;
+
+
 // Exclusao de escola selecionada
 if (isset($_POST['excluir-curso'])):
 
@@ -46,21 +52,24 @@ include_once __DIR__ . '/../../assets/header.php';
             <?php
             include_once __DIR__ . '/../../controller/CursoController.class.php';
             $controllerCurso = new CursoController();
-            $listaCursos = $controllerCurso->listarCursos($id_escola); /////// id do curso
-            foreach ($listaCursos as $dado):
-                ?>
-                <td class="center-align"><?php echo $dado['ativo_curso']; ?></td>
-                <td class="center-align"><?php echo $dado['codigo_curso']; ?></td>
-                <td class="center-align"><?php echo $dado['nome_curso']; ?></td>
-                <td class="center-align"><?php echo $dado['nivel_curso']; ?></td>
-                <td class="center-align"><?php echo $dado['objetivo_curso']; ?></td>
-                <td class="center-align">
-                    <a href="#modelExcluirCurso<?php echo $dado['id_curso']; ?>" class="btn-floating btn-medium waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
-                    <?php require __DIR__ . '/../../view/Curso/modelExcluirCurso.view.php'; ?>
-                </td>
-                </tr>
-                <?php
-            endforeach;
+            if (!empty($codigo_curso)):
+                $listaCursos = $controllerCurso->buscarCursoCodigo($codigo_curso, $id_escola);
+
+                foreach ($listaCursos as $dado):
+                    ?>
+                    <td class="center-align"><?php echo $dado['ativo_curso']; ?></td>
+                    <td class="center-align"><?php echo $dado['codigo_curso']; ?></td>
+                    <td class="center-align"><?php echo $dado['nome_curso']; ?></td>
+                    <td class="center-align"><?php echo $dado['nivel_curso']; ?></td>
+                    <td class="center-align"><?php echo $dado['objetivo_curso']; ?></td>
+                    <td class="center-align">
+                        <a href="#modelExcluirCurso<?php echo $dado['id_curso']; ?>" class="btn-floating btn-medium waves-effect waves-light btn modal-trigger red"><i class="material-icons">delete</i></a>
+                        <?php require __DIR__ . '/../../view/Curso/modelExcluirCurso.view.php'; ?>
+                    </td>
+                    </tr>
+                    <?php
+                endforeach;
+            endif;
             ?>
             </tbody>
         </table>

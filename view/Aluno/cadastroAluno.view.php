@@ -1,10 +1,9 @@
 </br>
 <div class="row">
-    <div class="input-field col l6 m2 offset-l5">
-        <img class="materialboxed" width="124" src="https://static.licdn.com/scds/common/u/images/themes/katy/ghosts/person/ghost_person_100x100_v1.png">
-        <input type="file" name="image" id="image"></input>
-        <label for="image">Inserir imagem</label>
-    </div>
+    <div class="input-field col l2 m2 offset-l5">
+        <img class="materialboxed" width="124" src="../../assets/img/alunos/man.png">
+        <input type="file" name="foto" id="image"></input>
+    </div> 
 
    <div class="col l12 m12 offset-l1">
          </br><h5>Dados</h5>

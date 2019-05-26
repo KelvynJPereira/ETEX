@@ -1,9 +1,4 @@
 <?php
-/*
- * Incluir verificaçao de inputs vazios
- * Incluir pop-out de cadastro
- * Incluir verificação de erros do banco
- */
 
 // Array de mensagens e erros
 $msgs = [];
@@ -41,7 +36,6 @@ if (isset($_POST['btn-cadastrar'])):
     // Logo
     $logo = null;
 
-   
     // Upload de imagem
     // Recuperacao da imagem
     $img = $_FILES['logo'];

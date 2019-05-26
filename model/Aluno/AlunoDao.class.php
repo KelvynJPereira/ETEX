@@ -18,7 +18,7 @@ class AlunoDao implements InterfaceAluno {
 
     // Inserir Aluno
 
-    public function cadastrarAluno(Aluno $aluno) {
+    public function cadastrarAluno(Aluno $aluno, $id_escola) {
 
         // Cria conexão 
 
@@ -66,7 +66,8 @@ class AlunoDao implements InterfaceAluno {
                     `cidade_endereco_aluno`,
                     `estado_endereco_aluno`,
                     `pais_endereco_aluno`,
-                    `cep_endereco_aluno`)
+                    `cep_endereco_aluno`,
+                    `fk_escola`)
                     VALUES 
                     (:NOME,
                     :SOBRENOME,
@@ -83,7 +84,8 @@ class AlunoDao implements InterfaceAluno {
                     :CIDADE,
                     :ESTADO,
                     :PAIS,
-                    :CEP)");
+                    :CEP,
+                    :IDESCOLA)");
 
         // União de variáveis com comando sql
 
@@ -103,9 +105,11 @@ class AlunoDao implements InterfaceAluno {
         $stmt->bindParam(":ESTADO", $estado);
         $stmt->bindParam(":PAIS", $pais);
         $stmt->bindParam(":CEP", $cep);
+        
+        // Escola
+        $stmt->bindParam(":IDESCOLA", $id_escola);
 
         // Execução do sql
-
         try {
             $result = $stmt->execute();
             if ($result == 1):
@@ -118,7 +122,7 @@ class AlunoDao implements InterfaceAluno {
 
     // Listar Alunos
 
-    public function listarAlunos() {
+    public function listarAlunos($id_escola) {
 
         // Conexão 
 
@@ -126,15 +130,15 @@ class AlunoDao implements InterfaceAluno {
         $conn = $db_conexao->dbConexao();
 
         // Criação da query
+        $stmt = $conn->prepare("SELECT * FROM `alunos` WHERE `fk_escola` = :IDESCOLA");
 
-        $stmt = $conn->prepare("SELECT * FROM `alunos`");
+        // Uniao de variaveis com sql
+        $stmt->bindParam(":IDESCOLA", $id_escola);
 
         // Execução da query
-
         try {
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             return $result = "Erro: " . $e;
         }
@@ -177,7 +181,7 @@ class AlunoDao implements InterfaceAluno {
 
         try {
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             return $result = "Erro: " . $e;
         }
@@ -214,9 +218,9 @@ class AlunoDao implements InterfaceAluno {
         $estado = $aluno->getEstado();
         $pais = $aluno->getPais();
         $cep = $aluno->getCep();
-        
+
         // Aluno a ser editado
-        
+
         $idEditarAluno = $id;
 
         // Comando SQL
@@ -304,20 +308,41 @@ class AlunoDao implements InterfaceAluno {
             return "Erro: " . $e;
         }
     }
-    
-    public function matricularAluno($id){
-         
-        // Conexão 
 
+    public function matricularAluno($id_aluno, $id_curso, $id_escola) {
+
+        // Conexão 
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
-        
-        $stmt = $conn->prepare("INSERT INTO `aluno`
-                (matricula_aluno)
-                VALUES
-                (:MATRICULA)");
-        
-        $stmt->execute();
+
+        // Criacao da matricula
+        // Criacao do codigo do curso
+        $date = new DateTime();
+        $yc = date_format($date, 'Y');
+        $vr = rand(1, 99);
+        $c = strtoupper(substr('etxmatricula', $vr));
+
+        // Matricula no curso
+        $matricula = $yc . $c . $vr;
+
+        // Criacao da query
+        $stmt = $conn->prepare("INSERT INTO `matricula_aluno` (`matricula_aluno`, `id_aluno`, `id_curso`, `id_escola`) VALUES (:MATRICULA, :IDALUNO, :IDCURSO, :IDESCOLA)");
+        $stmt2 = $conn->prepare("UPDATE `alunos` SET `matricula_aluno` = '$matricula' WHERE `alunos`.`id_aluno` = $id_aluno");
+
+        // Uniao de variaveis
+        $stmt->bindParam(":MATRICULA", $matricula);
+        $stmt->bindParam(":IDALUNO", $id_aluno);
+        $stmt->bindParam(":IDCURSO", $id_curso);
+        $stmt->bindParam(":IDESCOLA", $id_escola);
+
+        // Execucao da query com tratamento
+        try {
+            $stmt->execute();
+            $stmt2->execute();
+            return $matricula;
+        } catch (Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
 }
