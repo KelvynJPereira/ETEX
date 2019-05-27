@@ -19,7 +19,6 @@
                 <a href="index.php" class="brand-logo animated fadeInLeft"><img src="../../assets/img/designer/logo.png"></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="../../portal/admin/index.php">Início</a></li>
-                    <li><a href="#">Minha Conta</a></li>
                     <li><a href='../../index.php'>Sair</a></li>
                 </ul>
             </div>

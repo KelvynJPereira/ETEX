@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 21-Maio-2019 às 20:15
+-- Generation Time: 27-Maio-2019 às 21:03
 -- Versão do servidor: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -84,8 +84,8 @@ INSERT INTO `admin_escola` (`id_admin`, `id_escola`) VALUES
 DROP TABLE IF EXISTS `alunos`;
 CREATE TABLE IF NOT EXISTS `alunos` (
   `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
+  `matricula_aluno` varchar(32) DEFAULT NULL,
   `nome_aluno` varchar(40) DEFAULT NULL,
-  `matricula_aluno` varchar(64) DEFAULT NULL,
   `sobrenome_aluno` varchar(40) DEFAULT NULL,
   `nascimento_aluno` varchar(40) DEFAULT NULL,
   `sexo_aluno` varchar(40) DEFAULT NULL,
@@ -102,16 +102,43 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   `pais_endereco_aluno` varchar(40) DEFAULT NULL,
   `cep_endereco_aluno` varchar(40) DEFAULT NULL,
   `foto_aluno` varchar(255) DEFAULT NULL,
+  `fk_notas` int(11) DEFAULT NULL,
+  `fk_escola` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_aluno`),
-  UNIQUE KEY `cpf_aluno` (`cpf_aluno`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `cpf_aluno` (`cpf_aluno`),
+  KEY `fk_notas` (`fk_notas`),
+  KEY `fk_escola` (`fk_escola`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`id_aluno`, `nome_aluno`, `matricula_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cor_aluno`, `cpf_aluno`, `email_aluno`, `fone_pessoal_aluno`, `fone_fixo_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `foto_aluno`) VALUES
-(1, 'Mirla', '21215454', 'Villa Pereira', '1996-09-01', 'Mulher', 'Parda', '75487875456', 'mirlapereira1996@gmail.com', '996487526', '32614411', '154', '17 de agosto', 'Casa Forte', 'Recife', 'Pernambuco', 'Brasil', '52014789', 'girl.png');
+INSERT INTO `alunos` (`id_aluno`, `matricula_aluno`, `nome_aluno`, `sobrenome_aluno`, `nascimento_aluno`, `sexo_aluno`, `cor_aluno`, `cpf_aluno`, `email_aluno`, `fone_pessoal_aluno`, `fone_fixo_aluno`, `numero_endereco_aluno`, `rua_endereco_aluno`, `bairro_endereco_aluno`, `cidade_endereco_aluno`, `estado_endereco_aluno`, `pais_endereco_aluno`, `cep_endereco_aluno`, `foto_aluno`, `fk_notas`, `fk_escola`) VALUES
+(1, '2019572', 'Mirla', 'Villa Pereira', '1996-09-01', NULL, NULL, '75487875456', 'mirlapereira1996@gmail.com', '996487526', '32614411', '154', '17 de agosto', 'Casa Forte', 'Recife', 'Pernambuco', 'Brasil', '52014789', 'girl.png', 1, 123),
+(2, '2019MANHS', 'Paula', ' Tejano', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 131);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cargos_funcionarios`
+--
+
+DROP TABLE IF EXISTS `cargos_funcionarios`;
+CREATE TABLE IF NOT EXISTS `cargos_funcionarios` (
+  `id_cargo` int(11) NOT NULL AUTO_INCREMENT,
+  `descricao_cargo` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_cargo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `cargos_funcionarios`
+--
+
+INSERT INTO `cargos_funcionarios` (`id_cargo`, `descricao_cargo`) VALUES
+(1, 'Diretor'),
+(2, 'Coordenador'),
+(3, 'Professor');
 
 -- --------------------------------------------------------
 
@@ -123,22 +150,24 @@ DROP TABLE IF EXISTS `cursos`;
 CREATE TABLE IF NOT EXISTS `cursos` (
   `id_curso` int(11) NOT NULL AUTO_INCREMENT,
   `codigo_curso` varchar(32) DEFAULT NULL,
-  `ativo_curso` varchar(10) NOT NULL,
+  `ativo_curso` varchar(32) NOT NULL,
   `nome_curso` varchar(64) NOT NULL,
   `nivel_curso` varchar(32) NOT NULL,
   `objetivo_curso` varchar(255) NOT NULL,
   `fk_coordenador` int(11) NOT NULL,
   `fk_professor` int(11) NOT NULL,
   `fk_escola` int(11) NOT NULL,
-  PRIMARY KEY (`id_curso`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_curso`),
+  KEY `fk_curso_escola` (`fk_escola`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `cursos`
 --
 
 INSERT INTO `cursos` (`id_curso`, `codigo_curso`, `ativo_curso`, `nome_curso`, `nivel_curso`, `objetivo_curso`, `fk_coordenador`, `fk_professor`, `fk_escola`) VALUES
-(1, '2019m6a', 'true', '65565', 'Médio', '4545454', 1, 1, 122);
+(3, '2019MG418', 'Ativo', 'Aulas de Android', 'Médio', 'Galeris aprender android bunitim', 6, 2, 123),
+(7, '2019TS942', 'Ativo', 'Aulas de matematica', 'Técnico', 'sdkskdjsdsdsdsd', 7, 2, 123);
 
 -- --------------------------------------------------------
 
@@ -150,18 +179,40 @@ DROP TABLE IF EXISTS `disciplinas`;
 CREATE TABLE IF NOT EXISTS `disciplinas` (
   `id_disciplina` int(11) NOT NULL AUTO_INCREMENT,
   `nome_disciplina` varchar(32) NOT NULL,
-  `fk_professor_disciplina` int(11) NOT NULL,
-  PRIMARY KEY (`id_disciplina`),
-  KEY `fk_professor` (`fk_professor_disciplina`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_disciplina`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `disciplinas`
 --
 
-INSERT INTO `disciplinas` (`id_disciplina`, `nome_disciplina`, `fk_professor_disciplina`) VALUES
-(1, 'Android', 1),
-(2, 'Banco de dados', 4);
+INSERT INTO `disciplinas` (`id_disciplina`, `nome_disciplina`) VALUES
+(1, 'Android');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `disciplinas_professores`
+--
+
+DROP TABLE IF EXISTS `disciplinas_professores`;
+CREATE TABLE IF NOT EXISTS `disciplinas_professores` (
+  `id_disciplina_professores` int(11) NOT NULL AUTO_INCREMENT,
+  `id_escola` int(11) DEFAULT NULL,
+  `id_disciplina` int(11) NOT NULL,
+  `id_professor` int(11) NOT NULL,
+  PRIMARY KEY (`id_disciplina_professores`),
+  KEY `id_disciplina` (`id_disciplina`),
+  KEY `disciplinas_professores_ibfk_2` (`id_escola`),
+  KEY `id_professor` (`id_professor`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `disciplinas_professores`
+--
+
+INSERT INTO `disciplinas_professores` (`id_disciplina_professores`, `id_escola`, `id_disciplina`, `id_professor`) VALUES
+(1, 123, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -189,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `escolas` (
   `logo_escola` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_escola`),
   UNIQUE KEY `cnpj_unique` (`cnpj_escola`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `escolas`
@@ -199,7 +250,7 @@ INSERT INTO `escolas` (`id_escola`, `nome_escola`, `cnpj_escola`, `tipo_escola`,
 (122, 'Coronel Othon', '0000000', 'Ensino Fundamental', '51', '1', '121', 'sdsd', '112', '1212', '2323', '2323', '232323', '232323', '52090274', '01.jpg'),
 (123, 'Miguel Batista', '90824516000143', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '03.jpg'),
 (129, 'Centro Educandario Lira', '55600946000180', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', 'escola-padrao.png'),
-(131, 'Abel Gueiros', '214578963145', 'Ensino Fundamental', '', NULL, '', '', '', '', '', '', '', '', '', '02.jpg');
+(131, 'Abel Gueiros', '214578963145', 'Ensino Fundamental', '', '', 'Abel@gmail.com.br', '', '', '', '', '', '', '', '', '02.jpg');
 
 -- --------------------------------------------------------
 
@@ -210,15 +261,18 @@ INSERT INTO `escolas` (`id_escola`, `nome_escola`, `cnpj_escola`, `tipo_escola`,
 DROP TABLE IF EXISTS `funcionarios`;
 CREATE TABLE IF NOT EXISTS `funcionarios` (
   `id_funcionario` int(11) NOT NULL AUTO_INCREMENT,
+  `matricula_funcionario` varchar(32) DEFAULT NULL,
+  `fk_cargo_funcionario` int(11) DEFAULT NULL,
   `nome_funcionario` varchar(40) DEFAULT NULL,
   `sobrenome_funcionario` varchar(40) DEFAULT NULL,
   `nacimento_funcionario` varchar(40) DEFAULT NULL,
   `sexo_funcionario` varchar(40) DEFAULT NULL,
-  `cpf_funcionario` varchar(45) NOT NULL,
+  `cpf_funcionario` varchar(45) DEFAULT NULL,
   `cor_funcionario` varchar(40) DEFAULT NULL,
-  `foneF_funcionario` varchar(40) DEFAULT NULL,
-  `foneP_funcionario` varchar(40) DEFAULT NULL,
+  `fone_fixo_funcionario` varchar(40) DEFAULT NULL,
+  `fone_pessoal_funcionario` varchar(40) DEFAULT NULL,
   `email_funcionario` varchar(40) DEFAULT NULL,
+  `foto_funcionario` varchar(255) DEFAULT NULL,
   `numero_endereco_funcionario` varchar(40) DEFAULT NULL,
   `rua_endereco_funcionario` varchar(40) DEFAULT NULL,
   `bairro_endereco_funcionario` varchar(40) DEFAULT NULL,
@@ -226,20 +280,76 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
   `estado_endereco_funcionario` varchar(40) DEFAULT NULL,
   `pais_endereco_funcionario` varchar(40) DEFAULT NULL,
   `cep_endereco_funcionario` varchar(40) DEFAULT NULL,
-  `foto_funcionario` blob,
-  `cargo_funcionario` varchar(32) NOT NULL,
+  `ctps_funcionario` varchar(32) DEFAULT NULL,
+  `salario_funcionario` float DEFAULT NULL,
+  `fk_id_escola` int(11) NOT NULL,
   PRIMARY KEY (`id_funcionario`),
-  UNIQUE KEY `cpf_funcionario` (`cpf_funcionario`),
-  KEY `fk_cargo_funcionario` (`cargo_funcionario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  KEY `fk_cargo_funcionario` (`fk_cargo_funcionario`),
+  KEY `funcionarios_ibfk_1` (`fk_id_escola`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `funcionarios`
 --
 
-INSERT INTO `funcionarios` (`id_funcionario`, `nome_funcionario`, `sobrenome_funcionario`, `nacimento_funcionario`, `sexo_funcionario`, `cpf_funcionario`, `cor_funcionario`, `foneF_funcionario`, `foneP_funcionario`, `email_funcionario`, `numero_endereco_funcionario`, `rua_endereco_funcionario`, `bairro_endereco_funcionario`, `cidade_endereco_funcionario`, `estado_endereco_funcionario`, `pais_endereco_funcionario`, `cep_endereco_funcionario`, `foto_funcionario`, `cargo_funcionario`) VALUES
-(1, 'Rosiberto', NULL, NULL, NULL, '1223', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Professor'),
-(4, 'Davide', NULL, NULL, NULL, '44', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Diretor');
+INSERT INTO `funcionarios` (`id_funcionario`, `matricula_funcionario`, `fk_cargo_funcionario`, `nome_funcionario`, `sobrenome_funcionario`, `nacimento_funcionario`, `sexo_funcionario`, `cpf_funcionario`, `cor_funcionario`, `fone_fixo_funcionario`, `fone_pessoal_funcionario`, `email_funcionario`, `foto_funcionario`, `numero_endereco_funcionario`, `rua_endereco_funcionario`, `bairro_endereco_funcionario`, `cidade_endereco_funcionario`, `estado_endereco_funcionario`, `pais_endereco_funcionario`, `cep_endereco_funcionario`, `ctps_funcionario`, `salario_funcionario`, `fk_id_escola`) VALUES
+(2, '1234', 3, 'Rosiberto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 122),
+(6, NULL, 2, 'Samanta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 123),
+(7, NULL, 2, 'Julio', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 123);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `matricula_aluno`
+--
+
+DROP TABLE IF EXISTS `matricula_aluno`;
+CREATE TABLE IF NOT EXISTS `matricula_aluno` (
+  `matricula_aluno` varchar(32) DEFAULT NULL,
+  `id_aluno` int(11) NOT NULL,
+  `id_curso` int(11) NOT NULL,
+  `id_escola` int(11) DEFAULT NULL,
+  KEY `id_aluno` (`id_aluno`),
+  KEY `matricula_aluno_ibfk_2` (`id_curso`),
+  KEY `id_escola` (`id_escola`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `matricula_aluno`
+--
+
+INSERT INTO `matricula_aluno` (`matricula_aluno`, `id_aluno`, `id_curso`, `id_escola`) VALUES
+('2019870', 1, 7, 123),
+('2019609', 1, 7, 123),
+('2019378', 1, 7, 123),
+('2019574', 1, 7, 123),
+('2019861', 1, 7, 123),
+('2019572', 1, 7, 123);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `notas_alunos`
+--
+
+DROP TABLE IF EXISTS `notas_alunos`;
+CREATE TABLE IF NOT EXISTS `notas_alunos` (
+  `id_notas` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_disciplinas_professores` int(11) DEFAULT NULL,
+  `primeira_notas` varchar(15) DEFAULT NULL,
+  `segunda_notas` varchar(15) DEFAULT NULL,
+  `terceira_notas` varchar(15) DEFAULT NULL,
+  `quarta_notas` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id_notas`),
+  KEY `fk_disciplinas_professores` (`fk_disciplinas_professores`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `notas_alunos`
+--
+
+INSERT INTO `notas_alunos` (`id_notas`, `fk_disciplinas_professores`, `primeira_notas`, `segunda_notas`, `terceira_notas`, `quarta_notas`) VALUES
+(1, 1, '10', '10', '10', '10');
 
 -- --------------------------------------------------------
 
@@ -304,10 +414,46 @@ ALTER TABLE `admin_escola`
   ADD CONSTRAINT `fk_escola` FOREIGN KEY (`id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limitadores para a tabela `disciplinas`
+-- Limitadores para a tabela `alunos`
 --
-ALTER TABLE `disciplinas`
-  ADD CONSTRAINT `fk_professor` FOREIGN KEY (`fk_professor_disciplina`) REFERENCES `funcionarios` (`id_funcionario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `alunos`
+  ADD CONSTRAINT `alunos_ibfk_1` FOREIGN KEY (`fk_notas`) REFERENCES `notas_alunos` (`id_notas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `alunos_ibfk_2` FOREIGN KEY (`fk_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `cursos`
+--
+ALTER TABLE `cursos`
+  ADD CONSTRAINT `fk_curso_escola` FOREIGN KEY (`fk_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `disciplinas_professores`
+--
+ALTER TABLE `disciplinas_professores`
+  ADD CONSTRAINT `disciplinas_professores_ibfk_1` FOREIGN KEY (`id_disciplina`) REFERENCES `disciplinas` (`id_disciplina`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `disciplinas_professores_ibfk_2` FOREIGN KEY (`id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `disciplinas_professores_ibfk_3` FOREIGN KEY (`id_professor`) REFERENCES `funcionarios` (`id_funcionario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD CONSTRAINT `fk_cargo_funcionario` FOREIGN KEY (`fk_cargo_funcionario`) REFERENCES `cargos_funcionarios` (`id_cargo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`fk_id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `matricula_aluno`
+--
+ALTER TABLE `matricula_aluno`
+  ADD CONSTRAINT `matricula_aluno_ibfk_1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id_aluno`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `matricula_aluno_ibfk_2` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `matricula_aluno_ibfk_3` FOREIGN KEY (`id_escola`) REFERENCES `escolas` (`id_escola`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `notas_alunos`
+--
+ALTER TABLE `notas_alunos`
+  ADD CONSTRAINT `notas_alunos_ibfk_1` FOREIGN KEY (`fk_disciplinas_professores`) REFERENCES `disciplinas_professores` (`id_disciplina_professores`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `usuarios`

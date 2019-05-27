@@ -49,7 +49,6 @@ class AlunoDao implements InterfaceAluno {
         $cep = $aluno->getCep();
 
         // Comando SQL
-
         $stmt = $conn->prepare("INSERT INTO `alunos`
                     (`nome_aluno`,
                     `sobrenome_aluno`,
@@ -88,7 +87,6 @@ class AlunoDao implements InterfaceAluno {
                     :IDESCOLA)");
 
         // União de variáveis com comando sql
-
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":SOBRENOME", $sobrenome);
         $stmt->bindParam(":NASCIMENTO", $nascimento);
@@ -105,18 +103,19 @@ class AlunoDao implements InterfaceAluno {
         $stmt->bindParam(":ESTADO", $estado);
         $stmt->bindParam(":PAIS", $pais);
         $stmt->bindParam(":CEP", $cep);
-        
+
         // Escola
         $stmt->bindParam(":IDESCOLA", $id_escola);
 
         // Execução do sql
         try {
-            $result = $stmt->execute();
-            if ($result == 1):
-                return $result = $aluno->getNome() . " foi cadastrado com sucesso!";
-            endif;
+            $stmt->execute();
+            return $aluno->getNome() . " foi cadastrado com sucesso!";
         } catch (Exception $e) {
-            return $result = 'Erro: ' . $e;
+            if ($e->getCode() == '23000'):
+                $result = 'CPF de aluno já cadastrado!';
+                return $result;
+            endif;
         }
     }
 
@@ -192,13 +191,11 @@ class AlunoDao implements InterfaceAluno {
     public function editarAluno(Aluno $aluno, $id) {
 
         // Conexão 
-
         $db_conexao = new Database();
         $conn = $db_conexao->dbConexao();
 
         // Variaveis
         // Dados
-
         $nome = $aluno->getNome();
         $sobrenome = $aluno->getSobrenome();
         $nascimento = $aluno->getNascimento();
@@ -210,7 +207,6 @@ class AlunoDao implements InterfaceAluno {
         $cor = $aluno->getCor();
 
         // Endereco
-
         $numero = $aluno->getNumero();
         $rua = $aluno->getRua();
         $bairro = $aluno->getBairro();
@@ -220,11 +216,9 @@ class AlunoDao implements InterfaceAluno {
         $cep = $aluno->getCep();
 
         // Aluno a ser editado
-
         $idEditarAluno = $id;
 
         // Comando SQL
-
         $stmt = $conn->prepare("UPDATE `alunos` SET
                 `nome_aluno`= :NOME,
                 `sobrenome_aluno`= :SOBRENOME,
@@ -245,7 +239,6 @@ class AlunoDao implements InterfaceAluno {
                 WHERE id_aluno = :ID");
 
         // União de variáveis com comando sql
-
         $stmt->bindParam(":NOME", $nome);
         $stmt->bindParam(":SOBRENOME", $sobrenome);
         $stmt->bindParam(":NASCIMENTO", $nascimento);
@@ -266,16 +259,17 @@ class AlunoDao implements InterfaceAluno {
         // id aluno update
 
         $stmt->bindParam(":ID", $idEditarAluno);
-
         // Execução da query
 
         try {
-            $result = $stmt->execute();
-            if ($result == 1):
-                return "Aluno " . $aluno->getNome() . " foi editado com sucesso!";
-            endif;
+            $stmt->execute();
+            return "Aluno " . $aluno->getNome() . " foi editado com sucesso!";
         } catch (Exception $e) {
-            return "Erro: " . $e;
+            if ($e->getCode() == '2300'):
+                return 'Aluno CPF invalido';
+            else:
+                return 'Erro ao editar aluno';
+            endif;
         }
     }
 
@@ -300,10 +294,8 @@ class AlunoDao implements InterfaceAluno {
         // Execução da query
 
         try {
-            $result = $stmt->execute();
-            if ($result == 1):
-                return $result = "Aluno excluído com sucesso!";
-            endif;
+            $stmt->execute();
+            return "Aluno excluído com sucesso!";
         } catch (Exception $e) {
             return "Erro: " . $e;
         }

@@ -111,19 +111,6 @@ if (isset($_POST['btn-cadastrar'])):
         array_push($msgs, 'Cadastrado com sucesso!');
     endif;
 endif;
-/*
-  // Encriptacao
-
-  $options = [
-  'cost' => 10
-  ];
-
-  $senha = password_hash($senha, PASSWORD_DEFAULT, $options);
-
-  if(password_verify($password, $senhabanco)):
-  echo 'true';
-  endif;
- */
 
 // Exibicao de mensagens no toast
 if (!empty($msgs)):
@@ -169,7 +156,6 @@ endif;
 
 
         <!-- Formulários de login e cadastro --> 
-
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <?php
             include_once './view/Login/login.view.php';
@@ -188,10 +174,13 @@ endif;
 
         <div id="ad">
             <div class="card-title center">
-                <span>Personalizado</span>
+                <span>QUEM SOMOS?</span>
             </div>
-            <div class="card-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam volutpat sit amet ante quis molestie. Integer accumsan mattis sollicitudin. Morbi ultrices consectetur ligula, non lobortis lorem dictum quis.</p>
+            <div class="card-content center-align"></br>
+                Nosso sistema de gerênciamento escolar foi desenvolvida por alunos, para os alunos, 
+                conforme as necessidades identificadas nas atividades pedagogicas e escolares do dia-a-dia.
+                .
+                </p>
 
             </div>
         </div>

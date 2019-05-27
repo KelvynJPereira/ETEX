@@ -1,24 +1,13 @@
 <?php
 
 include_once __DIR__ . '/../model/Funcionarios/InterfaceFuncionario.interface.php';
-include_once __DIR__.'/../model/Funcionarios/FuncionariosDao.class.php';
+include_once __DIR__ . '/../model/Funcionarios/FuncionariosDao.class.php';
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of FuncionarioController
- *
- * @author Turyng
- */
 class FuncionarioController implements InterfaceFuncionario {
 
-    public function cadastrarFuncionaro(Funcionario $funcionario) {
+    public function cadastrarFuncionaro(Funcionario $funcionario, $id_escola) {
         $cadastrar = new FuncionariosDao();
-        return $cadastrar->cadastrarFuncionaro($funcionario);
+        return $cadastrar->cadastrarFuncionaro($funcionario, $id_escola);
     }
 
     public function buscarFuncionario($idFuncionario) {
@@ -40,8 +29,11 @@ class FuncionarioController implements InterfaceFuncionario {
     public function listarCoordenadores($idEescola) {
         $listarCoordenadores = new FuncionariosDao();
         return $listarCoordenadores->listarCoordenadores($idEescola);
-        
-        
+    }
+
+    public function listarCargos() {
+        $listarCargos = new FuncionariosDao();
+        return $listarCargos->listarCargos();
     }
 
 }

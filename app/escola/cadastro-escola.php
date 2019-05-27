@@ -68,7 +68,6 @@ if (isset($_POST['btn-cadastrar'])):
     $controllerEscola = new EscolaController();
     $escola = $controllerEscola->cadastrarEscola($escola);
 
-
     if (!empty($escola['id_escola'])):
         // Associacao da escola ao admin
         include_once __DIR__ . '/../../controller/AdminController.class.php';
@@ -81,7 +80,6 @@ if (isset($_POST['btn-cadastrar'])):
         // Execucao do metodo        
         $controllerAdmin->cadastrarAdminEscola($id_admin_escola, $id_escola);
         array_push($msgs, 'Escola cadastrada!');
-
     else:
         array_push($msgs, 'Escola NÃO cadastrada!');
     endif;

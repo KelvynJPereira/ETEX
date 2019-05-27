@@ -10,16 +10,15 @@ if (empty($id_aluno)):
     $id_aluno = $_SESSION['id_aluno'];
 endif;
 
-
 // Consultar dados de aluno
 include_once __DIR__ . '/../../controller/AlunoController.class.php';
 $controllerAluno = new AlunoController();
 $aluno = $controllerAluno->buscarAluno($id_aluno);
 
-
 // Listar cursos da escola
 include_once __DIR__ . '/../../controller/CursoController.class.php';
 $controllerCurso = new CursoController();
+
 // Recupera id da escola
 $id_escola = $_SESSION['id_escola'];
 $lista_cursos = $controllerCurso->listarCursos($id_escola);

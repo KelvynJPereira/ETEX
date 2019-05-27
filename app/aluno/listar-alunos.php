@@ -1,13 +1,36 @@
 <?php
 
+// Array de erros
+$msgs = [];
+
 session_start();
 $id_escola = $_SESSION['id_escola'];
 
-// Includes
+// Reconhecimento de id a ser excluido
+if (isset($_POST['excluir-aluno'])):
+    $idAlunoExcluir = filter_input(INPUT_POST, 'excluir-aluno');
+    include_once __DIR__.'/../../controller/AlunoController.class.php';
+    $excluir = new AlunoController();
+    $result = $excluir->excluirAluno($idAlunoExcluir);
+    array_push($msgs, $result);
+    
+endif;
 
+// Exibicao de mensagens no toast
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
+    endforeach;
+endif;
+
+// Includes
 include_once __DIR__ . '/../../assets/header.php';
-include_once __DIR__ . '/../../model/Aluno/Aluno.class.php';
-include_once __DIR__ . '/../../controller/AlunoController.class.php';
 ?>
 </br>
 <div class="row">
@@ -27,21 +50,19 @@ include_once __DIR__ . '/../../controller/AlunoController.class.php';
                 </tr>
             </thead>
             <?php
+            include_once __DIR__ . '/../../controller/AlunoController.class.php';
             $listar = new AlunoController();
             $listaAlunos = $listar->listarAlunos($id_escola);
             foreach ($listaAlunos as $dado):
                 ?>
                 <td class="center-align">
-                    
-                    <?php 
-                    
-                    echo !empty($dado['matricula_aluno']) ? $dado['matricula_aluno'] : '<a class="btn-small waves-effect waves-light purple" href="matricular-aluno?id_aluno='.$dado['id_aluno'].'">'
+
+                    <?php
+                    echo!empty($dado['matricula_aluno']) ? $dado['matricula_aluno'] : '<a class="btn-small waves-effect waves-light purple" href="matricular-aluno?id_aluno=' . $dado['id_aluno'] . '">'
                             . ' Matricular'
                             . ' <i class="material-icons left">school</i> </a>';
-                    
-                    
                     ?>
-            
+
                 </td>
                 <td class="center-align"><?php echo $dado['nome_aluno']; ?></td>
                 <td class="center-align"><?php echo $dado['sobrenome_aluno']; ?></td>
@@ -81,15 +102,6 @@ include_once __DIR__ . '/../../controller/AlunoController.class.php';
 
 <?php
 include_once __DIR__ . '/../../assets/footer.php';
-
-// Reconhecimento de id a ser excluido
-
-if (isset($_POST['excluir-aluno'])):
-    $idAlunoExcluir = filter_input(INPUT_POST, 'excluir-aluno');
-    $excluir = new AlunoController();
-    $result = $excluir->excluirAluno($idAlunoExcluir);
-    echo $result;
-endif;
 ?>
 
 

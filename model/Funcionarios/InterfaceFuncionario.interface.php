@@ -16,7 +16,7 @@ interface InterfaceFuncionario {
 
     //put your code here
 
-    public function cadastrarFuncionaro(Funcionario $funcionario);
+    public function cadastrarFuncionaro(Funcionario $funcionario, $id_funcionario);
     
     public function editarFuncionario(Funcionario $funcionario, $idFuncionario);
     

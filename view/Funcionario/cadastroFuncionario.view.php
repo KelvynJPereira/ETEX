@@ -1,73 +1,100 @@
-</br>    
-<div class="col l12 m12">
-    <h5>Dados</h5>
+<?php
+include_once __DIR__ . '/../../controller/FuncionarioController.class.php';
+$controllerFuncionar = new FuncionarioController();
+$cargos = $controllerFuncionar->listarCargos();
+?>
+
+</br>
+<div class="row">
+    <div class="input-field col l2 m2 offset-l5">
+        <img class="materialboxed" width="124" src="../../assets/img/Usuarios/man.PNG">
+        <input type="file" name="foto" id="image"></input>
+    </div> 
+
+    <div class="col l12 m12 offset-l1">
+        </br><h5>Dados</h5>
+    </div>
+
+    <div class="input-field col l3 m2 offset-l1">
+        <input type="text" name="nome" id="name">
+        <label for="name">Nome</label>
+    </div>
+
+    <div class="input-field col l3 m2">
+        <input type="text" name="sobrenome" id="lastName">
+        <label for="lastName">Sobrenome</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <select name="sexo">
+            <option value="" disabled selected>Sexo</option>
+            <option value="Homem">Masculino</option>
+            <option value="Mulher">Feminino</option>
+        </select>
+        <label>Escolha um sexo</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <input type="date" name="nascimento" id="birthday">
+        <label for="birthday">Nascimento</label>
+    </div> 
+
+    <div class="input-field col l2 m2 offset-l1">
+        <input type="number" name="cpf" id="cpf">
+        <label for="cpf">CPF</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <select name="cor">
+            <option value="" disabled selected>Cor</option>
+            <option value="Branco">Branco</option>
+            <option value="Negro">Negro</option>
+            <option value="Pardo">Pardo</option>
+            <option value="Indio">Índio</option>
+        </select>
+        <label>Escolha uma raça</label>
+    </div>
+
+    <div class="input-field col l3 m2">
+        <i class="material-icons prefix">phone</i>
+        <input type="number" name="foneF" id="foneF">
+        <label for="foneF">Telefone fixo</label>
+    </div>
+
+    <div class="input-field col l3 m2">
+        <input type="number" name="foneP" id="foneP">
+        <label for="foneP">Telefone pessoal</label>
+    </div>
+
+    <div class="input-field col l4 m2 offset-l1">
+        <i class="material-icons prefix">email</i>
+        <input type="email" name="email" id="email">
+        <label for="email">E-mail</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <select name="cargo">
+            <?php
+            foreach ($cargos as $cargo):
+                ?>
+                <option value="<?php echo $cargo['id_cargo']; ?>"><?php echo $cargo['descricao_cargo']; ?></option>
+                <?php
+            endforeach;
+            ?>
+        </select>
+        <label>Selecione um cargo:</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <input type="number" name="ctps" id="ctps">
+        <label for="ctps">Número da CTPS</label>
+    </div>
+
+    <div class="input-field col l2 m2">
+        <input type="number" name="salario" id="salario">
+        <label for="salario">Salário</label>
+    </div>
 </div>
-
-<div class="input-field col l6 m2 offset-l5">
-    <img class="materialboxed" width="124" src="https://static.licdn.com/scds/common/u/images/themes/katy/ghosts/person/ghost_person_100x100_v1.png">
-    <input type="file" name="image" id="image"></input>
-   <label for="image">Inserir imagem</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <i class="material-icons prefix">account_circle</i>
-    <input type="text" name="nome" id="name">
-    <label for="name">Nome</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <input type="text" name="sobrenome" id="lastName">
-    <label for="lastName">Sobrenome</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <select name="sexo">
-        <option value="" disabled selected>Sexo</option>
-        <option value="Homem">Masculino</option>
-        <option value="Mulher">Feminino</option>
-    </select>
-    <label>Escolha um sexo</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <input type="date" name="nascimento" id="birthday">
-    <label for="birthday">Nascimento</label>
-</div> 
-
-<div class="input-field col l2 m2">
-    <input type="number" name="cpf" id="cpf">
-    <label for="cpf">CPF</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <select name="cor">
-        <option value="" disabled selected>Cor</option>
-        <option value="Branco">Branco</option>
-        <option value="Negro">Negro</option>
-        <option value="Pardo">Pardo</option>
-        <option value="Indio">Índio</option>
-    </select>
-    <label>Escolha uma raça</label>
-</div>
-
-<div class="input-field col l3 m2">
-    <i class="material-icons prefix">phone</i>
-    <input type="number" name="foneF" id="foneF">
-    <label for="foneF">Telefone fixo</label>
-</div>
-
-<div class="input-field col l2 m2">
-    <input type="number" name="foneP" id="foneP">
-    <label for="foneP">Telefone pessoal</label>
-</div>
-
-<div class="input-field col l3 m2">
-    <i class="material-icons prefix">email</i>
-    <input type="email" name="email" id="email">
-    <label for="email">E-mail</label>
-</div>
-
-
 
 
 

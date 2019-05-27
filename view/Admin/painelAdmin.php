@@ -64,7 +64,6 @@
                                 echo (count($escolas_admin) > 1) ? "Listar Minhas Escolas" : "Listar Minha Escola";
                                 ?>
                                 <span class="badge"><?php echo count($escolas_admin); ?></span></div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
                     <li>
                         <div class="collapsible-header">
@@ -143,7 +142,7 @@
 
             <div id="alunos" class="col l12"><p>
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <li>
+                    <a href="../../app/aluno/listar-alunos.php"<li>
                         <div class="collapsible-header">
                             <i class="material-icons">add</i>
                             Matricular Aluno
@@ -168,11 +167,11 @@
                     <li>
                         <div class="collapsible-header">
                             <i class="material-icons">search</i>
-                            Buscar Aluno
+                            Buscar Aluno Matriculado
                         </div>
                         <div class="collapsible-body">
                             <label for="buscar">Informe o código da matricula:</label>
-                            <form method="POST" action="#">
+                            <form method="POST" action="../../app/aluno/listar-alunos.php">
                                 <input name="matricula" id="buscar" type="number"> 
                                 <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
                             </form>
@@ -186,7 +185,7 @@
             <div id="funcionarios" class="col s12"><p>
 
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <a href="#"><li>
+                    <a href="../../app/funcionario/cadastro-funcionario.php"><li>
                             <div class="collapsible-header">
                                 <i class="material-icons">add_circle</i>
                                 Cadastrar Funcionário
