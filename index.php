@@ -1,4 +1,6 @@
 <?php
+$msgs = [];
+
 // Limpeza de session
 session_start();
 session_unset();
@@ -109,6 +111,12 @@ if (isset($_POST['btn-cadastrar'])):
         // Associcao do admin a escola
         $adminController->cadastrarAdminEscola($dados['id_admin'], $dados['id_escola']);
         array_push($msgs, 'Cadastrado com sucesso!');
+        
+        // Pagamentos escola
+        include_once __DIR__.'/controller/EscolaController.class.php';
+        $controllerEscola = new EscolaController();
+        $controllerEscola->cadastrarEscolaMatriculados($dados['id_escola']);
+        
     endif;
 endif;
 

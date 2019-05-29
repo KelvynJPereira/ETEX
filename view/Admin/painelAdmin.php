@@ -44,7 +44,6 @@
                 <li class="tab"><a href="#cursos">Cursos</a></li>
                 <li class="tab"><a  href="#alunos">Alunos</a></li>
                 <li class="tab "><a href="#funcionarios">Funcionários</a></li>
-                <li class="tab"><a href="#usuarios">Usuários</a></li>
             </ul>
 
             <!-- Escola -->
@@ -78,30 +77,7 @@
                             </form>
                         </div>
                     </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">attach_money</i>
-                            Gestão Financeira
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">school</i>
-                            Gestão Pedagogica
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
 
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">business</i>
-                            Gestão admninistrativa
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-
-                </ul>
                 </p></div>
 
 
@@ -143,45 +119,31 @@
             <div id="alunos" class="col l12"><p>
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
                     <a href="../../app/aluno/listar-alunos.php"<li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">add</i>
-                            Matricular Aluno
-                        </div>
-                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <a href="../../app/aluno/cadastro-aluno.php"> <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">add_circle</i>
-                                Novo Aluno
+                                <i class="material-icons">add</i>
+                                Matricular Aluno
                             </div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-                    <a href="../../app/aluno/listar-alunos.php"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">list</i>
-                                Listar Alunos
-                                <span class="new badge">54</span>
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">search</i>
-                            Buscar Aluno Matriculado
-                        </div>
-                        <div class="collapsible-body">
-                            <label for="buscar">Informe o código da matricula:</label>
-                            <form method="POST" action="../../app/aluno/listar-alunos.php">
-                                <input name="matricula" id="buscar" type="number"> 
-                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
-                            </form>
-                        </div>
-                    </li>
+                        </li>
+                        <a href="../../app/aluno/cadastro-aluno.php"> <li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">add_circle</i>
+                                    Novo Aluno
+                                </div>
+                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                            </li></a>
+                        <a href="../../app/aluno/listar-alunos.php"><li>
+                                <div class="collapsible-header">
+                                    <i class="material-icons">list</i>
+                                    Listar Alunos
+
+                                </div>
+                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                            </li></a>
                 </ul>
                 </p></div>
 
             <!-- Funcionários -->
-
             <div id="funcionarios" class="col s12"><p>
 
                 <ul class="collapsible col l10 offset-l1 animated fadeInUp">
@@ -191,63 +153,17 @@
                                 Cadastrar Funcionário
                             </div>
                         </li></a>
-                    <a href="#"><li>
+                    <a href="../../app/funcionario/listar-funcionarios.php"><li>
                             <div class="collapsible-header">
                                 <i class="material-icons">list</i>
                                 Listar Funcionários
                             </div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">search</i>
-                            Buscar Funcionário
-                        </div>
-                        <div class="collapsible-body">
-                            <label for="buscar">Informe o código da matricula:</label>
-                            <form method="POST" action="#">
-                                <input name="matricula-funcionario" id="buscar" type="number"> 
-                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
-                            </form>
-                        </div>
-                    </li>
+
                 </ul>
                 </p></div>
 
-            <!-- Usuarios -->
-            <div id="usuarios" class="col l12"><p>
-                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <a href="#"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">add_circle</i>
-                                Nova Usuário
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-                    <a href="#"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">list</i>
-                                Listar Usuários da Escola
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">search</i>
-                            Buscar Usuário
-                        </div>
-                        <div class="collapsible-body">
-                            <label for="buscar">Informe o email do úsuario:</label>
-                            <form method="POST" action="#">
-                                <input name="matricula-funcionario" id="buscar" type="number"> 
-                                <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
-                            </form>
-                        </div>
-                    </li>
-
-                </ul>
-                </p>
-            </div>
         </div>
     </div>
 </div>

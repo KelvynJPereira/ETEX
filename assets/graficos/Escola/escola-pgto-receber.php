@@ -1,3 +1,19 @@
+<?php
+
+$id_escola_grafico = $_SESSION['id_escola_grafico'];
+foreach ($id_escola_grafico as $escola):
+    $id_escola_grafico = $escola['id_escola'];
+endforeach;
+
+include_once __DIR__ . '/../../../controller/EscolaController.class.php';
+$controllerEscola = new EscolaController();
+$data = $controllerEscola->quantidadeMatriculas($id_escola_grafico);
+if(empty($data['matriculas_efetuadas'])):
+    $data['matriculas_efetuadas'] = 0;
+endif;
+
+?>
+
 <canvas class="escola-receber"></canvas>
 
 
@@ -12,15 +28,8 @@
         data: {
             labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
             datasets: [{
-                    label: "MENSALIDADES DE ALUNOS",
-                    data: [1, 2, 3, 4, 9, 6, 7, 8, 9, 10, 11, 12],
-                    borderWidth: 2,
-                    borderColor: 'rgba(23, 221, 79)',
-                    backgroundColor: 'transparent'
-                },
-                {
                     label: "MATRICULAS EFETUADAS",
-                    data: [2, 4, 4, 4, 5, 4, 4, 5, 4, 6, 4, 4],
+                    data: [0, 0, 0, 0, <?php echo $data['matriculas_efetuadas'];?>],
                     borderWidth: 2,
                     borderColor: 'rgba(8, 2, 255)',
                     backgroundColor: 'transparent'

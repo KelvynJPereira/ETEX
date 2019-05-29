@@ -1,3 +1,7 @@
+
+
+
+
 <canvas class="escola-despesas"></canvas>
 
 
@@ -14,7 +18,7 @@
             labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
             datasets: [{
                     label: "PAGAMENTO DE FUNCIONÁRIOS",
-                    data: [2, 4, 4, 4, 5, 4, 4, 5, 4, 6, 4, 4],
+                    data: [0, 0, 0, 0, 0],
                     borderWidth: 2,
                     borderColor: 'rgba(224, 0, 0)',
                     backgroundColor: 'transparent'

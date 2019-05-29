@@ -4,6 +4,7 @@
  * Incluir pop-out de cadastro
  * Incluir verificação de erros do banco
  */
+$msgs = [];
 
 session_start();
 
@@ -45,10 +46,25 @@ if (isset($_POST['btn-cadastrar'])):
     $controllerCurso = new CursoController();
     $codigo_curso = $controllerCurso->cadastrarCurso($curso, $id_coordenador, $id_professor, $id_escola);
 
-    // Ajeitar
-    var_dump($codigo_curso);
-
+    array_push($msgs, 'Código do curso: '.$codigo_curso);
+   
 endif;
+    
+
+
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
+    endforeach;
+endif;
+
+
 
 // Includes
 include_once __DIR__ . '/../../assets/header.php';

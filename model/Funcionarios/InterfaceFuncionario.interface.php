@@ -18,8 +18,6 @@ interface InterfaceFuncionario {
 
     public function cadastrarFuncionaro(Funcionario $funcionario, $id_funcionario);
     
-    public function editarFuncionario(Funcionario $funcionario, $idFuncionario);
-    
     public function buscarFuncionario($idFuncionario);
     
     public function excluirFuncionario($idFuncionario);

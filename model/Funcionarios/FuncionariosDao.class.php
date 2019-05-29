@@ -28,11 +28,12 @@ class FuncionariosDao implements InterfaceFuncionario {
         $sobrenome = $funcionario->getSobrenome();
         $nascimento = $funcionario->getNascimento();
         $sexo = $funcionario->getSexo();
-        $cpf = $funcionario->getSexo();
-        $cor = $funcionario->getCor();
+        $cpf = $funcionario->getCpf();
         $fone_fixo = $funcionario->getFoneF();
         $fone_pessoal = $funcionario->getFoneP();
         $email = $funcionario->getEmail();
+
+        $foto = null;
 
         // Endereco
         $numero = $funcionario->getNumero();
@@ -48,91 +49,24 @@ class FuncionariosDao implements InterfaceFuncionario {
         $ctps = $funcionario->getNCTP();
         $salario = $funcionario->getSalario();
 
+
         // Criacao da matricula
         $date = new DateTime();
         $yc = date_format($date, 'Y');
-        $vr = rand(1, 99);
+        $vr = rand(1, 999);
         $c = strtoupper(substr('etxmatriculafuncionario', $vr));
+
 
         // Matricula no curso
         $matricula = $yc . $c . $vr;
 
         // Criacao da query
-        $stmt = $conn->prepare("INSERT INTO `funcionarios`
-                       (`matricula_funcionario`,
-                       `fk_cargo_funcionario`,
-                       `nome_funcionario`,
-                       `sobrenome_funcionario`,
-                       `nacimento_funcionario`,
-                       `sexo_funcionario`,
-                       `cpf_funcionario`,
-                       `cor_funcionario`,
-                       `fone_fixo_funcionario`,
-                       `fone_pessoal_funcionario`,
-                       `email_funcionario`,
-                       `foto_funcionario`,
-                       `numero_endereco_funcionario`,
-                       `rua_endereco_funcionario`,
-                       `bairro_endereco_funcionario`,
-                       `cidade_endereco_funcionario`,
-                       `estado_endereco_funcionario`,
-                       `pais_endereco_funcionario`,
-                       `cep_endereco_funcionario`,
-                       `ctps_funcionario`,
-                       `salario_funcionario`,
-                       `fk_id_escola`)
-                       VALUES (
-                       :MATRICULA,
-                       :CARGO,
-                       :NOME,
-                       :SOBRENOME,
-                       :NASCIMENTO,
-                       :SEXO,
-                       :CPF,
-                       :COR,
-                       :FONEF,
-                       :FONEP,
-                       :EMAIL,
-                       :FOTO,
-                       :NUMERO,
-                       :RUA,
-                       :BAIRRO,
-                       :CIDADE,
-                       :ESTADO,
-                       :PAIS,
-                       :CEP,
-                       :CTPS,
-                       :SALARIO,
-                       :IDESCOLA)
-                       ");
+        $stmt = $conn->prepare("INSERT INTO `funcionarios` (`id_funcionario`, `matricula_funcionario`, `fk_cargo_funcionario`, `nome_funcionario`, `sobrenome_funcionario`, `nascimento_funcionario`, `sexo_funcionario`, `cpf_funcionario`, `fone_fixo_funcionario`, `fone_pessoal_funcionario`, `email_funcionario`, `foto_funcionario`, `numero_endereco_funcionario`, `rua_endereco_funcionario`, `bairro_endereco_funcionario`, `cidade_endereco_funcionario`, `estado_endereco_funcionario`, `pais_endereco_funcionario`, `cep_endereco_funcionario`, `ctps_funcionario`, `salario_funcionario`, `fk_id_escola`) VALUES (NULL, $matricula, $cargo, '$nome', '$sobrenome', '$nascimento', '$sexo', '$cpf', '$fone_fixo', '$fone_pessoal', '$email', '$foto', '$numero', '$rua', '$bairro', '$cidade', '$estado', '$pais', '$cep', '$ctps', '$salario', '$id_escola');");
 
-        // União de variáveis
-        $stmt->bindParam(":MATRICULA", $matricula);
-        $stmt->bindParam(":CARGO", $cargo);
-        $stmt->bindParam(":NOME", $nome);
-        $stmt->bindParam(":SOBRENOME", $sobrenome);
-        $stmt->bindParam(":NASCIMENTO", $nascimento);
-        $stmt->bindParam(":SEXO", $sexo);
-        $stmt->bindParam(":CPF", $cpf);
-        $stmt->bindParam(":FONEF", $fone_fixo);
-        $stmt->bindParam(":FONEP", $fone_pessoal);
-        $stmt->bindParam(":EMAIL", $email);
-        $stmt->bindParam(":COR", $cor);
-        $stmt->bindParam(":NUMERO", $numero);
-        $stmt->bindParam(":RUA", $rua);
-        $stmt->bindParam(":BAIRRO", $bairro);
-        $stmt->bindParam(":CIDADE", $cidade);
-        $stmt->bindParam(":ESTADO", $estado);
-        $stmt->bindParam(":PAIS", $pais);
-        $stmt->bindParam(":CEP", $cep);
-        $stmt->bindParam(":CTPS", $ctps);
-        $stmt->bindParam(":SALARIO", $salario);
-        $stmt->bindParam(":IDESCOLA", $id_escola);
 
         // Execucao da query
         try {
-            $stmt->execute();
-            return $funcionario->getNome() . " foi cadastrado com sucesso!";
+            return $stmt->execute();
         } catch (Exception $e) {
             if ($e->getCode() == '23000'):
                 $result = 'Funcionario já cadastrado!';
@@ -145,16 +79,44 @@ class FuncionariosDao implements InterfaceFuncionario {
         
     }
 
-    public function editarFuncionario(Funcionario $funcionario, $idFuncionario) {
-        
-    }
-
     public function excluirFuncionario($idFuncionario) {
-        
+        // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query 
+
+        $stmt = $conn->prepare("DELETE FROM `funcionarios`
+                WHERE id_funcionario = $idFuncionario");
+
+        // Execução da query
+
+        try {
+            $stmt->execute();
+            return "Funcionario excluído com sucesso!";
+        } catch (Exception $e) {
+            return "Erro: " . $e;
+        }
     }
 
     public function listarFuncionarios($idEscola) {
-        
+
+        // Conexão 
+
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criação da query
+        $stmt = $conn->prepare("SELECT * FROM `funcionarios` WHERE `fk_id_escola` = $idEscola");
+
+        // Execução da query
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            return $result = "Erro: " . $e;
+        }
     }
 
     public function listarCoordenadores($idEescola) {

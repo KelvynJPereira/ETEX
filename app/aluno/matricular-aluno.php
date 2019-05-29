@@ -1,4 +1,7 @@
 <?php
+// Array de erros
+$msgs = [];
+
 // Incia sessao
 session_start();
 
@@ -35,6 +38,26 @@ if (isset($_POST['btn-matricular'])):
     include_once __DIR__ . '/../../controller/AlunoController.class.php';
     $controllerAluno = new AlunoController();
     $result = $controllerAluno->matricularAluno($id_aluno, $id_curso, $id_escola);
+
+    array_push($msgs, 'Matricula: ' . $result);
+
+    // Soma no grafico
+    include_once __DIR__ . '/../../controller/EscolaController.class.php';
+    $controllerEscola = new EscolaController();
+    $result1 = $controllerEscola->alunosMatriculados($id_escola);
+endif;
+
+// Exibicao de mensagens no toast
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
+    endforeach;
 endif;
 
 // Include herader

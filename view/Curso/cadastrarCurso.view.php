@@ -1,6 +1,13 @@
 <?php
 // Recuperacao do id da escola
-$id_escola = $_SESSION['id_escola'];
+
+$escola = $_SESSION['id_escola_grafico'];
+
+foreach ($escola as $dado):
+    $id_escola = $dado['id_escola'];
+endforeach;
+
+$_SESSION['id_escola'] = $id_escola;
 
 // Listagem de coordenadores
 include_once __DIR__ . '/../../controller/FuncionarioController.class.php';

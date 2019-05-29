@@ -316,12 +316,15 @@ class AlunoDao implements InterfaceAluno {
 
         // Matricula no curso
         $matricula = $yc . $c . $vr;
+        
+        // escola matricular
+        $id_escola_pgto = $id_escola;
 
         // Criacao da query
         $stmt = $conn->prepare("INSERT INTO `matricula_aluno` (`matricula_aluno`, `id_aluno`, `id_curso`, `id_escola`) VALUES (:MATRICULA, :IDALUNO, :IDCURSO, :IDESCOLA)");
         $stmt2 = $conn->prepare("UPDATE `alunos` SET `matricula_aluno` = '$matricula' WHERE `alunos`.`id_aluno` = $id_aluno");
-
-        // Uniao de variaveis
+      
+// Uniao de variaveis
         $stmt->bindParam(":MATRICULA", $matricula);
         $stmt->bindParam(":IDALUNO", $id_aluno);
         $stmt->bindParam(":IDCURSO", $id_curso);
@@ -331,6 +334,7 @@ class AlunoDao implements InterfaceAluno {
         try {
             $stmt->execute();
             $stmt2->execute();
+           
             return $matricula;
         } catch (Exception $ex) {
             return $ex->getMessage();

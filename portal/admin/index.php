@@ -36,6 +36,8 @@ if (!empty($dados_admin)):
 
     // Escola escolhida
     $escola = $escolas_admin;
+    
+    $_SESSION['id_escola_grafico'] = $escola;
 
     // Formata array para a exibicao de apenas uma escola
     if (!empty($_POST)):

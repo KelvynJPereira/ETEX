@@ -1,5 +1,4 @@
 <?php
-
 // Array de mensagens e erros
 $msgs = [];
 
@@ -39,7 +38,7 @@ if (isset($_POST['btn-cadastrar'])):
     // Upload de imagem
     // Recuperacao da imagem
     $img = $_FILES['logo'];
-    
+
     if ($img['error']):
         $logo = "escola-padrao.png";
     endif;
@@ -80,6 +79,10 @@ if (isset($_POST['btn-cadastrar'])):
         // Execucao do metodo        
         $controllerAdmin->cadastrarAdminEscola($id_admin_escola, $id_escola);
         array_push($msgs, 'Escola cadastrada!');
+        
+         // Pagamentos escola
+        $controllerEscola->cadastrarEscolaMatriculados($id_escola);
+
     else:
         array_push($msgs, 'Escola NÃO cadastrada!');
     endif;

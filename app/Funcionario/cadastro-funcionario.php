@@ -40,17 +40,33 @@ if (isset($_POST['btn-cadastrar'])):
     //foto
     $foto = null;
 
-    // Criacao do objeto funcionario
+    // criacao do objeto
     include_once __DIR__ . '/../../model/Funcionarios/Funcionario.class.php';
-    $funcionario = new Funcionario($nome, $sobrenome, $nascimento, $sexo, $cpf, $cor, $foneF, $foneP, $email, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep, $foto);
-    $funcionario->setCargo($cargo);
-    $funcionario->setNCTP($ctps);
-    $funcionario->setSalario($salario);
+    $funcionario = new Funcionario($cargo, $ctps, $salario, $nome, $sobrenome, $nascimento, $sexo, $cor, $cpf, $foneF, $foneP, $email, $numero, $rua, $bairro, $cidade, $estado, $pais, $cep, $foto);
 
-    // Metodo de cadastro
+    // Criacao do controller
     include_once __DIR__ . '/../../controller/FuncionarioController.class.php';
     $controllerFuncionarios = new FuncionarioController();
-    $msgs = $controllerFuncionarios->cadastrarFuncionaro($funcionario, $id_escola);
+    $resut = $controllerFuncionarios->cadastrarFuncionaro($funcionario, $id_escola);
+  
+    if ($resut == true):
+        array_push($msgs, 'Funcionário cadastrado com sucesso!');
+    else:
+        array_push($msgs, 'Erro ao cadastrar');
+    endif;
+
+endif;
+
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
+    endforeach;
 endif;
 
 include_once __DIR__ . '/../../assets/header.php';
@@ -67,7 +83,7 @@ include_once __DIR__ . '/../../assets/header.php';
     <div class="col l12"></br>
         <div class="row">
             <div class="col l3 offset-l3">
-                <a class="btn waves-effect waves-light blue" href="">Voltar
+                <a class="btn waves-effect waves-light blue" href="../../portal/admin/index.php">Voltar
                     <i class="material-icons left">arrow_back</i>
                 </a>
             </div>

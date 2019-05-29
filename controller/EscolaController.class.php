@@ -58,4 +58,22 @@ class EscolaController implements InterfaceEscola {
         
     }
 
+    public function alunosMatriculados($id_escola) {
+        $matriculado = new EscolaDao();
+        return $matriculado->alunosMatriculados($id_escola);
+        
+    }
+    
+     public function cadastrarEscolaMatriculados($id_escola) {
+        $cadastrarM = new EscolaDao();
+        return $cadastrarM->cadastrarEscolaMatriculados($id_escola);
+        
+    }
+    
+    public function quantidadeMatriculas($id_escola){
+        $quantidadeM = new EscolaDao();
+        return $quantidadeM->quantidadeM($id_escola);
+    }
+    
+
 }

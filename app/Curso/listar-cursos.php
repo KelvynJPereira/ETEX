@@ -1,4 +1,7 @@
 <?php
+
+$msgs = [];
+
 session_start();
 $id_escola = $_SESSION['id_escola'];
 
@@ -14,14 +17,26 @@ if (isset($_POST['excluir-curso'])):
     $controllerCurso = new CursoController();
 
     // Execulta exclusao da escola no banco
-    $msgs = $controllerCurso->excluirCurso($id_curso);
+    $result = $controllerCurso->excluirCurso($id_curso);
 
     // Valida resposta da exclusao
-    if ($msgs = true):
-        $msgs = "Curso excluído!";
+    if ($result = true):
+        array_push($msgs, 'Curso excluído com sucesso!');
     else:
-        $msgs = "Curso NÃO excluída!";
+        array_push($msgs, 'Curso NÃO excluído!');
     endif;
+endif;
+
+if (!empty($msgs)):
+    foreach ($msgs as $msg):
+        ?>
+        <script>
+            window.onload = function () {
+                M.toast({html: '<?php echo '<b>' . $msg . '</br>'; ?>', classes: 'orange rounded'});
+            };
+        </script>
+        <?php
+    endforeach;
 endif;
 
 
