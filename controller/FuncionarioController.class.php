@@ -28,6 +28,12 @@ class FuncionarioController implements InterfaceFuncionario {
         $listarCoordenadores = new FuncionariosDao();
         return $listarCoordenadores->listarCoordenadores($idEescola);
     }
+    
+    
+    public function listarProfessores($idEescola) {
+        $listarProfessores = new FuncionariosDao();
+        return  $listarProfessores->listarProfessores($idEescola);
+    }
 
     public function listarCargos() {
         $listarCargos = new FuncionariosDao();

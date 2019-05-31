@@ -13,6 +13,7 @@
         <div class="col l12 m12 center animated bounce delay-1s">
             <?php
             foreach ($escola as $dado):
+                 $_SESSION['id_escola'] = $dado['id_escola'];
                 echo '<h4><b>Escola ' . $dado['nome_escola'];
                 '</b></h4>';
             endforeach;
@@ -54,7 +55,6 @@
                                 <i class="material-icons">add_circle</i>
                                 Nova escola
                             </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
                     <a href="../../app/escola/listar-escolas.php?id=<?php echo $dados_admin['id_admin']; ?>"><li>
                             <div class="collapsible-header">
@@ -96,7 +96,6 @@
                                 <i class="material-icons">list</i>
                                 Listar Cursos
                             </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li></a>
                     <li>
                         <div class="collapsible-header">
@@ -109,64 +108,68 @@
                                 <input name="codigo-curso" id="buscar" type="text"> 
                                 <button class="btn waves-effect waves-light btn-small orange" type="submit">Buscar</button>
                             </form>
+                            <a href="../../app/disciplina/cadastrar-disciplina.php"><li>
+                                    <div class="collapsible-header">
+                                        <i class="material-icons">add_circle</i>
+                                        Cadastrar Disciplina
+                                    </div>
+                                    </div>
+                                </li>
+                                </ul>
+                            </p></div>
+
+                        <!-- Alunos -->
+
+                        <div id="alunos" class="col l12"><p>
+                            <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                                <a href="../../app/aluno/listar-alunos.php"<li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">add</i>
+                                            Matricular Aluno
+                                        </div>
+                                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                    </li>
+                                    <a href="../../app/aluno/cadastro-aluno.php"> <li>
+                                            <div class="collapsible-header">
+                                                <i class="material-icons">add_circle</i>
+                                                Novo Aluno
+                                            </div>
+                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                        </li></a>
+                                    <a href="../../app/aluno/listar-alunos.php"><li>
+                                            <div class="collapsible-header">
+                                                <i class="material-icons">list</i>
+                                                Listar Alunos
+
+                                            </div>
+                                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                        </li></a>
+                            </ul>
+                            </p></div>
+
+                        <!-- Funcionários -->
+                        <div id="funcionarios" class="col s12"><p>
+
+                            <ul class="collapsible col l10 offset-l1 animated fadeInUp">
+                                <a href="../../app/funcionario/cadastro-funcionario.php"><li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">add_circle</i>
+                                            Cadastrar Funcionário
+                                        </div>
+                                    </li></a>
+                                <a href="../../app/funcionario/listar-funcionarios.php"><li>
+                                        <div class="collapsible-header">
+                                            <i class="material-icons">list</i>
+                                            Listar Funcionários
+                                        </div>
+                                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                                    </li></a>
+                            </ul>
+                            </p></div>
+
                         </div>
-                    </li>
-                </ul>
-                </p></div>
-
-            <!-- Alunos -->
-
-            <div id="alunos" class="col l12"><p>
-                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <a href="../../app/aluno/listar-alunos.php"<li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">add</i>
-                                Matricular Aluno
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li>
-                        <a href="../../app/aluno/cadastro-aluno.php"> <li>
-                                <div class="collapsible-header">
-                                    <i class="material-icons">add_circle</i>
-                                    Novo Aluno
-                                </div>
-                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                            </li></a>
-                        <a href="../../app/aluno/listar-alunos.php"><li>
-                                <div class="collapsible-header">
-                                    <i class="material-icons">list</i>
-                                    Listar Alunos
-
-                                </div>
-                                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                            </li></a>
-                </ul>
-                </p></div>
-
-            <!-- Funcionários -->
-            <div id="funcionarios" class="col s12"><p>
-
-                <ul class="collapsible col l10 offset-l1 animated fadeInUp">
-                    <a href="../../app/funcionario/cadastro-funcionario.php"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">add_circle</i>
-                                Cadastrar Funcionário
-                            </div>
-                        </li></a>
-                    <a href="../../app/funcionario/listar-funcionarios.php"><li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">list</i>
-                                Listar Funcionários
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li></a>
-
-                </ul>
-                </p></div>
-
-        </div>
-    </div>
-</div>
+                        </div>
+                        </div>
 
 
 

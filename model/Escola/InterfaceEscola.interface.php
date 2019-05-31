@@ -25,10 +25,6 @@ interface InterfaceEscola {
     
     public function buscarEscolaCnpj($cnpj);
     
-    public function listarDisciplinasProfessores($idEscola);
-    
-    //public function pagamentosFuncionarios();
-    
     public function alunosMatriculados($id_escola);
         
 }

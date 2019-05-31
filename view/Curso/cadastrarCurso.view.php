@@ -15,9 +15,10 @@ $controllerFuncionarios = new FuncionarioController();
 $coordenadores = $controllerFuncionarios->listarCoordenadores($id_escola);
 
 // Listagem de Professores e Disciplinas cadastrados na escola
-include_once __DIR__ . '/../../controller/EscolaController.class.php';
-$controllerEscola = new EscolaController();
-$professoresDisciplinas = $controllerEscola->listarDisciplinasProfessores($id_escola);
+include_once __DIR__.'/../../controller/DisciplinaController.class.php';
+$controllerDisciplina = new DisciplinaController();
+$disciplinas =  $controllerDisciplina->listarDisciplina($id_escola);
+
 ?>
 
 </br>    
@@ -69,7 +70,7 @@ $professoresDisciplinas = $controllerEscola->listarDisciplinasProfessores($id_es
             <option value="0" disabled selected>Disciplina - Professor</option>
             <?php
             // Lista todas os professores e disciplinas cadastrados na escola
-            foreach ($professoresDisciplinas as $dado):
+            foreach ($disciplinas as $dado):
                 ?>
                 <option value = "<?php echo $dado['id_funcionario'] . $dado['id_disciplina']; ?>"><?php echo $dado['nome_funcionario'] . ' - ' . $dado['nome_disciplina']; ?></option>
                 <?php

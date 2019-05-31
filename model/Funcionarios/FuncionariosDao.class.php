@@ -139,7 +139,28 @@ class FuncionariosDao implements InterfaceFuncionario {
             return "Erro: " . $e;
         }
     }
+    
+      public function listarProfessores($idEescola) {
 
+        // Cria conexão 
+        $db_conexao = new Database();
+        $conn = $db_conexao->dbConexao();
+
+        // Criacao da query
+        $stmt = $conn->prepare("SELECT id_funcionario, nome_funcionario FROM funcionarios WHERE  fk_cargo_funcionario = 3 AND fk_id_escola = :IDESCOLA");
+
+        // Uniao das variaeis com sql
+        $stmt->bindParam(':IDESCOLA', $idEescola);
+
+        // Execução da query
+        try {
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            return "Erro: " . $e;
+        }
+    }
+    
     public function listarCargos() {
 
         // Cria conexão 

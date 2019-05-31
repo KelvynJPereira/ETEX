@@ -57,7 +57,7 @@ if (isset($_POST['btn-cadastrar'])):
         else:
             array_push($msgs, 'Imagem NÃO carregada!');
         endif;
-
+        
         // Recupera id da escola
         $id_escola = $_SESSION['id_escola'];
 

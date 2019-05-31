@@ -52,12 +52,6 @@ class EscolaController implements InterfaceEscola {
         
     }
 
-    public function listarDisciplinasProfessores($idEscola) {
-        $listar = new EscolaDao();
-        return $listar->listarDisciplinasProfessores($idEscola);
-        
-    }
-
     public function alunosMatriculados($id_escola) {
         $matriculado = new EscolaDao();
         return $matriculado->alunosMatriculados($id_escola);

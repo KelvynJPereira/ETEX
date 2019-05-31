@@ -155,7 +155,7 @@ endif;
                 <a href="index.php" class="brand-logo animated fadeInLeft"><img src="assets/img/designer/logo.png"</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.php">Inicío</a></li>
-                    <li><a href="#">Gestão Escolar</a></li>
+                    <li><a href="#cards">Gestão Escolar</a></li>
                     <li><a id="login" class="modal-trigger" href="#model-logar">Login</a></li>
                     <li><a id="cadastro" class="modal-trigger" href="#model-cadastro">Cadastre-se</a></li>
                 </ul>
@@ -193,7 +193,7 @@ endif;
             </div>
         </div>
 
-        <div class="row contatiner-2 animated fadeInDown slow">
+        <div id="cards" class="row contatiner-2 animated fadeInDown slow">
             </br><div class="col l11 offset-l1">
                 <div class="card col l3">
                     <div class="card-image">

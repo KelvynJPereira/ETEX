@@ -10,7 +10,7 @@ $db_conexao = new Database();
 $conn = $db_conexao->dbConexao();
 
 // Criação da query
-$stmt = $conn->prepare("SELECT `cpf_usuario` FROM `usuarios` WHERE `login_usuario` = :LOGIN AND `senha_usuario` = :SENHA");
+$stmt = $conn->prepare("SELECT `login_usuario`, `senha_usuario`, `cpf_usuario` FROM `usuarios` WHERE `login_usuario` = :LOGIN AND `senha_usuario` = :SENHA");
 
 // Uniao dos parametros a query
 $stmt->bindParam(":LOGIN", $login);
