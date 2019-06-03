@@ -6,7 +6,7 @@ $professores = $controllerFuncionarios->listarProfessores($id_escola);
 ?>
 <div class="row">
     <div class="col l12 center">
-        <h4>CADASTRAR CURSO</h4></br>
+        <h4>CADASTRAR DISCIPLINA</h4></br>
     </div>
 
     <div class="input-field col l3 offset-l3">

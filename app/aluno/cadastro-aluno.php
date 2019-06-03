@@ -70,6 +70,11 @@ if (isset($_POST['btn-cadastrar'])):
         $alunoController = new AlunoController();
         $result = $alunoController->cadastrarAluno($aluno, $id_escola);
         array_push($msgs, $result);
+        
+        
+        
+        
+        
     endif;
 endif;
 
@@ -99,7 +104,7 @@ include_once __DIR__ . '/../../assets/header.php';
             ?>
             <div id="buttonsCadastrar" class="col l12"></br>
                 <div class="col l6 offset-l2">
-                    <a class="btn waves-effect waves-light blue" href="listar-alunos">Voltar
+                    <a class="btn waves-effect waves-light blue" href="listar-alunos.php">Voltar
                         <i class="material-icons left">arrow_back</i>
                     </a>
                 </div>

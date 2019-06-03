@@ -1,9 +1,6 @@
 <?php
 
-$id_escola_grafico = $_SESSION['id_escola_grafico'];
-foreach ($id_escola_grafico as $escola):
-    $id_escola_grafico = $escola['id_escola'];
-endforeach;
+$id_escola_grafico = $_SESSION['id_escola'];
 
 include_once __DIR__ . '/../../../controller/EscolaController.class.php';
 $controllerEscola = new EscolaController();
@@ -29,7 +26,7 @@ endif;
             labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
             datasets: [{
                     label: "MATRICULAS EFETUADAS",
-                    data: [0, 0, 0, 0, <?php echo $data['matriculas_efetuadas'];?>],
+                    data: [0, 0, 0, 0, 0, <?php echo $data['matriculas_efetuadas'];?>],
                     borderWidth: 2,
                     borderColor: 'rgba(8, 2, 255)',
                     backgroundColor: 'transparent'

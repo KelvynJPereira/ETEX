@@ -39,12 +39,15 @@ if (isset($_POST['btn-matricular'])):
     $controllerAluno = new AlunoController();
     $result = $controllerAluno->matricularAluno($id_aluno, $id_curso, $id_escola);
 
-    array_push($msgs, 'Matricula: ' . $result);
+    if (!empty($result)):
 
-    // Soma no grafico
-    include_once __DIR__ . '/../../controller/EscolaController.class.php';
-    $controllerEscola = new EscolaController();
-    $result1 = $controllerEscola->alunosMatriculados($id_escola);
+        array_push($msgs, 'Matricula: ' . $result);
+
+        // Soma no grafico
+        include_once __DIR__ . '/../../controller/EscolaController.class.php';
+        $controllerEscola = new EscolaController();
+        $controllerEscola->alunosMatriculados($id_escola);
+    endif;
 endif;
 
 // Exibicao de mensagens no toast

@@ -91,7 +91,7 @@
                                 Cadastrar Curso
                             </div>
                         </li></a>
-                    <a href="../../app/curso/listar-cursos"><li>
+                    <a href="../../app/curso/listar-cursos.php"><li>
                             <div class="collapsible-header">
                                 <i class="material-icons">list</i>
                                 Listar Cursos

@@ -79,9 +79,10 @@ if (isset($_POST['btn-cadastrar'])):
         // Execucao do metodo        
         $controllerAdmin->cadastrarAdminEscola($id_admin_escola, $id_escola);
         array_push($msgs, 'Escola cadastrada!');
-        
-         // Pagamentos escola
+
+        // Pagamentos escola
         $controllerEscola->cadastrarEscolaMatriculados($id_escola);
+       
 
     else:
         array_push($msgs, 'Escola NÃO cadastrada!');
@@ -114,7 +115,7 @@ include_once __DIR__ . '/../../assets/header.php';
     <div class="col l12"></br>
         <div class="row">
             <div class="col l3 offset-l3">
-                <a class="btn waves-effect waves-light blue" href="listar-escolas">Voltar
+                <a class="btn waves-effect waves-light blue" href="listar-escolas.php">Voltar
                     <i class="material-icons left">arrow_back</i>
                 </a>
             </div>

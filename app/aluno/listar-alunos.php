@@ -58,7 +58,7 @@ include_once __DIR__ . '/../../assets/header.php';
                 <td class="center-align">
 
                     <?php
-                    echo!empty($dado['matricula_aluno']) ? $dado['matricula_aluno'] : '<a class="btn-small waves-effect waves-light purple" href="matricular-aluno?id_aluno=' . $dado['id_aluno'] . '">'
+                    echo!empty($dado['matricula_aluno']) ? $dado['matricula_aluno'] : '<a class="btn-small waves-effect waves-light purple" href="matricular-aluno.php?id_aluno=' . $dado['id_aluno'] . '">'
                             . ' Matricular'
                             . ' <i class="material-icons left">school</i> </a>';
                     ?>

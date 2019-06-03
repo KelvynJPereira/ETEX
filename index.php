@@ -177,7 +177,7 @@ endif;
         </form>   
 
         <div class="container-1">
-            <img class="responsive-img" src="assets/img/designer/background.png"></img>
+            <img class="" src="assets/img/designer/background.png"></img>
         </div>
 
         <div id="ad">

@@ -17,9 +17,13 @@ endif;
 // Escolas de administrador
 $id_admin_escola = $_SESSION['logado'];
 
+
+
+
 // Consulta as escolas do admin
 $controllerAdmin = new AdminController();
 $escolas = $controllerAdmin->buscarAdminEscola($id_admin_escola);
+
 
 // Exclusao de escola selecionada
 if (isset($_POST['excluir-escola'])):
@@ -29,6 +33,9 @@ if (isset($_POST['excluir-escola'])):
     $controllerEscola = new EscolaController();
     // Execulta exclusao da escola no banco
     $msgs = $controllerEscola->excluirEscola($id_escola);
+	
+	
+	
     // Valida resposta da exclusao
     if ($msgs = true):
         $msgs = "Escola excluída!";
