@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 03-Jun-2019 às 20:32
+-- Generation Time: 03-Jun-2019 às 20:52
 -- Versão do servidor: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -381,8 +381,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `login_usuario`, `senha_usuario`, `cpf_usuario`, `permissao_usuario`) VALUES
 (1, 'kelvyn@etex.com', '123', '70260277436', 1),
-(2, 'kelvyn@gmail.com', '123', '6565', 1),
-(3, 'elyxandre@gmail.com', '123', '12457894521', 3);
+(3, 'elyxandre.aluno@etex.com', '123', '12457894521', 3);
 
 --
 -- Constraints for dumped tables
